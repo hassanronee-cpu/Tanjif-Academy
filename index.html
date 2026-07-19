@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>তানজিফ একাডেমি</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Hind+Siliguri:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Hind Siliguri', 'Inter', sans-serif; 
+            transition: background 0.3s, color 0.3s;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== ব্যাকগ্রাউন্ড ইমেজ ===== */
+        .bg-edu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: 
+                linear-gradient(135deg, rgba(15, 23, 42, 0.7), rgba(37, 99, 235, 0.3)),
+                url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" opacity="0.15"%3E%3Crect fill="%234a90e2" width="1200" height="800"/%3E%3Ccircle cx="200" cy="200" r="150" fill="%23ffffff" opacity="0.1"/%3E%3Ccircle cx="900" cy="600" r="200" fill="%23ffffff" opacity="0.08"/%3E%3Ccircle cx="1000" cy="150" r="120" fill="%23ffffff" opacity="0.06"/%3E%3Ccircle cx="300" cy="700" r="100" fill="%23ffffff" opacity="0.07"/%3E%3Cpath d="M0 400 Q300 300 600 400 T1200 400 L1200 800 L0 800 Z" fill="%23ffffff" opacity="0.03"/%3E%3C/svg%3E') center/cover no-repeat;
+            pointer-events: none;
+        }
+
+        /* ===== লাইট মোড ===== */
+        body.light-mode {
+            background: #f0f4ff;
+            color: #0f172a;
+        }
+        body.light-mode .navbar {
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(37,99,235,0.15);
+            box-shadow: 0 4px 30px rgba(37,99,235,0.08);
+        }
+        body.light-mode .glass-card {
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(37,99,235,0.15);
+            box-shadow: 0 8px 40px rgba(37,99,235,0.12);
+        }
+        body.light-mode .input-dark {
+            background: rgba(37,99,235,0.06);
+            border: 1px solid rgba(37,99,235,0.12);
+            color: #0f172a;
+        }
+        body.light-mode .input-dark:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+        }
+        body.light-mode .tab-active { background: linear-gradient(135deg, #2563eb, #7c3aed); color: white; }
+        body.light-mode .tab-inactive { color: #475569; background: rgba(0,0,0,0.04); }
+        body.light-mode .tab-inactive:hover { background: rgba(37,99,235,0.08); }
+        body.light-mode .vision-box {
+            background: linear-gradient(135deg, rgba(37,99,235,0.06), rgba(124,58,237,0.06));
+            border-color: rgba(37,99,235,0.12);
+        }
+        body.light-mode .logo-container { 
+            background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(124,58,237,0.08));
+            border: 1px solid rgba(37,99,235,0.1);
+        }
+        body.light-mode .logo-text { background: linear-gradient(135deg, #1e293b, #334155); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        body.light-mode .logo-accent { background: linear-gradient(135deg, #2563eb, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        body.light-mode .slogan-main { color: #0f172a; }
+        body.light-mode .slogan-sub { color: #475569; }
+        body.light-mode .auth-header-bg { background: linear-gradient(135deg, #2563eb, #7c3aed); }
+        body.light-mode .nav-link { color: #334155; }
+        body.light-mode .nav-link:hover { color: #2563eb; background: rgba(37,99,235,0.08); }
+        body.light-mode .nav-link.active { background: rgba(37,99,235,0.12); color: #2563eb; }
+        body.light-mode .btn-primary { background: linear-gradient(135deg, #2563eb, #7c3aed); }
+        body.light-mode .btn-primary:hover { background: linear-gradient(135deg, #3b82f6, #8b5cf6); }
+        body.light-mode .vision-text { color: #334155; }
+        body.light-mode .vision-highlight { color: #2563eb; }
+        body.light-mode .divider { border-color: rgba(37,99,235,0.1); }
+        body.light-mode .page-title { color: #0f172a; }
+        body.light-mode .page-subtitle { color: #475569; }
+        body.light-mode .btn-google { background: white; border-color: #e2e8f0; color: #0f172a; }
+        body.light-mode .btn-google:hover { background: #f8fafc; border-color: #94a3b8; }
+
+        /* ===== ডার্ক মোড ===== */
+        body.dark-mode {
+            background: #0b1120;
+            color: #f1f5f9;
+        }
+        body.dark-mode .navbar {
+            background: rgba(11, 17, 32, 0.92);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(96, 165, 250, 0.15);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+        body.dark-mode .glass-card {
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(96, 165, 250, 0.15);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+        }
+        body.dark-mode .input-dark {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #f1f5f9;
+        }
+        body.dark-mode .input-dark:focus {
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 3px rgba(96,165,250,0.15);
+        }
+        body.dark-mode .tab-active { background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white; }
+        body.dark-mode .tab-inactive { color: #94a3b8; background: rgba(255,255,255,0.04); }
+        body.dark-mode .tab-inactive:hover { background: rgba(96,165,250,0.08); }
+        body.dark-mode .vision-box {
+            background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.08));
+            border-color: rgba(96,165,250,0.12);
+        }
+        body.dark-mode .logo-container {
+            background: linear-gradient(135deg, rgba(59,130,246,0.12), rgba(139,92,246,0.12));
+            border: 1px solid rgba(96,165,250,0.1);
+        }
+        body.dark-mode .logo-text { background: linear-gradient(135deg, #f1f5f9, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        body.dark-mode .logo-accent { background: linear-gradient(135deg, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        body.dark-mode .slogan-main { color: #f1f5f9; }
+        body.dark-mode .slogan-sub { color: #94a3b8; }
+        body.dark-mode .auth-header-bg { background: linear-gradient(135deg, #1e40af, #5b21b6); }
+        body.dark-mode .nav-link { color: #94a3b8; }
+        body.dark-mode .nav-link:hover { color: #f1f5f9; background: rgba(255,255,255,0.05); }
+        body.dark-mode .nav-link.active { background: rgba(96,165,250,0.12); color: #60a5fa; }
+        body.dark-mode .btn-primary { background: linear-gradient(135deg, #3b82f6, #8b5cf6); }
+        body.dark-mode .btn-primary:hover { background: linear-gradient(135deg, #60a5fa, #a78bfa); }
+        body.dark-mode .vision-text { color: #cbd5e1; }
+        body.dark-mode .vision-highlight { color: #60a5fa; }
+        body.dark-mode .page-title { color: #f1f5f9; }
+        body.dark-mode .page-subtitle { color: #94a3b8; }
+        body.dark-mode .btn-google { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); color: #e2e8f0; }
+        body.dark-mode .btn-google:hover { background: rgba(255,255,255,0.08); }
+
+        /* ===== কম্পোনেন্ট ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0.5rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s;
+            height: 64px;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .nav-link {
+            padding: 0.3rem 0.7rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .logo-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.2rem 0.8rem 0.2rem 0.4rem;
+            border-radius: 100px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 13px;
+            color: white;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(37,99,235,0.3);
+        }
+        .logo-text {
+            font-weight: 800;
+            font-size: 0.95rem;
+            letter-spacing: -0.3px;
+        }
+        .logo-accent {
+            font-weight: 700;
+            font-size: 0.55rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-left: 1px;
+        }
+        .logo-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #3b82f6;
+            display: inline-block;
+            margin: 0 2px;
+            animation: pulseDot 2s ease-in-out infinite;
+        }
+        @keyframes pulseDot {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        .slogan-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.2;
+        }
+        .slogan-main {
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+        }
+        .slogan-sub {
+            font-size: 0.6rem;
+            font-weight: 400;
+            font-style: italic;
+            margin-left: 2.5rem;
+            opacity: 0.8;
+            letter-spacing: 0.05em;
+        }
+
+        .main-content {
+            margin-top: 64px;
+            padding: 1rem;
+            min-height: calc(100vh - 64px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+        .glass-card {
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            max-width: 460px;
+            width: 100%;
+            transition: all 0.3s;
+        }
+        .input-dark {
+            width: 100%;
+            padding: 0.6rem 1rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+            outline: none;
+        }
+        .btn-primary {
+            width: 100%;
+            padding: 0.6rem;
+            border-radius: 10px;
+            font-weight: 700;
+            color: white;
+            border: none;
+            transition: all 0.25s;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37,99,235,0.3);
+        }
+        .btn-google {
+            width: 100%;
+            padding: 0.6rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            border: 1px solid;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .theme-toggle, .lang-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            padding: 0.3rem 0.5rem;
+            border-radius: 8px;
+            transition: all 0.2s;
+            color: inherit;
+        }
+        .theme-toggle:hover, .lang-toggle:hover {
+            background: rgba(255,255,255,0.08);
+        }
+        .step-hidden { display: none !important; }
+        .tab-btn {
+            width: 50%;
+            padding: 0.35rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-success {
+            background: #059669;
+            color: white;
+            width: 100%;
+            padding: 0.6rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-success:hover { background: #047857; }
+        .auth-header-bg {
+            padding: 0.7rem 1rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .auth-header-bg h1 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: white;
+        }
+        .auth-header-bg p {
+            color: rgba(255,255,255,0.85);
+            font-size: 0.7rem;
+            margin-top: 0.1rem;
+        }
+        .vision-box {
+            padding: 0.7rem 1rem;
+            border-radius: 10px;
+            border: 1px solid;
+            margin-top: 0.8rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .vision-text {
+            font-size: 0.75rem;
+            line-height: 1.5;
+        }
+        .grid-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: 0.7rem;
+            margin-top: 1rem;
+        }
+        .link-card {
+            padding: 0.7rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.75rem;
+            border: 1px solid transparent;
+        }
+        body.light-mode .link-card {
+            background: rgba(37,99,235,0.04);
+            color: #0f172a;
+            border-color: rgba(37,99,235,0.06);
+        }
+        body.light-mode .link-card:hover {
+            background: rgba(37,99,235,0.08);
+            border-color: #2563eb;
+            transform: translateY(-2px);
+        }
+        body.dark-mode .link-card {
+            background: rgba(255,255,255,0.03);
+            color: #e2e8f0;
+            border-color: rgba(255,255,255,0.05);
+        }
+        body.dark-mode .link-card:hover {
+            background: rgba(96,165,250,0.08);
+            border-color: #60a5fa;
+            transform: translateY(-2px);
+        }
+        .link-icon { font-size: 1.5rem; display: block; margin-bottom: 0.2rem; }
+
+        .welcome-card {
+            max-width: 600px;
+        }
+        .welcome-card .glass-card {
+            max-width: 600px;
+            padding: 1.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .slogan-main { font-size: 0.85rem; }
+            .slogan-sub { font-size: 0.5rem; margin-left: 1.5rem; }
+            .navbar { padding: 0.3rem 0.8rem; height: 56px; }
+            .main-content { margin-top: 56px; min-height: calc(100vh - 56px); padding: 0.8rem; }
+            .glass-card { padding: 1.2rem; max-width: 100%; }
+            .logo-text { font-size: 0.8rem; }
+            .logo-accent { font-size: 0.45rem; }
+            .logo-icon { width: 26px; height: 26px; font-size: 11px; }
+            .grid-links { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body class="light-mode">
+
+    <!-- ব্যাকগ্রাউন্ড ইমেজ -->
+    <div class="bg-edu"></div>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="logo-container" onclick="goHome()">
+            <div class="logo-icon">ত</div>
+            <div>
+                <div class="flex items-center gap-1">
+                    <span class="logo-text">Tanjif</span>
+                    <span class="logo-accent">Academy</span>
+                    <span class="logo-dot"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="slogan-wrapper hidden md:flex">
+            <span class="slogan-main">✦ তানজিফ একাডেমি ✦</span>
+            <span class="slogan-sub">— জ্ঞান অন্বেষণে এক নতুন সংজোযন</span>
+        </div>
+        <div class="slogan-wrapper md:hidden flex">
+            <span class="slogan-main" style="font-size:0.8rem;">✦ তানজিফ একাডেমি ✦</span>
+            <span class="slogan-sub" style="font-size:0.45rem;">জ্ঞান অন্বেষণে এক নতুন সংজোযন</span>
+        </div>
+
+        <div class="nav-links">
+            <button class="lang-toggle" onclick="toggleLang()" title="ভাষা পরিবর্তন" id="langBtn">🌐</button>
+            <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">☀️</button>
+            <a href="#" class="nav-link" id="nav-login" onclick="showLogin()">লগ ইন</a>
+            <a href="#" class="nav-link" id="nav-logout" onclick="logout()" style="display:none;">লগ আউট</a>
+        </div>
+    </nav>
+
+    <!-- ===== মেইন কন্টেন্ট ===== -->
+    <div class="main-content" id="mainContent">
+        <!-- কন্টেন্ট ডায়নামিকভাবে এখানে লোড হবে -->
+    </div>
+
+    <script>
+        // ===== গ্লোবাল স্টেট =====
+        let currentUser = null;
+        let currentPage = 'login';
+        let currentLang = 'bn';
+
+        // ===== ট্রান্সলেশন =====
+        const translations = {
+            bn: {
+                loginTitle: 'তানজিফ একাডেমি-এ স্বাগতম',
+                loginSub: 'প্ল্যাটফর্মের পূর্ণ এক্সেস পেতে সাইন-ইন বা রেজিস্ট্রেশন করুন',
+                signupTitle: 'নতুন মেম্বারশিপ অ্যাকাউন্ট',
+                signupSub: 'সহজ কিছু তথ্য দিয়ে তানজিফ একাডেমির স্থায়ী সদস্য হোন।',
+                loginTab: 'সাইন-ইন',
+                signupTab: 'নিবন্ধন',
+                emailLabel: 'ইমেইল বা তানজিফ আইডি',
+                emailPlace: 'আপনার ইমেইল বা TA ID দিন',
+                passLabel: 'পাসওয়ার্ড',
+                passPlace: '••••••••',
+                loginBtn: '🚀 সাইন-ইন করুন',
+                orText: 'অথবা',
+                googleBtn: 'Google দিয়ে সরাসরি সাইন-ইন',
+                nameLabel: 'পূর্ণ নাম',
+                namePlace: 'যেমন: কামরুল হাসান',
+                phoneLabel: 'মোবাইল নম্বর',
+                phonePlace: '017XXXXXXXX',
+                emailRegLabel: 'ইমেইল ঠিকানা',
+                emailRegPlace: 'name@example.com',
+                otpBtn: '📩 ওটিপি (OTP) পাঠান',
+                otpLabel: '৪ ডিজিটের ওটিপি',
+                otpPlace: '0000',
+                newPassLabel: 'নতুন পাসওয়ার্ড (ন্যূনতম ৬ অক্ষর)',
+                newPassPlace: '••••••••',
+                verifyBtn: '✅ নিবন্ধন সম্পন্ন করুন',
+                successTitle: '🎉 নিবন্ধন সফল!',
+                successSub: 'অভিনন্দন ',
+                successEnd: ', আপনি এখন তানজিফ একাডেমির সদস্য।',
+                idLabel: 'আপনার ইউনিক আইডি',
+                loginRedirect: '➡️ লগইন পেজে যান',
+                visionTitle: '✦ Our Vision',
+                visionText: '"অলসতা ও গতানুগতিকতা থেকে মুক্ত হয়ে দক্ষ, প্রফেশনাল ও প্রোডাক্টিভ ',
+                visionHighlight: 'জ্ঞান অন্বেষণকারী',
+                visionEnd: ' হিসেবে গড়ে তোলাই আমাদের লক্ষ্য।"',
+                welcomeTitle: '👋 স্বাগতম!',
+                welcomeSub: 'তানজিফ একাডেমির ড্যাশবোর্ডে আপনাকে স্বাগতম',
+                memberLabel: 'সদস্য: ',
+                academyPages: '📚 একাডেমি পেজসমূহ',
+                newLinks: '⚡ নতুন লিঙ্ক যুক্ত করতে পারবেন (ভবিষ্যতে আপডেট)',
+                demoTitle: '📄 পেজ',
+                demoSub: 'এই পেজটি এখনও তৈরি করা হয়নি',
+                homeBtn: '🏠 হোমে ফিরুন',
+                courseLabel: 'কোর্সসমূহ',
+                teacherLabel: 'শিক্ষকবৃন্দ',
+                scheduleLabel: 'ক্লাস রুটিন',
+                assignLabel: 'অ্যাসাইনমেন্ট',
+                resultLabel: 'ফলাফল',
+                libraryLabel: 'লাইব্রেরি',
+                forumLabel: 'ফোরাম',
+                settingsLabel: 'সেটিংস',
+                otpSent: 'ওটিপি যাচাই',
+                otpSentSub: ' — এই ইমেইলে ওটিপি পাঠানো হয়েছে',
+                otpNote: '🔑 ওটিপি কোডটি আপনার টার্মিনাল / CMD-তে দেখুন',
+                regSuccess: 'স্বাগতম!',
+                regSuccessSub: 'আপনার অ্যাকাউন্ট তৈরি হয়েছে।'
+            },
+            en: {
+                loginTitle: 'Welcome to Tanjif Academy',
+                loginSub: 'Sign in or Register to get full access',
+                signupTitle: 'New Membership Account',
+                signupSub: 'Become a permanent member of Tanjif Academy with simple info.',
+                loginTab: 'Sign In',
+                signupTab: 'Sign Up',
+                emailLabel: 'Email or Tanjif ID',
+                emailPlace: 'Your email or TA ID',
+                passLabel: 'Password',
+                passPlace: '••••••••',
+                loginBtn: '🚀 Sign In',
+                orText: 'or',
+                googleBtn: 'Sign in with Google',
+                nameLabel: 'Full Name',
+                namePlace: 'e.g. Kamrul Hasan',
+                phoneLabel: 'Mobile Number',
+                phonePlace: '017XXXXXXXX',
+                emailRegLabel: 'Email Address',
+                emailRegPlace: 'name@example.com',
+                otpBtn: '📩 Send OTP',
+                otpLabel: '4 Digit OTP',
+                otpPlace: '0000',
+                newPassLabel: 'New Password (min 6 chars)',
+                newPassPlace: '••••••••',
+                verifyBtn: '✅ Complete Registration',
+                successTitle: '🎉 Registration Successful!',
+                successSub: 'Congratulations ',
+                successEnd: ', you are now a member of Tanjif Academy.',
+                idLabel: 'Your Unique ID',
+                loginRedirect: '➡️ Go to Login',
+                visionTitle: '✦ Our Vision',
+                visionText: '"To build skilled, professional and productive ',
+                visionHighlight: 'knowledge seekers',
+                visionEnd: ' free from laziness and conventionality."',
+                welcomeTitle: '👋 Welcome!',
+                welcomeSub: 'Welcome to Tanjif Academy Dashboard',
+                memberLabel: 'Member: ',
+                academyPages: '📚 Academy Pages',
+                newLinks: '⚡ New links can be added (future update)',
+                demoTitle: '📄 Page',
+                demoSub: 'This page is not yet created',
+                homeBtn: '🏠 Go Home',
+                courseLabel: 'Courses',
+                teacherLabel: 'Teachers',
+                scheduleLabel: 'Schedule',
+                assignLabel: 'Assignments',
+                resultLabel: 'Results',
+                libraryLabel: 'Library',
+                forumLabel: 'Forum',
+                settingsLabel: 'Settings',
+                otpSent: 'OTP Verification',
+                otpSentSub: ' — OTP sent to this email',
+                otpNote: '🔑 Check your terminal / CMD for OTP code',
+                regSuccess: 'Welcome!',
+                regSuccessSub: 'Your account has been created.'
+            }
+        };
+
+        function t(key) {
+            return translations[currentLang]?.[key] || translations.bn[key] || key;
+        }
+
+        // ===== পেজ কন্টেন্ট =====
+        function getPageContent(pageName) {
+            if (pageName === 'login') {
+                return `
+                    <div class="glass-card">
+                        <div class="auth-header-bg">
+                            <h1 id="auth-title">${t('loginTitle')}</h1>
+                            <p id="auth-subtitle">${t('loginSub')}</p>
+                        </div>
+
+                        <div style="display:flex; gap:0.3rem; margin-bottom:1rem;">
+                            <button onclick="switchTab('login')" id="tab-login" class="tab-btn tab-active">${t('loginTab')}</button>
+                            <button onclick="switchTab('signup')" id="tab-signup" class="tab-btn tab-inactive">${t('signupTab')}</button>
+                        </div>
+
+                        <div id="login-section">
+                            <div style="margin-bottom:0.6rem;">
+                                <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">${t('emailLabel')}</label>
+                                <input type="text" id="login-email" class="input-dark" placeholder="${t('emailPlace')}">
+                            </div>
+                            <div style="margin-bottom:1rem;">
+                                <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">${t('passLabel')}</label>
+                                <input type="password" id="login-password" class="input-dark" placeholder="${t('passPlace')}">
+                            </div>
+                            <button onclick="handleLogin()" class="btn-primary">${t('loginBtn')}</button>
+                            
+                            <div style="position:relative; display:flex; align-items:center; margin:0.6rem 0;">
+                                <div style="flex-grow:1; border-top:1px solid var(--divider-color, #e2e8f0);"></div>
+                                <span style="flex-shrink:0; margin:0 0.8rem; font-size:0.6rem; font-weight:700; color:#94a3b8;">${t('orText')}</span>
+                                <div style="flex-grow:1; border-top:1px solid var(--divider-color, #e2e8f0);"></div>
+                            </div>
+
+                            <button onclick="simulateGoogleAuth()" class="btn-google">
+                                <svg style="width:1rem; height:1rem;" viewBox="0 0 24 24"><path fill="#EA4335" d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.114-5.137 4.114-3.466 0-6.276-2.81-6.276-6.276s2.81-6.276 6.276-6.276c1.54 0 2.94.556 4.03 1.494l3.12-3.12C19.24 1.846 15.99 1 12.24 1 5.766 1 .5 6.266 .5 12.74s5.266 11.74 11.74 11.74c7.32 0 11.965-5.148 11.965-12.193 0-.796-.074-1.547-.217-2.25H12.24z"/></svg>
+                                ${t('googleBtn')}
+                            </button>
+                        </div>
+
+                        <div id="signup-section" class="step-hidden">
+                            <div style="margin-bottom:0.6rem;">
+                                <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">${t('nameLabel')}</label>
+                                <input id="reg-name" type="text" class="input-dark" placeholder="${t('namePlace')}">
+                            </div>
+                            <div style="margin-bottom:0.6rem;">
+                                <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">${t('phoneLabel')}</label>
+                                <input id="reg-phone" type="tel" class="input-dark" placeholder="${t('phonePlace')}">
+                            </div>
+                            <div style="margin-bottom:1rem;">
+                                <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">${t('emailRegLabel')}</label>
+                                <input id="reg-email" type="email" class="input-dark" placeholder="${t('emailRegPlace')}">
+                            </div>
+                            <button onclick="sendOTP()" class="btn-primary">${t('otpBtn')}</button>
+                        </div>
+
+                        <div id="otp-section" class="step-hidden">
+                            <div style="background:rgba(37,99,235,0.08); border:1px solid rgba(37,99,235,0.15); padding:0.5rem; border-radius:8px; text-align:center; margin-bottom:0.6rem;">
+                                <p style="font-size:0.65rem; font-weight:600; color:#2563eb;">${t('otpNote')}</p>
+                            </div>
+                            <div style="margin-bottom:0.6rem;">
+                                <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">${t('otpLabel')}</label>
+                                <input id="input-otp" type="text" maxlength="4" class="input-dark" style="text-align:center; letter-spacing:0.4em; font-size:1rem; font-weight:700; padding:0.5rem;" placeholder="${t('otpPlace')}">
+                            </div>
+                            <div style="margin-bottom:1rem;">
+                                <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">${t('newPassLabel')}</label>
+                                <input id="reg-password" type="password" class="input-dark" placeholder="${t('newPassPlace')}">
+                            </div>
+                            <button onclick="verifyOTP()" class="btn-success">${t('verifyBtn')}</button>
+                        </div>
+
+                        <div id="success-section" class="step-hidden" style="text-align:center;">
+                            <div style="font-size:3rem; margin-bottom:0.2rem;">🎉</div>
+                            <h2 style="font-size:1.2rem; font-weight:800; margin-bottom:0.2rem;">${t('successTitle')}</h2>
+                            <p style="font-size:0.75rem; margin-bottom:0.6rem;">${t('successSub')}<span id="memberName" style="font-weight:700; color:#2563eb;"></span>${t('successEnd')}</p>
+                            <div style="background:rgba(0,0,0,0.04); padding:0.6rem; border-radius:8px; margin-bottom:0.8rem;">
+                                <span style="font-size:0.55rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#64748b; display:block;">${t('idLabel')}</span>
+                                <span id="tanzif-id" style="font-size:1.2rem; font-weight:900; letter-spacing:0.05em; display:block; font-family:monospace;">TA-0000000000</span>
+                            </div>
+                            <button onclick="switchTab('login')" style="width:100%; padding:0.6rem; border-radius:10px; font-weight:700; font-size:0.8rem; border:none; cursor:pointer; transition:0.2s; background:#334155; color:white;">${t('loginRedirect')}</button>
+                        </div>
+
+                        <div class="vision-box">
+                            <span style="font-size:0.5rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#94a3b8; display:block; margin-bottom:0.15rem;">${t('visionTitle')}</span>
+                            <p class="vision-text">${t('visionText')}<span class="vision-highlight font-bold">${t('visionHighlight')}</span>${t('visionEnd')}</p>
+                        </div>
+                    </div>
+                `;
+            } else if (pageName === 'welcome') {
+                return `
+                    <div class="glass-card welcome-card">
+                        <div style="text-align:center; margin-bottom:1rem;">
+                            <h1 class="page-title" style="font-size:1.8rem; font-weight:800;">${t('welcomeTitle')}</h1>
+                            <p class="page-subtitle" style="font-size:0.9rem; margin-top:0.2rem;">${t('welcomeSub')}</p>
+                            <div style="margin-top:0.4rem; padding:0.4rem; background:rgba(37,99,235,0.06); border-radius:6px; display:inline-block;">
+                                <span style="font-size:0.75rem; font-weight:600;">${t('memberLabel')}<span id="welcome-name" style="color:#2563eb;"></span></span>
+                            </div>
+                        </div>
+
+                        <div style="border-top:1px solid var(--divider-color, #e2e8f0); padding-top:1rem;">
+                            <h3 style="font-size:0.8rem; font-weight:700; margin-bottom:0.7rem;">${t('academyPages')}</h3>
+                            <div class="grid-links">
+                                <a href="#" class="link-card" onclick="showPage('courses')">
+                                    <span class="link-icon">📖</span>
+                                    ${t('courseLabel')}
+                                </a>
+                                <a href="#" class="link-card" onclick="showPage('teachers')">
+                                    <span class="link-icon">👨‍🏫</span>
+                                    ${t('teacherLabel')}
+                                </a>
+                                <a href="#" class="link-card" onclick="showPage('schedule')">
+                                    <span class="link-icon">📅</span>
+                                    ${t('scheduleLabel')}
+                                </a>
+                                <a href="#" class="link-card" onclick="showPage('assignments')">
+                                    <span class="link-icon">📝</span>
+                                    ${t('assignLabel')}
+                                </a>
+                                <a href="#" class="link-card" onclick="showPage('results')">
+                                    <span class="link-icon">📊</span>
+                                    ${t('resultLabel')}
+                                </a>
+                                <a href="#" class="link-card" onclick="showPage('library')">
+                                    <span class="link-icon">📚</span>
+                                    ${t('libraryLabel')}
+                                </a>
+                                <a href="#" class="link-card" onclick="showPage('forum')">
+                                    <span class="link-icon">💬</span>
+                                    ${t('forumLabel')}
+                                </a>
+                                <a href="#" class="link-card" onclick="showPage('settings')">
+                                    <span class="link-icon">⚙️</span>
+                                    ${t('settingsLabel')}
+                                </a>
+                            </div>
+                            <p style="text-align:center; margin-top:1rem; font-size:0.6rem; color:#94a3b8;">${t('newLinks')}</p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                return `
+                    <div class="glass-card">
+                        <h1 class="page-title" style="font-size:1.6rem; font-weight:800; text-align:center; margin-bottom:0.3rem;">${t('demoTitle')}</h1>
+                        <p class="page-subtitle" style="text-align:center; margin-bottom:1rem;">${t('demoSub')}</p>
+                        <div style="text-align:center;">
+                            <button onclick="goHome()" class="btn-primary" style="max-width:180px; margin:0 auto;">${t('homeBtn')}</button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function renderPage(pageName) {
+            const container = document.getElementById('mainContent');
+            if (pageName === 'login') {
+                container.innerHTML = getPageContent('login');
+                if (currentUser) {
+                    document.getElementById('nav-login').style.display = 'none';
+                    document.getElementById('nav-logout').style.display = 'inline-block';
+                }
+                currentPage = 'login';
+                setTimeout(() => switchTab('login'), 50);
+            } else if (pageName === 'welcome') {
+                container.innerHTML = getPageContent('welcome');
+                document.getElementById('welcome-name').textContent = currentUser?.name || 'সদস্য';
+                currentPage = 'welcome';
+                document.getElementById('nav-login').style.display = 'none';
+                document.getElementById('nav-logout').style.display = 'inline-block';
+            } else {
+                container.innerHTML = getPageContent('demo');
+                currentPage = pageName;
+            }
+            applyThemeClasses();
+            updateLangUI();
+        }
+
+        function applyThemeClasses() {
+            const isDark = document.body.classList.contains('dark-mode');
+            document.querySelectorAll('[style*="--divider-color"]').forEach(el => {
+                el.style.setProperty('--divider-color', isDark ? 'rgba(255,255,255,0.08)' : '#e2e8f0');
+            });
+        }
+
+        function updateLangUI() {
+            // UI language update handled via re-render
+        }
+
+        // ===== লগইন/লগআউট =====
+        function handleLogin() {
+            const email = document.getElementById('login-email')?.value.trim();
+            const password = document.getElementById('login-password')?.value.trim();
+            if (!email || !password) {
+                alert('ইমেইল এবং পাসওয়ার্ড দিন।');
+                return;
+            }
+            currentUser = { name: 'সদস্য', email: email };
+            localStorage.setItem('tanjif_user', JSON.stringify(currentUser));
+            renderPage('welcome');
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('tanjif_user');
+            document.getElementById('nav-login').style.display = 'inline-block';
+            document.getElementById('nav-logout').style.display = 'none';
+            renderPage('login');
+        }
+
+        function showLogin() {
+            if (currentUser) {
+                renderPage('welcome');
+            } else {
+                renderPage('login');
+            }
+        }
+
+        function goHome() {
+            if (currentUser) {
+                renderPage('welcome');
+            } else {
+                renderPage('login');
+            }
+        }
+
+        function showPage(pageName) {
+            if (!currentUser) {
+                alert('দয়া করে প্রথমে লগইন করুন।');
+                renderPage('login');
+                return;
+            }
+            
+            if (pageName === 'courses') {
+                const container = document.getElementById('mainContent');
+                container.innerHTML = `
+                    <div style="width:100%; max-width:1200px; margin:0 auto; padding:0 10px;">
+                        <iframe src="courses.html" style="width:100%; min-height:70vh; border:none; border-radius:14px; background:transparent;"></iframe>
+                    </div>
+                `;
+                currentPage = 'courses';
+                setTimeout(() => {
+                    const iframe = document.querySelector('iframe');
+                    if (iframe) {
+                        const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+                        iframe.contentWindow.postMessage({ theme: theme }, '*');
+                    }
+                }, 500);
+                return;
+            }
+            
+            renderPage('demo');
+            const title = document.querySelector('.page-title');
+            if (title) {
+                const names = {
+                    teachers: '👨‍🏫 শিক্ষকবৃন্দ',
+                    schedule: '📅 ক্লাস রুটিন',
+                    assignments: '📝 অ্যাসাইনমেন্ট',
+                    results: '📊 ফলাফল',
+                    library: '📚 লাইব্রেরি',
+                    forum: '💬 ফোরাম',
+                    settings: '⚙️ সেটিংস'
+                };
+                title.textContent = names[pageName] || '📄 পেজ';
+            }
+        }
+
+        // ===== ট্যাব =====
+        function switchTab(type) {
+            const login = document.getElementById('login-section');
+            const signup = document.getElementById('signup-section');
+            const otp = document.getElementById('otp-section');
+            const success = document.getElementById('success-section');
+            const tabLogin = document.getElementById('tab-login');
+            const tabSignup = document.getElementById('tab-signup');
+            const authTitle = document.getElementById('auth-title');
+            const authSubtitle = document.getElementById('auth-subtitle');
+
+            if (!login || !signup || !otp || !success) return;
+
+            login.classList.add('step-hidden');
+            signup.classList.add('step-hidden');
+            otp.classList.add('step-hidden');
+            success.classList.add('step-hidden');
+
+            if (type === 'login') {
+                login.classList.remove('step-hidden');
+                tabLogin.className = "tab-btn tab-active";
+                tabSignup.className = "tab-btn tab-inactive";
+                if(authTitle) authTitle.innerText = t('loginTitle');
+                if(authSubtitle) authSubtitle.innerText = t('loginSub');
+            } else {
+                signup.classList.remove('step-hidden');
+                tabSignup.className = "tab-btn tab-active";
+                tabLogin.className = "tab-btn tab-inactive";
+                if(authTitle) authTitle.innerText = t('signupTitle');
+                if(authSubtitle) authSubtitle.innerText = t('signupSub');
+            }
+        }
+
+        // ===== OTP =====
+        async function sendOTP() {
+            const name = document.getElementById('reg-name')?.value.trim();
+            const phone = document.getElementById('reg-phone')?.value.trim();
+            const email = document.getElementById('reg-email')?.value.trim();
+
+            if (!name || !phone || !email) {
+                alert("দয়া করে নাম, মোবাইল এবং ইমেইল সব ঘর পূরণ করুন।");
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/send-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, phone, email })
+                });
+                const data = await res.json();
+
+                if (data.success) {
+                    document.getElementById('signup-section').classList.add('step-hidden');
+                    document.getElementById('otp-section').classList.remove('step-hidden');
+                    const title = document.querySelector('.page-title');
+                    if (title) title.textContent = t('otpSent');
+                    const sub = document.querySelector('.page-subtitle');
+                    if (sub) sub.textContent = email + t('otpSentSub');
+                } else {
+                    alert(data.message || "ওটিপি পাঠানো সম্ভব হয়নি।");
+                }
+            } catch (err) {
+                console.error(err);
+                alert("সার্ভারের সাথে যোগাযোগ করা যাচ্ছে না। নিশ্চিত করুন সার্ভার চলছে (node server.js)");
+            }
+        }
+
+        async function verifyOTP() {
+            const email = document.getElementById('reg-email')?.value.trim();
+            const otp = document.getElementById('input-otp')?.value.trim();
+            const password = document.getElementById('reg-password')?.value;
+
+            if (!otp) { alert('ওটিপি কোড দিন।'); return; }
+            if (!password || password.length < 6) { alert('পাসওয়ার্ড অবশ্যই ৬ বা তার বেশি অক্ষরের হতে হবে।'); return; }
+
+            try {
+                const res = await fetch('/api/verify-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, otp, password })
+                });
+                const data = await res.json();
+
+                if (data.success) {
+                    document.getElementById('otp-section').classList.add('step-hidden');
+                    document.getElementById('success-section').classList.remove('step-hidden');
+                    document.getElementById('memberName').textContent = data.name;
+                    document.getElementById('tanzif-id').textContent = data.tanzifID;
+                    const title = document.querySelector('.page-title');
+                    if (title) title.textContent = t('regSuccess');
+                    const sub = document.querySelector('.page-subtitle');
+                    if (sub) sub.textContent = t('regSuccessSub');
+                } else {
+                    alert(data.message || "ওটিপি মিলছে না, আবার চেষ্টা করুন।");
+                }
+            } catch (err) {
+                console.error(err);
+                alert("ভেরিফিকেশন ব্যর্থ, সার্ভার চেক করুন।");
+            }
+        }
+
+        function simulateGoogleAuth() {
+            alert("🌐 Google One-Tap সাইন-ইন সিমুলেশন (লাইভ হলে কাজ করবে)");
+        }
+
+        // ===== থিম & ভাষা =====
+        function toggleTheme() {
+            const isDark = document.body.classList.contains('dark-mode');
+            if (isDark) {
+                document.body.classList.remove('dark-mode');
+                document.body.classList.add('light-mode');
+                document.getElementById('themeBtn').textContent = '☀️';
+            } else {
+                document.body.classList.remove('light-mode');
+                document.body.classList.add('dark-mode');
+                document.getElementById('themeBtn').textContent = '🌙';
+            }
+            applyThemeClasses();
+            
+            const iframe = document.querySelector('iframe');
+            if (iframe) {
+                const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+                iframe.contentWindow.postMessage({ theme: theme }, '*');
+            }
+        }
+
+        function toggleLang() {
+            currentLang = currentLang === 'bn' ? 'en' : 'bn';
+            document.getElementById('langBtn').textContent = currentLang === 'bn' ? '🌐' : '🌍';
+            // Re-render current page
+            if (currentPage === 'login') renderPage('login');
+            else if (currentPage === 'welcome') renderPage('welcome');
+            else renderPage('demo');
+            // Re-apply tab state
+            if (currentPage === 'login') {
+                setTimeout(() => {
+                    const activeTab = document.querySelector('.tab-active');
+                    if (activeTab) {
+                        const type = activeTab.textContent.includes('Sign') || activeTab.textContent.includes('নিবন্ধন') ? 'signup' : 'login';
+                        switchTab(type);
+                    }
+                }, 50);
+            }
+        }
+
+        // ===== ইনিট =====
+        window.onload = function() {
+            const savedUser = localStorage.getItem('tanjif_user');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                renderPage('welcome');
+            } else {
+                renderPage('login');
+                setTimeout(() => switchTab('login'), 100);
+            }
+            document.body.classList.add('light-mode');
+            applyThemeClasses();
+        };
+    </script>
+
+</body>
+</html>

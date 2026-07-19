@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কোর্সসমূহ | তানজিফ একাডেমি</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Hind Siliguri', sans-serif; 
+            background: #f1f5f9;
+            min-height: 100vh;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        /* লাইট/ডার্ক থিম */
+        body.light-mode {
+            background: #f1f5f9;
+        }
+        body.dark-mode {
+            background: #0b1120;
+        }
+        body.dark-mode .card-front {
+            background: rgba(255,255,255,0.05) !important;
+            border-color: rgba(255,255,255,0.08);
+        }
+        body.dark-mode .card-front h2 {
+            color: #f1f5f9;
+        }
+        body.dark-mode .card-front .text-slate-700 {
+            color: #94a3b8;
+        }
+        body.dark-mode .card-front .bg-white\/60 {
+            background: rgba(255,255,255,0.08);
+            color: #e2e8f0;
+        }
+        body.dark-mode .card-back {
+            background: rgba(255,255,255,0.05) !important;
+            border-color: rgba(255,255,255,0.08);
+        }
+        body.dark-mode .card-back .text-slate-800 {
+            color: #e2e8f0;
+        }
+        body.dark-mode .card-back .bg-slate-50 {
+            background: rgba(255,255,255,0.05);
+        }
+        body.dark-mode .card-back .border-slate-100 {
+            border-color: rgba(255,255,255,0.06);
+        }
+        body.dark-mode .card-back .border-b {
+            border-color: rgba(255,255,255,0.08);
+        }
+        body.dark-mode .card-back .text-slate-500 {
+            color: #94a3b8;
+        }
+        body.dark-mode .card-back .bg-slate-50:hover {
+            background: rgba(255,255,255,0.08);
+        }
+        body.dark-mode .books-section {
+            background: rgba(255,255,255,0.06) !important;
+            border-color: rgba(255,255,255,0.08) !important;
+        }
+        body.dark-mode .books-section .text-sky-900 {
+            color: #f1f5f9;
+        }
+        body.dark-mode .books-section .bg-white {
+            background: rgba(255,255,255,0.08);
+            color: #f1f5f9;
+        }
+        body.dark-mode .books-section .bg-white:hover {
+            background: rgba(255,255,255,0.12);
+        }
+
+        /* ফ্লিপ কার্ড */
+        .flip-container {
+            perspective: 1000px;
+            height: 168px;
+        }
+        .flip-card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        .flip-card.flipped {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+        .card-front {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem 0.8rem;
+        }
+        .card-back {
+            transform: rotateY(180deg);
+            border: 1px solid #cbd5e1;
+            padding: 0.6rem 0.8rem;
+            overflow: hidden;
+        }
+        .course-list-scroll {
+            overflow-y: auto;
+            max-height: 100px;
+            padding-right: 2px;
+        }
+        .course-list-scroll::-webkit-scrollbar {
+            width: 3px;
+        }
+        .course-list-scroll::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 10px;
+        }
+        .course-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.25rem 0.5rem;
+            background: rgba(0,0,0,0.02);
+            border-radius: 6px;
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: 0.15s;
+            margin-bottom: 2px;
+        }
+        .course-item:hover {
+            background: rgba(0,0,0,0.04);
+        }
+        .course-item .course-name {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #1e293b;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 120px;
+        }
+        .course-item .module-btn {
+            font-size: 0.55rem;
+            font-weight: 700;
+            padding: 0.15rem 0.6rem;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: 0.15s;
+            white-space: nowrap;
+        }
+        body.dark-mode .course-item {
+            background: rgba(255,255,255,0.03);
+            border-color: rgba(255,255,255,0.05);
+        }
+        body.dark-mode .course-item .course-name {
+            color: #e2e8f0;
+        }
+        body.dark-mode .course-item:hover {
+            background: rgba(255,255,255,0.06);
+        }
+        .badge-count {
+            font-size: 0.55rem;
+            font-weight: 700;
+            padding: 0.1rem 0.5rem;
+            border-radius: 20px;
+            margin-top: 0.2rem;
+        }
+        .section-title {
+            font-size: 0.75rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            padding-bottom: 0.2rem;
+            margin-bottom: 0.3rem;
+        }
+        body.dark-mode .section-title {
+            border-color: rgba(255,255,255,0.06);
+        }
+        .books-section {
+            border-radius: 14px;
+            padding: 0.6rem 1rem;
+            margin-top: 0.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #1e40af, #4f46e5);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .books-section .lib-title {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.1;
+        }
+        .books-section .lib-sub {
+            font-size: 0.55rem;
+            color: rgba(255,255,255,0.75);
+            font-weight: 500;
+        }
+        .books-section .lib-btn {
+            background: white;
+            color: #1e40af;
+            padding: 0.2rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: 0.15s;
+            white-space: nowrap;
+        }
+        .books-section .lib-btn:hover {
+            background: #e2e8f0;
+        }
+        body.dark-mode .books-section {
+            background: linear-gradient(135deg, #1e3a5f, #3b2f6e) !important;
+        }
+        body.dark-mode .books-section .lib-btn {
+            background: rgba(255,255,255,0.12);
+            color: #f1f5f9;
+        }
+        body.dark-mode .books-section .lib-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 10px 12px; }
+            .flip-container { height: 150px; }
+            .card-front h2 { font-size: 0.9rem; }
+            .course-item .course-name { max-width: 80px; font-size: 0.6rem; }
+            .course-item .module-btn { font-size: 0.5rem; padding: 0.1rem 0.4rem; }
+            .books-section { flex-wrap: wrap; gap: 0.3rem; }
+            .books-section .lib-title { font-size: 0.7rem; }
+        }
+    </style>
+</head>
+<body class="light-mode">
+
+<div class="w-full max-w-5xl mx-auto">
+
+    <!-- হেডার -->
+    <div class="text-center mb-2">
+        <span class="text-[10px] font-bold text-sky-700 bg-sky-50/80 px-2.5 py-0.5 rounded-full uppercase tracking-wider">Tanjif Academy Hub</span>
+        <h1 class="text-lg font-extrabold text-slate-800 mt-0.5">🎓 আমাদের কোর্সসমূহ</h1>
+        <p class="text-slate-500 font-medium text-[10px]">ক্লিক করুন অথবা মাউস হোভার করে ফ্লিপ করুন</p>
+    </div>
+
+    <!-- ২x২ গ্রিড -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+
+        <!-- কার্ড ১: ইসলামিক ও আরবি -->
+        <div class="flip-container" onmouseleave="resetFlip(this)">
+            <div class="flip-card" onclick="toggleFlip(this, event)">
+                <div class="card-front bg-gradient-to-br from-green-50 to-emerald-50/40 border-green-200">
+                    <span class="text-2xl">🕌</span>
+                    <h2 class="text-base font-extrabold text-emerald-950 text-center leading-tight">ইসলামিক ও আরবি ভাষা চর্চা</h2>
+                    <span class="badge-count bg-emerald-100/70 text-emerald-700">৭টি কোর্স</span>
+                </div>
+                <div class="card-back bg-white/95">
+                    <div class="section-title text-emerald-800">
+                        <span>🕌</span> কোর্স তালিকা <span class="text-[9px] text-slate-500 font-normal">(ইসলামিক ও আরবি)</span>
+                    </div>
+                    <div class="course-list-scroll space-y-0.5">
+                        <div class="course-item"><span class="course-name">কুরআনিক আরাবিক (L1)</span><button onclick="navigateToModule('module-quran-arabic-l1.html', event)" class="module-btn bg-emerald-700 hover:bg-emerald-800 text-white">মডিউল</button></div>
+                        <div class="course-item"><span class="course-name">কুরআনিক আরাবিক (L2)</span><button onclick="navigateToModule('module-quran-arabic-l2.html', event)" class="module-btn bg-emerald-700 hover:bg-emerald-800 text-white">মডিউল</button></div>
+                        <div class="course-item"><span class="course-name">বেসিক আরাবিক (L1)</span><button onclick="navigateToModule('basic language level 1.html', event)" class="module-btn bg-emerald-700 hover:bg-emerald-800 text-white">মডিউল</button></div>
+                        <div class="course-item"><span class="course-name">বেসিক আরাবিক (L2)</span><button onclick="navigateToModule('module-basic-arabic-l2.html', event)" class="module-btn bg-emerald-700 hover:bg-emerald-800 text-white">মডিউল</button></div>
+                        <div class="course-item"><span class="course-name">বেসিক গ্রামার (L1)</span><button onclick="navigateToModule('basic grammer level 1.html', event)" class="module-btn bg-emerald-700 hover:bg-emerald-800 text-white">মডিউল</button></div>
+                        <div class="course-item"><span class="course-name">বেসিক গ্রামার (L2)</span><button onclick="navigateToModule('module-arabic-grammar-l2.html', event)" class="module-btn bg-emerald-700 hover:bg-emerald-800 text-white">মডিউল</button></div>
+                        <div class="course-item"><span class="course-name">ইজি ভোকাবুলারি</span><button onclick="navigateToModule('deepseekvocabuilder.html', event)" class="module-btn bg-emerald-700 hover:bg-emerald-800 text-white">মডিউল</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- কার্ড ২: প্রোডাক্টিভিটি -->
+        <div class="flip-container" onmouseleave="resetFlip(this)">
+            <div class="flip-card" onclick="toggleFlip(this, event)">
+                <div class="card-front bg-gradient-to-br from-amber-50 to-orange-50/40 border-amber-200">
+                    <span class="text-2xl">🌅</span>
+                    <h2 class="text-base font-extrabold text-amber-950 text-center leading-tight">প্রোডাক্টিভিটি ও আত্মউন্নয়ন</h2>
+                    <span class="badge-count bg-amber-100/70 text-amber-700">২টি কোর্স</span>
+                </div>
+                <div class="card-back bg-white/95">
+                    <div class="section-title text-amber-800">
+                        <span>🌅</span> কোর্স তালিকা <span class="text-[9px] text-slate-500 font-normal">(প্রোডাক্টিভিটি)</span>
+                    </div>
+                    <div class="course-list-scroll space-y-0.5">
+                        <div class="course-item"><span class="course-name">Morning Power & Productivity</span><button onclick="navigateToModule('module-productivity.html', event)" class="module-btn bg-amber-700 hover:bg-amber-800 text-white">মডিউল</button></div>
+                        <div class="course-item"><span class="course-name">ব্যক্তিগত লক্ষ্য ও টাইম ম্যানেজমেন্ট</span><button onclick="navigateToModule('module-goals.html', event)" class="module-btn bg-amber-700 hover:bg-amber-800 text-white">মডিউল</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- কার্ড ৩: প্রফেশনাল ও ডাটা স্কিল -->
+        <div class="flip-container" onmouseleave="resetFlip(this)">
+            <div class="flip-card" onclick="toggleFlip(this, event)">
+                <div class="card-front bg-gradient-to-br from-blue-50 to-indigo-50/40 border-blue-200">
+                    <span class="text-2xl">📊</span>
+                    <h2 class="text-base font-extrabold text-blue-950 text-center leading-tight">প্রফেশনাল ও ডাটা স্কিল</h2>
+                    <span class="badge-count bg-blue-100/70 text-blue-700">২টি কোর্স</span>
+                </div>
+                <div class="card-back bg-white/95">
+                    <div class="section-title text-blue-800">
+                        <span>📊</span> কোর্স তালিকা <span class="text-[9px] text-slate-500 font-normal">(ডাটা স্কিল)</span>
+                    </div>
+                    <div class="course-list-scroll space-y-0.5">
+                        <div class="course-item"><span class="course-name">Advanced Excel & VBA</span><button onclick="navigateToModule('module-excel.html', event)" class="module-btn bg-blue-700 hover:bg-blue-800 text-white">মডিউল</button></div>
+                        <div class="course-item"><span class="course-name">Full-Stack Web Development</span><button onclick="navigateToModule('module-webdev.html', event)" class="module-btn bg-blue-700 hover:bg-blue-800 text-white">মডিউল</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- কার্ড ৪: করপোরেট ও ক্যারিয়ার -->
+        <div class="flip-container" onmouseleave="resetFlip(this)">
+            <div class="flip-card" onclick="toggleFlip(this, event)">
+                <div class="card-front bg-gradient-to-br from-orange-50 to-red-50/40 border-orange-200">
+                    <span class="text-2xl">📈</span>
+                    <h2 class="text-base font-extrabold text-orange-950 text-center leading-tight">করপোরেট ও ক্যারিয়ার স্ট্রাটেজি</h2>
+                    <span class="badge-count bg-orange-100/70 text-orange-700">২টি কোর্স</span>
+                </div>
+                <div class="card-back bg-white/95">
+                    <div class="section-title text-orange-800">
+                        <span>📈</span> কোর্স তালিকা <span class="text-[9px] text-slate-500 font-normal">(করপোরেট)</span>
+                    </div>
+                    <div class="course-list-scroll space-y-0.5">
+                        <div class="course-item"><span class="course-name">VIP Banking Strategy</span><button onclick="navigateToModule('module-banking.html', event)" class="module-btn bg-orange-700 hover:bg-orange-800 text-white">মডিউল</button></div>
+                        <div class="course-item"><span class="course-name">প্রফেশনাল বুক রাইটিং ও অথরিং</span><button onclick="navigateToModule('module-writing.html', event)" class="module-btn bg-orange-700 hover:bg-orange-800 text-white">মডিউল</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 📚 লাইব্রেরি সেকশন -->
+    <div class="books-section">
+        <div class="flex items-center gap-2">
+            <span class="text-xl">📚</span>
+            <div>
+                <h2 class="lib-title">তানজিফ একাডেমি লাইব্রেরি</h2>
+                <p class="lib-sub">আমাদের প্রকাশনা ও রিসোর্স</p>
+            </div>
+        </div>
+        <button onclick="navigateToModule('books.html', event)" class="lib-btn">
+            📖 লাইব্রেরি প্রবেশ →
+        </button>
+    </div>
+
+</div>
+
+<script>
+    function toggleFlip(card, event) {
+        if (event.target.tagName === 'BUTTON') return;
+        card.classList.toggle('flipped');
+    }
+
+    function resetFlip(container) {
+        const card = container.querySelector('.flip-card');
+        if (card && card.classList.contains('flipped')) {
+            card.classList.remove('flipped');
+        }
+    }
+
+    function navigateToModule(pageUrl, event) {
+        if (event) event.stopPropagation();
+        if (window.parent && typeof window.parent.loadPage === 'function') {
+            window.parent.loadPage(pageUrl);
+        } else {
+            window.location.href = pageUrl;
+        }
+    }
+
+    // থিম সিঙ্ক
+    window.addEventListener('message', function(event) {
+        if (event.data && event.data.theme) {
+            document.body.classList.remove('light-mode', 'dark-mode');
+            document.body.classList.add(event.data.theme + '-mode');
+        }
+    });
+    window.parent.postMessage({ type: 'getTheme' }, '*');
+</script>
+
+</body>
+</html>

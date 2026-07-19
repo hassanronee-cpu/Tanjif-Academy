@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আন নাফি আরবি ল্যাঙ্গুয়েজ কোর্স লেভেল-১</title>
+    <style>
+        :root {
+            --primary-color: #1a5f7a;
+            --secondary-color: #57c5b6;
+            --dark-color: #159895;
+            --light-bg: #f5f9f9;
+            --text-dark: #2c3e50;
+            --text-light: #ffffff;
+            --border-color: #d1e7dd;
+            --arabic-font: 'Traditional Arabic', 'Scheherazade New', serif;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fafafa;
+            color: var(--text-dark);
+            display: flex;
+            line-height: 1.6;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            background-color: #0f4052;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li a {
+            display: block;
+            padding: 12px 20px;
+            color: #d1e7dd;
+            text-decoration: none;
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: var(--dark-color);
+            color: var(--text-light);
+            padding-left: 25px;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            margin-left: 280px;
+            padding: 40px;
+            width: calc(100% - 280px);
+            box-sizing: border-box;
+        }
+
+        .header-banner {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: var(--text-light);
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .header-banner h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .header-banner p {
+            margin: 10px 0 0;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Class Card Styling */
+        .class-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            border: 1px solid #eef2f5;
+            scroll-margin-top: 20px;
+        }
+
+        .class-header {
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .class-badge {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .class-title {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+        }
+
+        .section-title {
+            color: var(--dark-color);
+            font-size: 1.2rem;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 10px;
+        }
+
+        .arabic-text {
+            font-family: var(--arabic-font);
+            font-size: 1.5rem;
+            color: #111;
+            direction: rtl;
+            display: inline-block;
+            padding: 0 5px;
+            font-weight: bold;
+        }
+
+        /* Tables & Lists */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: #eef7f6;
+        }
+
+        .pro-tip {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .exercise-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #2e7d32;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .homework-box {
+            background-color: #e3f2fd;
+            border-left: 5px solid #1565c0;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .summary-box {
+            background-color: #f3e5f5;
+            border-left: 5px solid #7b1fa2;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .main-content {
+                width: 100%;
+                margin-left: 0;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="sidebar-header">কোর্স ক্লাস নেভিগেশন</div>
+        <ul>
+            <li><a href="#class1">ক্লাস ১: শব্দের প্রকার ও লিঙ্গভেদ</a></li>
+            <li><a href="#class2">ক্লাস ২: ইশারাসূচক শব্দ</a></li>
+            <li><a href="#class3">ক্লাস ৩: প্রশ্নবোধক অব্যয়</a></li>
+            <li><a href="#class4">ক্লাস ৪: মাউসূফ ও সিফাত</a></li>
+            <li><a href="#class5">ক্লাস ৫: নির্দিষ্ট ও অনির্দিষ্ট ইসম</a></li>
+            <li><a href="#class6">ক্লাস ৬: সর্বনাম বা যমীর</a></li>
+            <li><a href="#class7">ক্লাস ৭: সম্বন্ধ পদ বা ইদাফাত</a></li>
+            <li><a href="#class8">ক্লাস ৮: মুদাফ ইলাইহির সিফাত</a></li>
+            <li><a href="#class9">ক্লাস ৯: সংযুক্ত সর্বনাম</a></li>
+            <li><a href="#class10">ক্লাস ১০: হরফে নিদা (সম্বোধন)</a></li>
+            <li><a href="#class11">ক্লাস ১১: বচন বা সংখ্যা</a></li>
+            <li><a href="#class12">ক্লাস ১২: বিশেষ মুদাফ</a></li>
+            <li><a href="#class13">ক্লাস ১৩: হুরুফুল জার</a></li>
+            <li><a href="#class14">ক্লাস ১৪: মুবতাদা-খবর</a></li>
+            <li><a href="#class15">ক্লাস ১৫: আরবি কথোপকথন</a></li>
+            <li><a href="#class16">ক্লাস ১৬: ইন্না ও তার সমগোত্রীয়</a></li>
+            <li><a href="#class17">ক্লাস ১৭: নৈকট্য ও জটিল বাক্য</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <div class="header-banner">
+            <h1>আন নাফি আরবি ল্যাঙ্গুয়েজ কোর্স</h1>
+            <p>লেভেল - ১ (ব্যাকরণ, শব্দার্থ ও বাস্তব প্রয়োগের সহজ পাঠ)</p>
+        </div>
+
+        <!-- CLASS 1 -->
+        <section id="class1" class="class-card">
+            <div class="class-header">
+                <span class="class-badge">ক্রম: ক্লাস-০১</span>
+                <h2 class="class-title">ইসম (বিশেষ্য) ও লিঙ্গভেদ (Gender)</h2>
+            </div>
+            <div class="section-title">২। ক্লাসের বিষয়</div>
+            <p>আরবি ভাষায় শব্দের প্রাথমিক প্রকারভেদ এবং লিঙ্গভেদে (পুরুষবাচক ও স্ত্রীবাচক) শব্দ চেনার উপায় ও বাক্যে তাদের গুরুত্ব।</p>
+            
+            <div class="section-title">৩। মূলকথা ও উদাহরণসহ নিয়মকানুন</div>
+            <p><strong>ইসম (<span class="arabic-text">اِسْمٌ</span>) এর পরিচয়:</strong> যে শব্দ (<span class="arabic-text">كَلِمَة</span>) দ্বারা কোনো ব্যক্তি, বস্তু, প্রাণী, স্থান, সময়, সংখ্যা, গুণ বা কাজের নাম বোঝায়, তাকে আরবিতে ইসম বা বিশেষ্য বলে।</p>
+            <p><strong>উদাহরণ:</strong> <span class="arabic-text">رَجُلٌ</span> (পুরুষ), <span class="arabic-text">كِتَابٌ</span> (বই), <span class="arabic-text">اَلْمَاءُ</span> (পানি), <span class="arabic-text">اَلنَّارُ</span> (আগুন)।</p>
+            
+            <p><strong>লিঙ্গভেদে প্রকারভেদ:</strong> আরবিতে শব্দ প্রধানত দুই প্রকার:</p>
+            <ul>
+                <li><strong><span class="arabic-text">مُذَكَّرٌ</span> (মুযাক্কার):</strong> পুরুষবাচক শব্দ। যেমন: <span class="arabic-text">قُرْآنٌ</span> (কুরআন), <span class="arabic-text">جَوَّالٌ</span> (মোবাইল)।</li>
+                <li><strong><span class="arabic-text">مُؤَنَّثٌ</span> (মুআন্নাস):</strong> স্ত্রীবাচক শব্দ। যেমন: <span class="arabic-text">مَدْرَسَةٌ</span> (মাদ্রাসা), <span class="arabic-text">حَدِيقَةٌ</span> (বাগান)।</li>
+            </ul>
+            <p><strong>মুআন্নাস চেনার প্রধান নিয়ম:</strong> শব্দের শেষে গোল 'তা' (<span class="arabic-text">ة</span>) থাকলে তা সাধারণত মুআন্নাস হয়। গোল 'তা' না থাকলে তা মুযাক্কার।</p>
+            
+            <p><strong>অন্যান্য গুরুত্বপূর্ণ নিয়ম (অতিরিক্ত ব্যাখ্যাসহ):</strong></p>
+            <ol>
+                <li><strong>প্রাকৃতিক স্ত্রীবাচক:</strong> জন্মগতভাবে স্ত্রীবাচক শব্দ (যেমন: <span class="arabic-text">أُمٌّ</span> - মা, <span class="arabic-text">أُخْتٌ</span> - বোন)।</li>
+                <li><strong>জোড়া অঙ্গ-প্রত্যঙ্গ:</strong> শরীরের যেসব অঙ্গ জোড়ায় জোড়ায় থাকে সেগুলো মুআন্নাস হয় (যেমন: <span class="arabic-text">يَدٌ</span> - হাত, <span class="arabic-text">عَيْنٌ</span> - চোখ)। তবে একক অঙ্গসমূহ (যেমন: <span class="arabic-text">أَنْفٌ</span> - নাক) মুযাক্কার হিসেবে ব্যবহৃত হয়।</li>
+                <li><strong>দেশ ও শহরের নাম:</strong> অধিকাংশ দেশ ও শহরের নাম মুআন্নাস হিসেবে গণ্য হয় (যেমন: <span class="arabic-text">مِصْرُ</span> - মিশর, <span class="arabic-text">بَاکِسْتَانُ</span> - পাকিস্তান)।</li>
+                <li><strong>মুআন্নাসে সামায়ী (শ্রুত স্ত্রীবাচক):</strong> কিছু শব্দে বাহ্যিক কোনো আলামত বা গোল 'তা' না থাকলেও আরবদের ব্যবহারের ওপর ভিত্তি করে ব্যাকরণগতভাবে মুআন্নাস ধরা হয়। যেমন: <span class="arabic-text">شَمْسٌ</span> (সূর্য), <span class="arabic-text">سَمَاءٌ</span> (আকাশ), <span class="arabic-text">أَرْضٌ</span> (পৃথিবী)।</li>
+            </ol>
+
+            <div class="pro-tip">
+                <strong>💡 গুরুত্বপূর্ণ কৌশল:</strong> বাক্য গঠনের সময় শব্দের লিঙ্গ নির্ধারণ করা অপরিহার্য। কারণ ইসম বা বিশেষ্যের লিঙ্গ অনুযায়ী পরবর্তী ক্রিয়া (Verb) এবং গুণবাচক শব্দের (Adjective) রূপ পরিবর্তিত হয়ে যায়। কোনো মুযাক্কার শব্দের শেষে গোল 'তা' (<span class="arabic-text">ة</span>) যুক্ত করে সহজেই সেটিকে মুআন্নাসে রূপান্তর করা যায় (যেমন: <span class="arabic-text">مُسْلِمٌ</span> &rarr; <span class="arabic-text">مُسْلِمَةٌ</span>)।
+            </div>
+
+            <div class="exercise-box">
+                <strong>✍️ অনুশীলন</strong><br>
+                <strong>ক. নিচের শব্দগুলো থেকে মুযাক্কার ও মুআন্নাস আলাদা করো:</strong><br>
+                <span class="arabic-text">طَالِبٌ</span> (ছাত্র), <span class="arabic-text">مَدِينَةٌ</span> (শহর), <span class="arabic-text">مَسْجِدٌ</span> (মসজিদ), <span class="arabic-text">صَلَاةٌ</span> (নামাজ), <span class="arabic-text">بَحْرٌ</span> (সাগর), <span class="arabic-text">جَنَّةٌ</span> (বাগান/জান্নাত), <span class="arabic-text">طَبِيبٌ</span> (ডাক্তার), <span class="arabic-text">نَافِذَةٌ</span> (জানালা)।<br>
+                <strong>উত্তর:</strong> মুযাক্কার: <span class="arabic-text">طَالِبٌ, مَسْجِدٌ, بَحْرٌ, طَبِيبٌ</span> | মুআন্নাস: <span class="arabic-text">مَدِينَةٌ, صَلَاةٌ, جَنَّةٌ, نَافِذَةٌ</span><br><br>
+                <strong>খ. সঠিক উত্তরটি চিহ্নিত করো:</strong><br>
+                ১. '<span class="arabic-text">قِيَامَةٌ</span>' শব্দটি ব্যাকরণগতভাবে কী? <strong>উত্তর: মুআন্নাস</strong><br>
+                ২. গোল 'তা' (<span class="arabic-text">ة</span>) না থাকলে শব্দটি সাধারণত কী হয়? <strong>উত্তর: মুযাক্কার</strong>
+            </div>
+
+            <div class="summary-box">
+                <strong>📝 ক্লাস সারাংশ:</strong> নামবাচক শব্দই হলো ইসম। আরবিতে লিঙ্গ দুই প্রকার—মুযাক্কার ও মুআন্নাস। সাধারণত শব্দের শেষে গোল 'তা' (<span class="arabic-text">ة</span>) দেখে মুআন্নাস চেনা যায়, তবে শরীরের জোড়া অঙ্গ, দেশের নাম এবং কিছু শ্রুত শব্দ (সামায়ী) গোল 'তা' ছাড়াই মুআন্নাস হিসেবে গণ্য হয়।
+            </div>
+
+            <div class="homework-box">
+                <strong>🏠 হোমওয়ার্ক</strong><br>
+                ১. নিচের মুযাক্কার শব্দগুলোকে গোল 'তা' (<span class="arabic-text">ة</span>) যুক্ত করে মুআন্নাসে রূপান্তর করো এবং অর্থ লেখো:<br>
+                <span class="arabic-text">صَالِحٌ</span> (নেককার পুরুষ) &rarr; _________ | <span class="arabic-text">مُعَلِّمٌ</span> (শিক্ষক) &rarr; _________<br>
+                <span class="arabic-text">مُؤْمِنٌ</span> (مুমিন পুরুষ) &rarr; _________ | <span class="arabic-text">طَالِبٌ</span> (ছাত্র) &rarr; _________<br>
+                ২. পবিত্র কুরআন থেকে ৩টি মুযাক্কার এবং ৩টি মুআন্নাস শব্দের নাম অর্থসহ খুঁজে বের করে একটি তালিকা তৈরি করো।
+            </div>
+        </section>
+
+        <!-- CLASS 2 -->
+        <section id="class2" class="class-card">
+            <div class="class-header">
+                <span class="class-badge">ক্রম: ক্লাস-০২</span>
+                <h2 class="class-title"><span class="arabic-text">اِسْمُ الْإِشَارَةِ</span> (ইশারাসূচক শব্দ) এর পরিচয় ও ব্যবহার</h2>
+            </div>
+            <div class="section-title">২। ক্লাসের বিষয়</div>
+            <p>নিকটবর্তী ও দূরবর্তী কোনো ব্যক্তি বা বস্তুর দিকে ইঙ্গিত করার জন্য ব্যবহৃত সর্বনামসমূহ এবং লিঙ্গভেদে বাক্য গঠন।</p>
+            
+            <div class="section-title">৩। মূলকথা ও উদাহরণসহ নিয়মকানুন</div>
+            <p><strong>ইসমুল ইশারাহ (<span class="arabic-text">اِسْمُ الْإِشَارَةِ</span>):</strong> যে শব্দ দ্বারা কোনো ব্যক্তি বা বস্তুর দিকে ইঙ্গিত বা ইশারা করা হয়।</p>
+            <p><strong>মুশারুন ইলাইহি (<span class="arabic-text">مُشَارٌ إِلَيْهِ</span>):</strong> যার দিকে ইঙ্গিত করা হয়, তাকে মুশারুন ইলাইহি বলে।</p>
+            <p><strong>উদাহরণ:</strong> <span class="arabic-text">ذَلِكَ الْكِتَابُ</span> (উহা একটি বই)। এখানে <span class="arabic-text">ذَلِكَ</span> হলো ইসমুল ইশারাহ এবং <span class="arabic-text">الْكِتَابُ</span> হলো মুশারুন ইলাইহি।</p>
+            
+            <p><strong>ইসমুল ইশারার প্রকারভেদ চার্ট:</strong></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>দূরত্ব</th>
+                        <th>মুযাক্কার (পুরুষবাচক)</th>
+                        <th>মুআন্নাস (স্ত্রীবাচক)</th>
+                        <th>অর্থ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>নিকটবর্তী (Near)</strong></td>
+                        <td><span class="arabic-text">هَذَا</span> (হাযা)</td>
+                        <td><span class="arabic-text">هَذِهِ</span> (হাযিহি)</td>
+                        <td>ইহা / এটি</td>
+                    </tr>
+                    <tr>
+                        <td><strong>দূরবর্তী (Far)</strong></td>
+                        <td><span class="arabic-text">ذَلِكَ</span> (যালিকা)</td>
+                        <td><span class="arabic-text">تِلْكَ</span> (তিলকা)</td>
+                        <td>উহা / সেটি</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="pro-tip">
+                <strong>💡 গুরুত্বপূর্ণ কৌশল:</strong> ইসমুল ইশারাহ ব্যবহারের সময় 'মুশারুন ইলাইহি' বা যে বস্তুটির দিকে ইশারা করা হচ্ছে তার লিঙ্গ খেয়াল করতে হবে। বস্তুটি মুআন্নাস হলে (যেমন: <span class="arabic-text">سَيَّارَةٌ</span> - গাড়ি), তার পূর্বে অবশ্যই <span class="arabic-text">هَذِهِ</span> বা <span class="arabic-text">تِلْكَ</span> বসবে। গোল 'তা' না থাকলেও শ্রুত মুআন্নাস শব্দের পূর্বে (যেমন: <span class="arabic-text">شَمْسٌ</span> - সূর্য) স্ত্রীবাচক ইশারা ব্যবহার করতে হবে।
+            </div>
+
+            <div class="exercise-box">
+                <strong>✍️ অনুশীলন</strong><br>
+                <strong>ক. উপযুক্ত ইসমুল ইশারাহ দিয়ে শূন্যস্থান পূরণ করো:</strong><br>
+                ১. (নিকটবর্তী) ______ <span class="arabic-text">بَيْتٌ</span> (এটি একটি ঘর)। [উত্তর: <span class="arabic-text">هَذَا</span>]<br>
+                ২. (দূরবর্তী) ______ <span class="arabic-text">غُرْفَةٌ</span> (উহা একটি কক্ষ)। [উত্তর: <span class="arabic-text">تِلْكَ</span>]<br>
+                ৩. (নিকটবর্তী) ______ <span class="arabic-text">شَمْسٌ</span> (এটি একটি সূর্য)। [উত্তর: <span class="arabic-text">هَذِهِ</span>]<br>
+                ৪. (দূরবর্তী) ______ <span class="arabic-text">قَمَرٌ</span> (উহা একটি চাঁদ)। [উত্তর: <span class="arabic-text">ذَلِكَ</span>]<br><br>
+                <strong>খ. ভুল সংশোধন করো:</strong><br>
+                ১. <span class="arabic-text">هَذَا طَاوِلَةٌ</span> &rarr; সঠিক: <span class="arabic-text">هَذِهِ طَاوِلَةٌ</span> (এটি একটি টেবিল)।<br>
+                ২. <span class="arabic-text">تِلْكَ مَسْجِدٌ</span> &rarr; সঠিক: <span class="arabic-text">ذَلِكَ مَسْجِدٌ</span> (উহা একটি মসজিদ)।
+            </div>
+
+            <div class="homework-box">
+                <strong>🏠 হোমওয়ার্ক</strong><br>
+                ১. নিচের শব্দগুলোর পূর্বে উপযুক্ত নিকটবর্তী ও দূরবর্তী ইসমুল ইশারাহ বসিয়ে বাক্য তৈরি করো এবং অর্থ লেখো:<br>
+                <span class="arabic-text">قَلَمٌ</span> (কলম), <span class="arabic-text">سَاعَةٌ</span> (ঘড়ি), <span class="arabic-text">بَابٌ</span> (দরজা), <span class="arabic-text">مَدْرَسَةٌ</span> (মাদ্রাসা), <span class="arabic-text">نَافِذَةٌ</span> (জানালা)।<br>
+                ২. বাংলায় অনুবাদ করো:<br>
+                - <span class="arabic-text">هَذَا مِفْتَاحٌ وَذَلِكَ قُفْلٌ।</span><br>
+                - <span class="arabic-text">هَذِهِ حَدِيقَةٌ وَتِلْكَ سَمَاءٌ।</span>
+            </div>
+        </section>
+
+        <!-- CLASS 3 -->
+        <section id="class3" class="class-card">
+            <div class="class-header">
+                <span class="class-badge">ক্রম: ক্লাস-০৩</span>
+                <h2 class="class-title"><span class="arabic-text">الْاِسْتِفْهَامُ</span> (প্রশ্নবোধক অব্যয় ও জিজ্ঞাসা)</h2>
+            </div>
+            <div class="section-title">২। ক্লাসের বিষয়</div>
+            <p>আরবি ভাষায় কোনো বস্তু বা অবস্থা সম্পর্কে প্রশ্ন করার নিয়ম এবং হ্যাঁ/না সূচক উত্তর প্রদানের পদ্ধতি।</p>
+            
+            <div class="section-title">৩। মূলকথা ও উদাহরণসহ নিয়মকানুন</div>
+            <p><strong>প্রশ্নবোধক অব্যয়সমূহ:</strong></p>
+            <ul>
+                <li><strong><span class="arabic-text">مَا</span> (মা) = কী?</strong> সাধারণত অগতন বা জড়বস্তু ও উপাদান সম্পর্কে জানতে ব্যবহৃত হয়।</li>
+                <li><strong><span class="arabic-text">هَلْ</span> (হাল) = কি?</strong> হ্যাঁ বা না সূচক উত্তরযুক্ত সাধারণ প্রশ্নের জন্য ব্যবহৃত হয়।</li>
+            </ul>
+            <p><strong>উত্তর প্রদানের শব্দ:</strong></p>
+            <ul>
+                <li><strong><span class="arabic-text">نَعَمْ</span> (না'আম) = হ্যাঁ</strong> (ইতিবাচক উত্তরের জন্য)।</li>
+                <li><strong><span class="arabic-text">لَا</span> (লা) = না</strong> (নেতিবাচক উত্তরের জন্য)।</li>
+            </ul>
+            <p><strong>বাক্য গঠন প্রণালী:</strong> ইসমুল ইশারাহ এর ঠিক শুরুতে প্রশ্নবোধক অব্যয়টি বসিয়ে দিলেই প্রশ্ন তৈরি হয়।</p>
+            <ul>
+                <li><strong>গঠন ১:</strong> <span class="arabic-text">مَا + هَذَا = مَا هَذَا؟</span> (ইহা কী?) &rarr; উত্তর: <span class="arabic-text">هَذَا كِতَابٌ</span> (ইহা একটি বই)।</li>
+                <li><strong>গঠন ২:</strong> <span class="arabic-text">هَلْ + هَذَا + ইসম? = هَلْ هَذَا صُنْدُوقٌ؟</span> (ইহা কি একটি বাক্স?) &rarr; উত্তর: <span class="arabic-text">لَا، هَذِهِ كُرَّاسَةٌ</span> (না, ইহা একটি খাতা)।</li>
+            </ul>
+
+            <div class="pro-tip">
+                <strong>💡 গুরুত্বপূর্ণ কৌশল:</strong> '<span class="arabic-text">هَلْ</span>' দিয়ে প্রশ্ন করা হলে উত্তরে প্রথমে '<span class="arabic-text">نَعَمْ</span>' বা '<span class="arabic-text">لَا</span>' বসাতে হবে এবং কমা (<span class="arabic-text">،</span>) ব্যবহার করে পূর্ণ বাক্যটি লিখতে হবে। নেতিবাচক উত্তর দিলে '<span class="arabic-text">لَا</span>' এর পরে ভুল তথ্যটি সংশোধন করে সঠিক বস্তুর নাম উল্লেখ করতে হবে।
+            </div>
+
+            <div class="exercise-box">
+                <strong>✍️ অনুশীলন</strong><br>
+                <strong>ক. প্রশ্নগুলোর আরবি অনুবাদ করো:</strong><br>
+                ১. উহা কী? (দূরবর্তী বস্তু) &rarr; উত্তর: <span class="arabic-text">مَا ذَلِكَ؟</span><br>
+                ২. ইহা কি একটি মসজিদ? &rarr; উত্তর: <span class="arabic-text">هَلْ هَذَا مَسْجِدٌ؟</span><br>
+                ৩. উহা কি একটি গাড়ি? &rarr; উত্তর: <span class="arabic-text">هَلْ تِلْكَ سَيَّارَةٌ؟</span><br><br>
+                <strong>খ. আরবিতে উত্তর দাও:</strong><br>
+                ১. <span class="arabic-text">مَا هَذِهِ؟</span> (ব্যাগ বা <span class="arabic-text">حَقِيبَةٌ</span> নির্দেশ করে) &rarr; উত্তর: <span class="arabic-text">هَذِهِ حَقِيبَةٌ</span><br>
+                ২. <span class="arabic-text">هَلْ ذَلِكَ بَيْتٌ؟</span> (চেয়ার বা <span class="arabic-text">كُرْسِيٌّ</span> নির্দেশ করে) &rarr; উত্তর: <span class="arabic-text">لَا، ذَلِكَ كُرْسِيٌّ</span>
+            </div>
+
+            <div class="homework-box">
+                <strong>🏠 হোমওয়ার্ক</strong><br>
+                ১. নিচের প্রশ্নগুলোর সম্পূর্ণ আরবি উত্তর তৈরি করো (নেতিবাচক ও ইতিবাচক মিলিয়ে):<br>
+                - <span class="arabic-text">مَا تِلْكَ؟</span> (উহা একটি ব্ল্যাকবোর্ড/<span class="arabic-text">سَبُّورَةٌ</span>)<br>
+                - <span class="arabic-text">هَلْ هَذَا قَلَمٌ؟</span> (হ্যাঁ, এটি একটি কলম)<br>
+                - <span class="arabic-text">هَلْ هَذِهِ غُرْفَةٌ؟</span> (না, এটি একটি ঘর/<span class="arabic-text">بَيْتٌ</span>)<br>
+                ২. নিজে থেকে ৫টি প্রশ্ন এবং তাদের উত্তর আরবিতে তৈরি করো (<span class="arabic-text">مَا</span> এবং <span class="arabic-text">هَلْ</span> ব্যবহার করে)।
+            </div>
+        </section>
+
+        <!-- CLASS 4 -->
+        <section id="class4" class="class-card">
+            <div class="class-header">
+                <span class="class-badge">ক্রম: ক্লাস-০৪</span>
+                <h2 class="class-title"><span class="arabic-text">مَوْصُوفٌ وَصِفَةٌ</span> (মাউসূফ ও সিফাত) এর পরিচয় ও ব্যবহার</h2>
+            </div>
+            <div class="section-title">২। ক্লাসের বিষয়</div>
+            <p>আরবি ব্যাকরণে বিশেষ্য এবং তার গুণ বা বিশেষণের পারস্পরিক সম্পর্ক ও বাক্য গঠনের নিয়মাবলী।</p>
+            
+            <div class="section-title">৩। মূলকথা ও উদাহরণসহ নিয়মকানুন</div>
+            <p><strong>মউসূফ (<span class="arabic-text">مَوْصُوفٌ</span>):</strong> যে বিশেষ্য বা শব্দের দোষ, গুণ, অবস্থা বা বৈশিষ্ট্য বর্ণনা করা হয়।</p>
+            <p><strong>সিফাত (<span class="arabic-text">صِفَةٌ</span>):</strong> যে শব্দ দ্বারা মউসূফের দোষ, গুণ বা বৈশিষ্ট্য প্রকাশ করা হয় (E.g., বিশেষণ)।</p>
+            <p><strong>উদাহরণ:</strong> <span class="arabic-text">كِتَابٌ جَدِيدٌ</span> (একটি নতুন বই)। এখানে <span class="arabic-text">كِتَابٌ</span> হলো মউসূফ এবং <span class="arabic-text">جَدِيدٌ</span> হলো সিফাত।</p>
+            
+            <p><strong>মাউসূফ-সিফাতের ৪টি অপরিহার্য রুলস:</strong></p>
+            <ol>
+                <li><strong>অবস্থান:</strong> বাংলায় বিশেষণ আগে বসে (নতুন বই), কিন্তু আরবিতে সিফাত সর্বদা মউসূফ-এর পরে বসে।</li>
+                <li><strong>লিঙ্গগত মিল:</strong> মউসূফ মুযাক্কার হলে সিফাতও মুযাক্কার হবে (<span class="arabic-text">بَيْتٌ كَبِيرٌ</span>)। মউসূফ মুআন্নাস হলে সিফাতও মুআন্নাস হবে (<span class="arabic-text">مَدْرَسَةٌ كَبِيرَةٌ</span>)।</li>
+                <li><strong>হরকত বা ই'রাবগত মিল:</strong> মউসূফের শেষ অক্ষরে যে হরকত (পেশ/জের/জবর) থাকবে, সিফাতের শেষ অক্ষরেও ঠিক একই হরকত হবে।</li>
+                <li><strong>একাধিক সিফাত:</strong> একটি মউসূফের একাধিক গুণ থাকলে মাঝে 'ওয়া' (<span class="arabic-text">وَ</span>) যুক্ত হতে পারে। যেমন: <span class="arabic-text">هَذَا كِتَابٌ جَدِيدٌ وَجَمِيلٌ</span> (ইহা একটি নতুন ও সুন্দর বই)।</li>
+            </ol>
+
+            <div class="pro-tip">
+                <strong>💡 গুরুত্বপূর্ণ কৌশল:</strong> অনুবাদ করার সময় উল্টো দিক থেকে করতে হয়। যেমন আরবিতে শাব্দিক ধারাবাহিকতা "ঘর সুন্দর", কিন্তু বাংলায় অর্থ হবে "সুন্দর ঘর"। মউসূফটি মুআন্নাস হলে সিফাতের শেষে গোল 'তা' যুক্ত করতে ভুলবেন না (যেমন: <span class="arabic-text">غُرْفَةٌ نَظِيفَةٌ</span>)।
+            </div>
+
+            <div class="exercise-box">
+                <strong>✍️ অনুশীলন</strong><br>
+                <strong>ক. নিচের বাক্যগুলো থেকে মউসূফ ও সিফাত আলাদা করো:</strong><br>
+                ১. <span class="arabic-text">جِدَارٌ صَغِيرٌ</span> (একটি ছোট দেয়াল) &rarr; মউসূফ: <span class="arabic-text">جِدَارٌ</span> | সিফাত: <span class="arabic-text">صَغِيرٌ</span><br>
+                ২. <span class="arabic-text">مَدْرَسَةٌ قَدِيمَةٌ</span> (একটি পুরাতন মাদ্রাসা) &rarr; মউসূফ: <span class="arabic-text">مَدْرَسَةٌ</span> | সিফাত: <span class="arabic-text">قَدِيمَةٌ</span><br>
+                ৩. <span class="arabic-text">مِصْبَاحٌ جَمِيلٌ</span> (একটি সুন্দর বাতি) &rarr; মউসূফ: <span class="arabic-text">مِصْبَاحٌ</span> | সিফাত: <span class="arabic-text">جَمِيلٌ</span><br><br>
+                <strong>খ. সঠিক হরকত দিয়ে শূন্যস্থান পূরণ করো:</strong><br>
+                ১. <span class="arabic-text">هَذَا قَلَمٌ ________</span> (<span class="arabic-text">جَمِيلٌ / جَمِيلَةٌ</span>) [উত্তর: <span class="arabic-text">جَمِيلٌ</span>]<br>
+                ২. <span class="arabic-text">تِلْكَ سَيَّارَةٌ ________</span> (<span class="arabic-text">سَرِيعٌ / سَرِيعَةٌ</span>) [উত্তর: <span class="arabic-text">سَرِيعَةٌ</span>]
+            </div>
+
+            <div class="summary-box">
+                <strong>📝 ক্লাস সারাংশ:</strong> মউসূফ হলো যার গুণ গাওয়া হয়, আর সিফাত হলো গুণবাচক শব্দ। আরবিতে মউসূফ আগে ও সিফাত পরে বসে। সিফাত তার মউসূফকে লিঙ্গ, বচন, হরকত এবং নির্দিষ্টতার ক্ষেত্রে হুবху অনুসরণ করে।
+            </div>
+
+            <div class="homework-box">
+                <strong>🏠 হোমওয়ার্ক</strong><br>
+                ১. নিচের শব্দগুলোর সাথে একটি করে উপযুক্ত সিফাত (গুণবাচক শব্দ) যোগ করে অর্থসহ বাক্য তৈরি করো:<br>
+                <span class="arabic-text">بَيْتٌ</span> (ঘর), <span class="arabic-text">سَاعَةٌ</span> (ঘড়ি), <span class="arabic-text">كُرْسِيٌّ</span> (চেয়ার), <span class="arabic-text">حَدِيقَةٌ</span> (বাগান), <span class="arabic-text">بَابٌ</span> (দরজা)।<br>
+                ২. 'একটি বড় ও নতুন মাদ্রাসা' এবং 'একটি ছোট ও সুন্দর কলম'— বাক্য দুটির আরবি অনুবাদ করো (একাধিক সিফাতের নিয়ম ব্যবহার করে)।
+            </div>
+        </section>
+
+        <!-- CLASS 5 -->
+        <section id="class5" class="class-card">
+            <div class="class-header">
+                <span class="class-badge">ক্রম: ক্লাস-০৫</span>
+                <h2 class="class-title">মারেফা ও নাকেরা (<span class="arabic-text">اِسْمُ الْمَعْرِفَةِ وَالنَّكِرَةِ</span>) নির্দিষ্ট ও অনির্দিষ্ট ইসম</h2>
+            </div>
+            <div class="section-title">২। ক্লাসের বিষয়</div>
+            <p>নির্দিষ্ট (Definite) ও অনির্দিষ্ট (Indefinite) বিশেষ্য চেনার নিয়ম এবং আলিফ-লাম (ال) যুক্ত হওয়ার পর শব্দের উচ্চারণ ও হরকতের পরিবর্তন।</p>
+            
+            <div class="section-title">৩। মূলকথা ও উদাহরণসহ নিয়মকানুন</div>
+            <p>নির্দিষ্টতা ও অনির্দিষ্টতার দৃষ্টিকোণ থেকে ইসম দুই প্রকার:</p>
+            <ul>
+                <li><strong><span class="arabic-text">نَكِرَةٌ</span> (নাকেরাহ) / অনির্দিষ্ট:</strong> যে শব্দ দ্বারা অনির্দিষ্ট কোনো ব্যক্তি বা বস্তুকে বোঝায়। নাকেরাহ শব্দের শেষে সাধারণত তানভীন (দুই পেশ/জবর/জের) হয়। যেমন: <span class="arabic-text">قَلَمٌ</span> (একটি কলম), <span class="arabic-text">كِتَابٌ</span> (একটি বই)।</li>
+                <li><strong><span class="arabic-text">مَعْرِفَةٌ</span> (মারেফাহ) / নির্দিষ্ট:</strong> যে শব্দ দ্বারা নির্দিষ্ট কোনো ব্যক্তি বা বস্তুকে বোঝায়। যেকোনো সাধারণ শব্দের শুরুতে আলিফ-লাম (<span class="arabic-text">اَلْ</span>) যুক্ত করলে তা মারেফাহ হয়ে যায়। মারেফাহ হলে শব্দের শেষের তানভীন উঠে গিয়ে এক পেশ হয়। যেমন: <span class="arabic-text">اَلْقَلَمُ</span> (কলমটি), <span class="arabic-text">اَلْكِتَابُ</span> (বইটি)।</li>
+            </ul>
+            
+            <p><strong>আলিফ-লাম যুক্ত হলে হরফের উচ্চারণ বিধি (শামসী ও কমরী হরফ):</strong></p>
+            <ul>
+                <li><strong>কমরী হরফ (১৫টি):</strong> <span class="arabic-text">أ, ب, ج, ح, خ, ع, غ, ف, ق, ك, ل, م, و, ه, ي</span>। এগুলোর শুরুতে ال যুক্ত হলে 'লাম' (<span class="arabic-text">ل</span>) হরফটি স্পষ্ট উচ্চারিত হয়। যেমন: <span class="arabic-text">كِتَابٌ &rarr; اَلْكِتَابُ</span> (আল-কিতাবু)।</li>
+                <li><strong>শামসী হরফ (১৪টি):</strong> <span class="arabic-text">ت, ث, د, ذ, ر, z, س, ش, ص, ض, ط, ظ, ل, ن</span>। এগুলোর শুরুতে ال যুক্ত হলে 'লাম' হরফটি উচ্চারিত হয় না, বরং পরবর্তী হরফটি তাশদীদযুক্ত হয়ে সরাসরি আলিফের সাথে উচ্চারিত হয়। যেমন: <span class="arabic-text">رَجُلٌ &rarr; اَلرَّجُلُ</span> (আর-রাজুলু)।</li>
+            </ul>
+
+            <div class="pro-tip">
+                <strong>💡 গুরুত্বপূর্ণ কৌশল:</strong> মনে রাখবেন, আলিফ-লাম (<span class="arabic-text">ال</span>) এবং তানভীন (<span class="arabic-text"> ٌ </span>) কখনো এক শব্দে একসাথে বসতে পারে না। তারা একে অপরের চরম শত্রু। শব্দের শুরুতে <span class="arabic-text">ال</span> দিলে শেষে এক পেশ হবে, আর <span class="arabic-text">ال</span> না থাকলে শেষে তানভীন হবে।
+            </div>
+
+            <div class="exercise-box">
+                <strong>✍️ অনুশীলন</strong><br>
+                <strong>ক. নিচের নাকেরাহ শব্দগুলোকে মারেফাহ করো এবং বাংলা অর্থ লেখো:</strong><br>
+                ১. <span class="arabic-text">مَسْجِدٌ</span> &rarr; মারেফাহ: <span class="arabic-text">اَلْمَسْجِدُ</span> (মসজিদটি) [কমরী হরফ]<br>
+                ২. <span class="arabic-text">طِفْلٌ</span> &rarr; মারেফাহ: <span class="arabic-text">اَلطِّفْلُ</span> (শিশুটি) [শামসী হরফ]<br>
+                ৩. <span class="arabic-text">بَيْتٌ</span> &rarr; মারেফাহ: <span class="arabic-text">اَلْبَيْتُ</span> (বাড়িটি) [কমরী হরফ]<br>
+                ৪. <span class="arabic-text">شَمْسٌ</span> &rarr; মারেফাহ: <span class="arabic-text">اَلشَّمْسُ</span> (সূর্যটি) [শামসী হরফ]<br><br>
+                <strong>খ. ভুল চিহ্নিত করো:</strong><br>
+                ১. <span class="arabic-text">اَلْقَلَمٌ</span> &rarr; সঠিক: <span class="arabic-text">اَلْقَلَمُ</span> (আলিফ-লাম থাকলে তানভীন হবে না)।<br>
+                ২. <span class="arabic-text">دَفْتَرُ</span> &rarr; সঠিক: <span class="arabic-text">دَفْتَرٌ</span> (আলিফ-লাম না থাকলে সাধারণ অবস্থায় তানভীন হবে)।
+            </div>
+
+            <div class="summary-box">
+                <strong>📝 ক্লাস সারাংশ:</strong> অনির্দিষ্ট শব্দ হলো নাকেরাহ (শেষে তানভীন থাকে)। নির্দিষ্ট শব্দ হলো মারেফাহ (শুরুতে ال এবং শেষে এক পেশ থাকে)। শামসী হরফের ক্ষেত্রে ال এর লাম অনুচ্চারিত থাকে এবং কমরী হরফের ক্ষেত্রে লাম স্পষ্ট উচ্চারিত হয়।
+            </div>
+
+            <div class="homework-box">
+                <strong>🏠 হোমওয়ার্ক</strong><br>
+                ১. নিচের শব্দগুলোর শুরুতে আলিফ-লাম (ال) যুক্ত করে সঠিক হরকতসহ পুনরায় লেখো এবং শামসী ও কমরী আলাদা করো:<br>
+                <span class="arabic-text">جِدَارٌ</span> (দেয়াল), <span class="arabic-text">تِلْمِيذٌ</span> (ছাত্র), <span class="arabic-text">بَابٌ</span> (দরজা), <span class="arabic-text">صَلَاةٌ</span> (নামাজ), <span class="arabic-text">نَهْرٌ</span> (নদী)।<br>
+                ২. নাকেরাহ ও মারেফাহ এর মধ্যে প্রধান ৩টি পার্থক্য নিজের ভাষায় খাতায় লেখো Instinctively।
+            </div>
+        </section>
+
+        <!-- CLASS 6 -->
+        <section id="class6" class="class-card">
+            <div class="class-header">
+                <span class="class-badge">ক্রম: ক্লাস-০৬</span>
+                <h2 class="class-title"><span class="arabic-text">الضَّمِيرُ</span> (সর্বনাম) এর পরিচয় ও ব্যবহার</h2>
+            </div>
+            <div class="section-title">২। ক্লাসের বিষয়</div>
+            <p>আরবিতে নামের পরিবর্তে ব্যবহৃত একবচন সর্বনামসমূহ (Pronouns) এবং পুরুষ ও মহিলার নাম ব্যবহারের ক্ষেত্রে বিশেষ ব্যাকরণগত নিয়ম।</p>
+            
+            <div class="section-title">৩। মূলকথা ও উদাহরণসহ নিয়মকানুন</div>
+            <p><strong>যমীর (<span class="arabic-text">ضَمِيرٌ</span>):</strong> নামের পরিবর্তে যে শব্দ ব্যবহার করা হয়, তাকে সর্বনাম বা যমীর বলে।</p>
+            <p><strong>প্রয়োজনীয় একবচন মুক্ত সর্বনামের (Detached Pronoun) তালিকা:</strong></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>যমীর (আরবি)</th>
+                        <th>উচ্চারণ</th>
+                        <th>ব্যাকরণগত অবস্থান</th>
+                        <th>অর্থ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="arabic-text">هُوَ</span></td>
+                        <td>হুয়া</td>
+                        <td>উত্তম পুরুষ (৩য় ব্যক্তি) - পুরুষবাচক</td>
+                        <td>সে (পুরুষ)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="arabic-text">هِيَ</span></td>
+                        <td>হিয়া</td>
+                        <td>উত্তম পুরুষ (৩য় ব্যক্তি) - স্ত্রীবাচক</td>
+                        <td>সে (মহিলা)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="arabic-text">أَنْتَ</span></td>
+                        <td>আনতা</td>
+                        <td>মধ্যম পুরুষ (২য় ব্যক্তি) - পুরুষবাচক</td>
+                        <td>তুমি (পুরুষ)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="arabic-text">أَنْتِ</span></td>
+                        <td>আনতি</td>
+                        <td>মধ্যম পুরুষ (২য় ব্যক্তি) - স্ত্রীবাচক</td>
+                        <td>তুমি (মহিলা)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="arabic-text">أَنَا</span></td>
+                        <td>আনা</td>
+                        <td>প্রথম পুরুষ (১ম ব্যক্তি) - উভয় লিঙ্গ</td>
+                        <td>আমি (পুরুষ ও মহিলা)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>নামের ক্ষেত্রে তানভীন সংক্রান্ত বিশেষ নিয়ম:</strong></p>
+            <ul>
+                <li>সাধারণত আরবে <strong>পুরুষের নামের শেষে তানভীন</strong> (দুই পেশ) হয়। যেমন: <span class="arabic-text">سَعِيدٌ</span> (সাঈদুন), <span class="arabic-text">خَالِدٌ</span> (খালেদুন), <span class="arabic-text">مَحْمُودٌ</span> (মাহমুদুন)।</li>
+                <li>অধিকাংশ <strong>মহিলার নামের শেষে তানভীন হয় না</strong>, এক পেশ হয় (এগুলোকে গায়রে মুনসারিফ বলে)। যেমন: <span class="arabic-text">عَائِشَةُ</span> (আয়েশাতু), فَاطِمَةُ (ফাতিমাতু), خَدِيجَةُ (خাদিজাতু)।</li>
+            </ul>
+
+            <div class="pro-tip">
+                <strong>💡 গুরুত্বপূর্ণ কৌশল:</strong> বাক্য গঠনের সময় যদি কোনো পুরুষকে সম্বোধন করেন, তবে '<span class="arabic-text">أَنْتَ</span>' ব্যবহার করবেন এবং কোনো মহিলাকে সম্বোধন করলে '<span class="arabic-text">أَنْتِ</span>' ব্যবহার করবেন। একইভাবে, মহিলার নামের শেষে কখনোই দুই পেশ বা তানভীন দেবেন না, দিলে বাক্য অশুদ্ধ হবে।
+            </div>
+
+            <div class="exercise-box">
+                <strong>✍️ অনুশীলন</strong><br>
+                <strong>ক. উপযুক্ত যমীর (<span class="arabic-text">هُوَ / هِيَ / أَنْتَ / أَنْتِ / أَنَا</span>) বসিয়ে শূন্যস্থান পূরণ করো:</strong><br>
+                ১. ______ <span class="arabic-text">خَالِدٌ</span> (আমি/সে খালেদ)। [উত্তর: <span class="arabic-text">هُوَ</span> বা <span class="arabic-text">أَنَا</span>]<br>
+                ২. ______ <span class="arabic-text">فَاطِمَةُ</span> (তুমি ফাতিমা)। [উত্তর: <span class="arabic-text">أَنْتِ</span>]<br>
+                ৩. ______ <span class="arabic-text">تِلْمِيذٌ</span> (সে একজন ছাত্র)। [উত্তর: <span class="arabic-text">هُوَ</span>]<br>
+                ④. ______ <span class="arabic-text">مُعَلِّمَةٌ</span> (সে একজন শিক্ষিকা)। [উত্তর: <span class="arabic-text">هِيَ</span>]<br><br>
+                <strong>খ. ভুল হরকত সংশোধন করো:</strong><br>
+                ১. <span class="arabic-text">هُوَ رَاشِدُ</span> &rarr; সঠিক: <span class="arabic-text">هُوَ رَاشِدٌ</span> (পুরুষের নামে তানভীন হবে)।<br>
+                ২. <span class="arabic-text">هِيَ عَائِشَةٌ</span> &rarr; সঠিক: <span class="arabic-text">هِيَ عَائِشَةُ</span> (মহিলার নামে এক পেশ হবে)।
+            </div>
+
+            <div class="homework-box">
+                <strong>🏠 হোমওয়ার্ক</strong><br>
+                ১. নিচের বাক্যগুলোর আরবি অনুবাদ করো:<br>
+                - আমি একজন ছাত্র এবং সে (পুরুষ) একজন শিক্ষক।<br>
+                - তুমি (নারী) আয়েশা, সে (নারী) একজন শিক্ষিকা।<br>
+                - সে মাহমুদ, তুমি (পুরুষ) সাঈদ।<br>
+                ২. ৫টি পুরুষের নাম ও ৫টি মহিলার নাম সঠিক হরকতসহ (তানভীন ও এক পেশের নিয়ম মেনে) আরবিতে লেখো।
+            </div>
+        </section>
+
+        <!-- CLASS 7 -->
+        <section id="class7" class="class-card">
+            <div class="class-header">
+                <span class="class-badge">ক্রম: ক্লাস-০৭</span>
+                <h2 class="class-title"><span class="arabic-text">مُضَافٌ وَمُضَافٌ إِلَيْهِ</span> (মুদাফ ও মুদাফ ইলাইহি)-এর পরিচয়</h2>
+            </div>
+            <div class="section-title">২। ক্লাসের বিষয়</div>
+            <p>দুটি ইসমের মধ্যে মালিকানা বা বিশেষ সম্বন্ধ (Possession) তৈরির নিয়ম এবং এর ব্যাকরণগত শর্তাবলী।</p>
+            
+            <div class="section-title">৩। মূলকথা ও উদাহরণসহ নিয়মকানুন</div>
+            <p><strong>ইদাফাত (সম্বন্ধ পদ):</strong> যখন দুটি বিশেষ্যের মধ্যে মালিকানা বা সম্পর্ক তৈরি হয়, তখন তাকে ইদাফাত বলে।</p>
+            <ul>
+                <li><strong>মুদাফ (<span class="arabic-text">مُضَافٌ</span>):</strong> যাকে সম্পর্কিত করা হয় (Possessed বস্তু বা অধিকারী জিনিস)।</li>
+                <li><strong>মুদাফ ইলাইহি (<span class="arabic-text">مُضَافٌ إِلَيْهِ</span>):</strong> যার সাথে সম্পর্কিত করা হয় (Possessor বা মালিক)।</li>
+            </ul>
+            <p><strong>সহজ চেনার উপায়:</strong> বাংলায় যে শব্দের শেষে 'র' বা 'এর' থাকে, আরবিতে সেটি হয় মুদাফ ইলাইহি। যেমন: আল্লাহর ঘর &rarr; ঘর = মুদাফ, আল্লাহর = মুদাফ ইলাইহি।</p>
+            
+            <p><strong>মুদাফ ও মুদাফ ইলাইহি-এর প্রধান ৩টি শর্ত:</strong></p>
+            <ol>
+                <li><strong>মুদাফ-এর নিয়ম:</strong> এর শুরুতে কখনো আলিф-লাম (<span class="arabic-text">ال</span>) বসে না এবং শেষে কখনো তানভীন হয় না (শুধুমাত্র এক জবর/জের/পেশ হয়)।</li>
+                <li><strong>মুদাফ ইলাইহি-এর নিয়ম:</strong> এটি সর্বদা <strong>মাজরুর বা জের বিশিষ্ট</strong> হয়।</li>
+                <li><strong>অবস্থান:</strong> আরবিতে সর্বদা মুদাফ আগে আসে এবং মুদাফ ইলাইহি পরে বসে (বাংলা রীতির সম্পূর্ণ উল্টো)।</li>
+            </ol>
+            <p><strong>গঠন প্রক্রিয়া:</strong> <span class="arabic-text">قَلَمُ</span> (মুদাফ) + <span class="arabic-text">حَامِدٍ</span> (মুদাফ ইলাইহি) = <span class="arabic-text">قَلَمُ حَامِدٍ</span> (হামিদের কলম)।</p>
+            <p><strong>নির্দিষ্টতা ও অনির্দিষ্টতা:</strong> মুদাফ ইলাইহি নির্দিষ্ট হলে মুদাফটিও নির্দিষ্ট বলে গণ্য হয় (যেমন: <span class="arabic-text">بَيْتُ التَّاجِرِ</span> - ব্যবসায়ীটির বাড়ি)। মুদাফ ইলাইহি অনির্দিষ্ট হলে মুদাফটিও অনির্দিষ্ট হয় (যেমন: <span class="arabic-text">بَيْتُ تَاجِرٍ</span> - একজন ব্যবসায়ীর বাড়ি)।</p>
+
+            <div class="pro-tip">
+                <strong>💡 গুরুত্বপূর্ণ কৌশল:</strong> মুদাফ চেনার সবচেয়ে বড় কৌশল হলো এটি হালকা বা তানভীনহীন হয় এবং এর শুরুতে <span class="arabic-text">ال</span> থাকে না। তবে বাংলায় অনুবাদ করার সময় মুদাফ ইলাইহি (পরের শব্দ)-এর অনুবাদ আগে করতে হয়। যেমন: <span class="arabic-text">بَابُ الْجَنَّةِ</span> &rarr; জান্নাতের দরজা।
+            </div>
+
+            <div class="exercise-box">
+                <strong>✍️ অনুশীলন</strong><br>
+                <strong>ক. নিচের শব্দযুগল জোড়া দিয়ে সঠিক নিয়মে মুদাফ-মুদাফ ইলাইহি গঠন করো:</strong><br>
+                ১. <span class="arabic-text">قَلَمٌ + رَاشِدٌ</span> &rarr; উত্তর: <span class="arabic-text">قَلَمُ رَاشِدٍ</span> (রাশেদের কলম)<br>
+                ২. <span class="arabic-text">بَيْتٌ + اَللهُ</span> &rarr; উত্তর: <span class="arabic-text">بَيْتُ اللهِ</span> (আল্লাহর ঘর)<br>
+                ৩. <span class="arabic-text">اسْمٌ + اَلْمُدَرِّسُ</span> &rarr; উত্তর: <span class="arabic-text">اسْمُ الْمُدَرِّسِ</span> (শিক্ষকটির নাম)<br>
+                ৪. <span class="arabic-text">وَرَقَةٌ + اَلشَّجَرَةُ</span> &rarr; উত্তর: <span class="arabic-text">وَرَقَةُ الشَّجَرَةِ</span> (গাছটির পাতা)<br><br>
+                <strong>খ. সঠিক হরকত বেছে নাও:</strong><br>
+                ১. <span class="arabic-text">بَابُ</span> ( <span class="arabic-text">الْجَنَّةُ / الْجَنَّةِ</span> ) [উত্তর: <span class="arabic-text">الْجَنَّةِ</span>, কারণ মুদাফ ইলাইহি মাজরুর বা জের বিশিষ্ট হয়]<br>
+                ২. ( <span class="arabic-text">اَلْكِتَابُ / كِتَابُ</span> ) <span class="arabic-text">مُحَمَّدٍ</span> [উত্তর: <span class="arabic-text">كِتَابُ</span>, কারণ মুদাফের শুরুতে <span class="arabic-text">ال</span> বসে না]
+            </div>
+
+            <div class="summary-box">
+                <strong>📝 ক্লাস সারাংশ:</strong> মালিকানা প্রকাশ করতে মুদাফ ও মুদাফ ইলাইহি ব্যবহৃত হয়। মুদাফ প্রথমে বসে, এতে ال বা তানভীন থাকে না। মুদাফ ইলাইহি শেষে বসে এবং সর্বদা জের বিশিষ্ট হয়।
+            </div>
+
+            <div class="homework-box">
+                <strong>🏠 হোমওয়ার্ক</strong><br>
+                ১. নিচের বাক্যাংশগুলোর আরবি অনুবাদ সঠিক হরকতসহ লেখো:<br>
+                - হামিদের খাতা | - একজন শিক্ষকের চেয়ার | - মাদরাসার দরজা | - মানুষের প্রতিপালক | - অদৃশ্যের জ্ঞানী<br>
+                ২. একাধিক ইদাফাতের অতিরিক্ত নিয়ম ব্যবহার করে অনুবাদ করো (পিডিএফের শেষ অংশের আলোকে):<br>
+                রাশেদের মাদরাসার শিক্ষকের কলম &rarr; ___________________________
+            </div>
+        </section>
+
+        <!-- CLASS 8 -->
+        <section id="class8" class="class-card">
+            <div class="class-header">
+                <span class="class-badge">ক্রম: ক্লাস-০৮</span>
+                <h2 class="class-title">মুদাফ ইলাইহি-এর সিফাত বা গুণাগুণ বর্ণনা</h2>
+            </div>
+            <div class="section-title">২। ক্লাসের বিষয়</div>
+            <p>সম্বন্ধযুক্ত পদের ক্ষেত্রে মালিক বা মুদাফ ইলাইহির কোনো গুণ বা বৈশিষ্ট্য (সিফাত) যুক্ত করার ব্যাকরণগত নিয়ম।</p>
+            
+            <div class="section-title">৩। মূলকথা ও উদাহরণসহ নিয়মকানুন</div>
+            <p><strong>মূল বিষয়:</strong> যখন আমরা মুদাফ ইলাইহি (দ্বিতীয় শব্দ)-এর কোনো গুণ বা সিফাত বর্ণনা করতে চাই, তখন সেই সিফাতটি বাক্যের একেবারে শেষে বসে।</p>
+            <p><strong>নিয়ম ও সূত্র:</strong> মউসূফ এবং সিফাতের হরকত ও নির্দিষ্টতা সবসময় একই হয়। যেহেতু মুদাফ ইলাইহি সর্বদা জের বিশিষ্ট (মাজরুর) হয়, তাই তার সিফাতটিও জের বিশিষ্ট হবে। একইসাথে মুদাফ ইলাইহি নির্দিষ্ট হলে সিফাতও নির্দিষ্ট হবে।</p>
+            <p style="text-align: center; background: #eee; padding: 10px; border-radius: 5px;">
+                <strong>সূত্র: মুদাফ + মুদাফ ইলাইহি (যা মূলত মউসূফ) + সিফাত (জের বিশিষ্ট ও নির্দিষ্ট)</strong>
+            </p>
+            <p><strong>উদাহরণ বিশ্লেষণ:</strong></p>
+            <ul>
+                <li><span class="arabic-text">إِمَامُ الْمَسْجِدِ الْجَدِيدِ</span> = নতুন মসজিদের ইমাম। (এখানে <span class="arabic-text">الْجَدِيدِ</span> শব্দটি <span class="arabic-text">الْمَسْجِدِ</span> বা মসজিদের গুণ বুঝাচ্ছে, তাই এটি নির্দিষ্ট ও জের বিশিষ্ট হয়েছে)।</li>
+                <li><span class="arabic-text">سَيَّارَةُ سَعِيدٍ الْغَنِيِّ</span> = ধনী সাঈদের গাড়ি। (এখানে <span class="arabic-text">سَعِيدٍ</span> নির্দিষ্ট নাম হওয়ায় এর সিফাত <span class="arabic-text">الْغَنِيِّ</span> আলিফ-লামযুক্ত ও মাজরুর হয়েছে)।</li>
+                <li><span class="arabic-text">بَابُ الْبَيْتِ الْكَبِيرِ</span> = বড় বাড়ির দরজা।</li>
+            </ul>
+
+            <div class="pro-tip">
+                <strong>💡 ব্যাকরণগত সূক্ষ্ম পার্থক্য:</strong> যদি সিফাতটি মুদাফ-এর গুণ বোঝাত, তবে সিফাতটি পেশ বিশিষ্ট হতো (যেমন: <span class="arabic-text">كِتَابُ رَاشِدٍ الْجَدِيدُ</span> - রাশেদের নতুন বইটি)। কিন্তু এখানে সিফাতটি মুদাফ ইলাইহি-এর গুণ বোঝাচ্ছে, তাই এটি বাধ্যতামূলকভাবে জের বিশিষ্ট (<span class="arabic-text">الْجَدِيدِ</span>) হবে।
+            </div>
+
+            <div class="exercise-box">
+                <strong>✍️ অনুশীলন</strong><br>
+                <strong>ক. বাক্যগুলোর সঠিক বাংলা অর্থ লেখো:</strong><br>
+                ১. <span class="arabic-text">خَادِمُ الرَّجُلِ الصَّالِحِ</span> &rarr; উত্তর: নেককার লোকটির সেবক।<br>
+                ২. <span class="arabic-text">نَافِذَةُ الْمَدْرَسَةِ الْقَدِيمَةِ</span> &rarr; উত্তর: পুরাতন মাদ্রাসার জানালা。<br>
+                ৩. <span class="arabic-text">كِتَابُ الطَّالِبِ الْمُجْتَهِดِ</span> &rarr; উত্তর: পরিশ্রমী ছাত্রের বই।<br><br>
+                <strong>খ. বন্ধনীর ভেতর থেকে সঠিক সিফাতটি বেছে নাও:</strong><br>
+                ১. <span class="arabic-text">إِمَامُ الْمَسْجِدِ __________</span> ( <span class="arabic-text">الْجَمِيلُ / الْجَمِيلِ</span> ) [উত্তর: <span class="arabic-text">الْجَمِيلِ</span>]<br>
+                ২. <span class="arabic-text">دَفْتَرُ التَّلْمِيذَةِ __________</span> ( <span class="arabic-text">الذَّكِيَّةُ / الذَّكِيَّةِ</span> ) [উত্তর: <span class="arabic-text">الذَّكِيَّةِ</span>]
+            </div>
+
+            <div class="summary-box">
+                <strong>📝 ক্লাস সারাংশ:</strong> মুদাফ ইলাইহির গুণ প্রকাশ করতে হলে সিফাতকে বাক্যের শেষে বসাতে হবে এবং মুদাফ ইলাইহি মাজরুর হওয়ার কারণে সিফাতকেও জের (কাসরা) দিতে হবে।
+            </div>
+
+            <div class="homework-box">
+                <strong>🏠 হোমওয়ার্ক</strong><br>
+                ১. নিচের বাক্যগুলোর আরবি অনুবাদ করো:<br>
+                - বড় মাদরাসার শিক্ষক | - সুন্দর শহরের রাস্তা | - মেধাবী ছাত্রীর খাতা | - ভালো রাশেদের বই<br>
+                ২. 'ধনী ব্যবসায়ীর বড় বাড়ি'— এই বাক্যটির আরবি অনুবাদ করো এবং এতে মুদাফ, মুদাফ ইলাইহি ও সিফাত চিহ্নিত করো।
+            </div>
+        </section>
+
+        <!-- CLASS 9 -->
+        <section id="class9" class="class-card">
+            <div class="class-header">
+                <span class="class-badge">ক্রম: ক্লাস-০৯</span>
+                <h2 class="class-title"><span class="arabic-text">الضَّمِيرُ الْمُتَّصِلُ</span> (সংযুক্ত সর্বনাম) এর পরিচয় ও ব্যবহার</h2>
+            </div>
+            <div class="section-title">২। ক্লাসের বিষয়</div>
+            <p>শব্দের শেষে যুক্ত হয়ে মালিকানা বা সম্বন্ধ প্রকাশকারী সর্বনামসমূহের (Attached Pronouns) রূপ এবং বাক্যে তাদের প্রয়োগ।</p>
+            
+            <div class="section-title">৩। মূলকথা ও উদাহরণসহ নিয়মকানুন</div>
+            <p><strong>সর্বনামের প্রকারভেদ:</strong> আরবিতে যমীর প্রধানত দুই প্রকার: মুক্ত যমীর (<span class="arabic-text">ضَمِيرٌ مُنْفَصِلٌ</span>) এবং সংযুক্ত যমীর (<span class="arabic-text">ضَمِيرٌ مُتَّصِلٌ</span>)। সংযুক্ত সর্বনামগুলো একা বসতে পারে না, ইসমের শেষে বসে এগুলো ইদাফাত বা মালিকানা প্রকাশ করে।</p>
+            
+            <p><strong>সংযুক্ত সর্বনামের পূর্ণাঙ্গ চার্ট:</strong></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>বচন</th>
+                        <th>পুরুষবাচক (Masculine)</th>
+                        <th>স্ত্রীবাচক (Feminine)</th>
+                        <th>উভয় লিঙ্গ (Common)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>একবচন (Singular)</strong></td>
+                        <td><span class="arabic-text">ـهُ</span> (তার) / <span class="arabic-text">ـكَ</span> (তোমার)</td>
+                        <td><span class="arabic-text">ـهَا</span> (তার) / <span class="arabic-text">ـكِ</span> (তোমার)</td>
+                        <td><span class="arabic-text">ـِي</span> (আমার)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>দ্বিবচন (Dual)</strong></td>
+                        <td><span class="arabic-text">ـهُمَا</span> (তাদের দুজনের)</td>
+                        <td><span class="arabic-text">ـكُمَا</span> (তোমাদের দুজনের)</td>
+                        <td><span class="arabic-text">ـنَا</span> (আমাদের দুজনের)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>বহুবচন (Plural)</strong></td>
+                        <td><span class="arabic-text">ـهُمْ</span> (তাদের) / <span class="arabic-text">ـكُمْ</span> (তোমাদের)</td>
+                        <td><span class="arabic-text">ـهُنَّ</span> (তাদের) / <span class="arabic-text">ـكُنَّ</span> (তোমাদের)</td>
+                        <td><span class="arabic-text">ـنَا</span> (আমাদের)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>বিশেষ ব্যাকরণগত নিয়ম:</strong> যখন কোনো শব্দের শেষে গোল 'তা' (<span class="arabic-text">ة</span>) থাকে এবং তার সাথে সংযুক্ত সর্বনাম যুক্ত হয়, তখন গোল 'তা'টি সাধারণ লম্বা 'তা' (<span class="arabic-text">ت</span>)-এ রূপান্তরিত হয়ে যায়।<br>
+            যেমন: <span class="arabic-text">سَاعَةٌ + ِي = سَاعَتِي</span> (আমার ঘড়ি)। <span class="arabic-text">مَدْرَسَةٌ + ُه = مَدْرَسَتُهُ</span> (তার মাদ্রাসা)।</p>
+
+            <div class="pro-tip">
+                <strong>💡 গুরুত্বপূর্ণ কৌশল:</strong> আমার বোঝাতে শব্দের শেষে যে 'ইয়া' (<span class="arabic-text">ي</span>) যুক্ত হয়, তার পূর্বের অক্ষরে সবসময় জের (কাসরা) দিতে হয়। যেমন: <span class="arabic-text">قَلَمٌ &rarr; قَلَمِي</span> (ক্বালামী)। এটি যুক্ত হলে শব্দের মূল শেষের হরকতটি বিলুপ্ত হয়ে যায়।
+            </div>
+
+            <div class="exercise-box">
+                <strong>✍️ অনুশীলন</strong><br>
+                <strong>ক. সংযুক্ত সর্বনাম যুক্ত করে শব্দ গঠন করো:</strong><br>
+                ১. <span class="arabic-text">قَلَمٌ + كُمْ</span> &rarr; উত্তর: <span class="arabic-text">قَلَمُكُمْ</span> (তোমাদের সবার কলম)<br>
+                ২. <span class="arabic-text">حَقِيبَةٌ + نَا</span> &rarr; উত্তর: <span class="arabic-text">حَقِيبَتُنَا</span> (আমাদের ব্যাগ)<br>
+                ৩. <span class="arabic-text">كِتَابٌ + هَا</span> &rarr; উত্তর: <span class="arabic-text">كِتَابُهَا</span> (তার বই - স্ত্রীবাচক)<br>
+                ৪. <span class="arabic-text">أُمٌّ + ِي</span> &rarr; উত্তর: <span class="arabic-text">أُمِّي</span> (আমার মা)<br><br>
+                <strong>খ. নিচের বাক্যগুলোর বাংলা অর্থ লেখো:</strong><br>
+                ১. <span class="arabic-text">مَا اسْمُكَ؟ اِسْمِي رَاشِدٌ</span> &rarr; উত্তর: তোমার নাম কী? আমার নাম রাশেদ।<br>
+                ২. <span class="arabic-text">أَهَذَا كِتَابُهُ؟ نَعَمْ، هَذَا كِتَابُهُ</span> &rarr; উত্তর: এটি কি তার বই? হ্যাঁ, এটি তার বই।
+            </div>
+
+            <div class="summary-box">
+                <strong>📝 ক্লাস সারাংশ:</strong> সংযুক্ত সর্বনাম বা যমীরে মুত্তাসিল শব্দের শেষে লেগে আসে এবং মালিকানা বোঝায়। গোল 'তা' যুক্ত শব্দের সাথে সর্বনাম বসলে গোল 'তা' লম্বা 'তা' হয়ে যায়। 'আমার' বোঝাতে যুক্ত ইয়া-এর পূর্বে জের হয়।
+            </div>
+
+            <div class="homework-box">
+                <strong>🏠 হোমওয়ার্ক</strong><br>
+                ১. '<span class="arabic-text">بَيْتٌ</span>' (বাড়ি) এবং '<span class="arabic-text">سَيَّارَةٌ</span>' (গাড়ি) শব্দ দুটির সাথে (আমার, তোমার-পুং, তোমার-স্ত্রী, তার-পুং, তার-স্ত্রী, আমাদের) এই ৬টি সর্বনাম যুক্ত করে ১২টি রূপ তৈরি করো এবং অর্থ লেখো।<br>
+                ২. আরবিতে অনুবাদ করো:<br>
+                - এটি আমার ছোট ভাই তারেক। সে একজন পরিশ্রমী ছাত্র।<br>
+                - তোমাদের বাড়ি কি বড় মসজিদের পাশে? হ্যাঁ, আমাদের বাড়ি মসজিদের পাশে।
+            </div>
+        </section>
+
+        <!-- CLASS 10 -->
+        <section id="class10" class="class-card">
+            <div class="class-header">
+                <span class="class-badge">ক্রম: ক্লাস-১০</span>
+                <h2 class="class-title">হরফে নিদা বা সম্বোধন অব্যয় (<span class="arabic-text">حَرْفُ النِّدَاءِ</span>) এর বিশেষ ব্যবহার</h2>
+            </div>
+            <div class="section-title">২। ক্লাসের বিষয়</div>
+            <p>কাউকে সম্বোধন করার অব্যয় এবং মুদাফ-মুদাফ ইলাইহির শুরুতে সম্বোধন অব্যয় আসলে মুদাফের হরকতের বিশেষ পরিবর্তন ও তার নিয়মাবলী।</p>
+            
+            <div class="section-title">৩। মূলকথা ও উদাহরণসহ নিয়মকানুন</div>
+            <p><strong>হরফে নিদা (<span class="arabic-text">حَرْفُ النِّدَاءِ</span>):</strong> কাউকে ডাকতে বা সম্বোধন করতে শুরুতে যে অব্যয় ব্যবহার করা হয়। আরবিতে প্রধান সম্বোধন হরফ হলো '<span class="arabic-text">يَا</span>' (হে)।</p>
+            <p><strong>মুনাদা (<span class="arabic-text">مُنَادَى</span>):</strong> যাকে ডাকা বা সম্বোধন করা হয় তাকে মুনাদা বলে।</p>
+            
+            <p><strong>ব্যাকরণগত বিশেষ নিয়ম (মুনাদা মুদাফ):</strong><br>
+            ১. সাধারণ একক শব্দের শুরুতে '<span class="arabic-text">يَا</span>' আসলে শব্দটির শেষের তানভীন উঠে গিয়ে এক পেশ হয় (যেমন: <span class="arabic-text">يَا رَجُلُ</span> - হে লোক)।<br>
+            ২. কিন্তু যখন কোনো মুদাফ ও মুদাফ ইলাইহি (সম্বন্ধযুক্ত পদ) এর শুরুতে '<span class="arabic-text">يَا</span>' আসে, তখন মুদাফ-এর শেষের হরফটিতে পেশের পরিবর্তে বাধ্যতামূলকভাবে <strong>'জবর' (নসব/ফাতহা)</strong> হবে। একে আরবি ব্যাকরণে <strong>'মুনাদা মুদাফ'</strong> বলা হয়।</p>
+            
+            <p><strong>পার্থক্য ও উদাহরণ:</strong></p>
+            <ul>
+                <li>সাধারণ মুদাফ: <span class="arabic-text">عَبْدُ اللهِ</span> (আল্লাহর বান্দা) &rarr; সম্বোধনসহ: <span class="arabic-text">يَا عَبْدَ اللهِ</span> (হে আল্লাহর বান্দা!) [পেশটি জবর হয়ে গেছে]।</li>
+                <li>সাধারণ মুদাফ: <span class="arabic-text">رَسُولُ اللهِ</span> (আল্লাহর রাসূল) &rarr; সম্বোধনসহ: <span class="arabic-text">يَا رَسُولَ اللهِ</span> (হে আল্লাহর রাসূল!)।</li>
+                <li>কুরআনিক উদাহরণ: <span class="arabic-text">يَا رَبَّ الْعَالَمِينَ</span> (হে বিশ্বজগতের পালনকর্তা!), <span class="arabic-text">يَا أَهْلَ الْكِتَابِ</span> (হে কিতাবধারীগণ!)।</li>
+            </ul>
+
+            <div class="pro-tip">
+                <strong>💡 আসমাউল খামসাহর বিশেষ নিয়ম:</strong> 'আবু বকর' বা 'আবু' শব্দের ক্ষেত্রে যখন শুরুতে 'ইয়া' আসে, তখন মুদাফের জবরটি আলিফ আকারে রূপান্তরিত হয়। যেমন: <span class="arabic-text">يَا أَبَا بَكْرٍ</span> (হে আবু বকর!)। লেখার সময় এবং পড়ার সময় এই নসব বা জবরের পরিবর্তনটি অত্যন্ত গুরুত্ব সহকারে খেয়াল রাখতে হবে।
+            </div>
+
+            <div class="exercise-box">
+                <strong>✍️ অনুশীলন</strong><br>
+                <strong>ক. নিচের মুদাফগুলোর শুরুতে 'يَا' যুক্ত করে সঠিক হরকতসহ পুনরায় লেখো:</strong><br>
+                ১. <span class="arabic-text">طَالِبُ الْعِلْمِ</span> &rarr; উত্তর: <span class="arabic-text">يَا طَالِبَ الْعِلْمِ</span> (হে জ্ঞান অন্বেষণকারী!)<br>
+                ২. <span class="arabic-text">بِنْتُ خَالِدٍ</span> &rarr; উত্তর: <span class="arabic-text">يَا بِنْتَ خَالِدٍ</span> (হে খালিদের মেয়ে!)<br>
+                ৩. <span class="arabic-text">حَافِظُ الْقُرْآنِ</span> &rarr; উত্তর: <span class="arabic-text">يَا حَافِظَ الْقُرْآنِ</span> (হে কুরআনের হাফেজ!)<br>
+                ৪. <span class="arabic-text">أَمِيرُ الْمُؤْمِنِينَ</span> &rarr; উত্তর: <span class="arabic-text">يَا أَمِيرَ الْمُؤْمِنِينَ</span> (হে মুমিনদের নেতা!)<br><br>
+                <strong>খ. সঠিক বাক্যটি চিহ্নিত করো:</strong><br>
+                ( <span class="arabic-text">يَا خَالِقُ الْكَوْنِ / يَا خَالِقَ الْكَوْنِ</span> ) [উত্তর: <span class="arabic-text">يَا خَالِقَ الْكَوْنِ</span>]
+            </div>
+
+            <div class="homework-box">
+                <strong>🏠 হোমওয়ার্ক</strong><br>
+                ১. নিচের বাক্যগুলোর আরবি অনুবাদ সঠিক হরকতসহ সম্পন্ন করো:<br>
+                - হে গাড়ির মালিক! | - হে কিতাব পাঠক! | - হে দয়াময় আল্লাহর বান্দাগণ! | - হে মহাবিশ্বের স্রষ্টা!<br>
+                ২. একক শব্দ এবং মুদাফ শব্দের শুরুতে '<span class="arabic-text">يَا</span>' বসলে হরকতের কী পার্থক্য হয়, তা ২টি করে উদাহরণ দিয়ে বুঝিয়ে লেখো।
+            </div>
+        </section>
+
+        <!-- CLASS 11 -->
+        <section id="class11" class="class-card">
+            <div class="class-header">
+                <span class="class-badge">ক্রম: ক্লাস-১১</span>
+                <h2 class="class-title">বচন বা সংখ্যা (<span class="arabic-text">الْعَدَدُ</span>) হিসেবে ইসমের প্রকারভেদ</h2>
+            </div>
+            <div class="section-title">২। ক্লাসের বিষয়</div>
+            <p>আরবি ভাষায় একবচন, দ্বিবচন এবং বহুবচনের (নিয়মাধীন ও নিয়ম-বহির্ভূত) গঠন প্রণালী ও শব্দভাণ্ডার।</p>
+            
+            <div class="section-title">৩। মূলকথা ও উদাহরণসহ নিয়মকানুন</div>
+            <p>আরবি ভাষায় বচন হিসেবে ইসম তিন প্রকার:</p>
+            <ol>
+                <li><strong><span class="arabic-text">الْمُفْرَدُ</span> (একবচন):</span></strong> যা দ্বারা একক সংখ্যা বোঝায়। যেমন: <span class="arabic-text">كِتَابٌ</span> (একটি বই), <span class="arabic-text">قَلَمٌ</span> (একটি কলম)।</li>
+                <li><strong><span class="arabic-text">الْمُثَنَّى</span> (দ্বিবচন):</strong> যা দ্বারা দুটি সংখ্যা বোঝায়। একবচনের শেষে <span class="arabic-text">انِ</span> (আনি - মারফু অবস্থায়) অথবা <span class="arabic-text">يْنِ</span> (আইনি - মানসূব/মাজরুর অবস্থায়) যুক্ত করে দ্বিবচন গঠন করা হয়। যেমন: <span class="arabic-text">كِتَابٌ &rarr; كِتَابَانِ / كِتَابَيْنِ</span> (দুটি বই)।</li>
+                <li><strong><span class="arabic-text">الْجَمْعُ</span> (বহুবচন):</strong> যা দ্বারা তিন বা ততোধিক সংখ্যা বোঝায়। বহুবচন আবার দুই প্রকার:
+                    <ul>
+                        <li><strong><span class="arabic-text">جَمْعٌ سَالِمٌ</span> (নিয়মাধীন বহুবচন):</strong> একবচনের মূল গঠন অক্ষুণ্ণ থাকে।
+                            <br>- পুরুষবাচক: শেষে <span class="arabic-text">ونَ</span> (উনা) বা <span class="arabic-text">ينَ</span> (ইনা) যুক্ত হয়। যেমন: <span class="arabic-text">مُسْلِمٌ &rarr; مُسْلِمُونَ</span>।
+                            <br>- স্ত্রীবাচক: শেষে গোল 'তা' বাদ দিয়ে <span class="arabic-text">اتٌ</span> (আতুন) যুক্ত হয়। যেমন: <span class="arabic-text">مُعَلِّمَةٌ &rarr; مُعَلِّمَاتٌ</span>।
+                        </li>
+                        <li><strong><span class="arabic-text">جَمْعُ تَكْسِيرٍ</span> (ভগ্ন বহুবচন):</strong> একবচনের মূল গঠন ভেঙে নতুন রূপ নেয়। এটি সম্পূর্ণ শ্রুতি ও অভিধান নির্ভর। যেমন: <span class="arabic-text">كِتَابٌ &rarr; كُتُبٌ</span> (বইসমূহ), <span class="arabic-text">بَيْتٌ &rarr; بُيُوتٌ</span> (ঘরসমূহ)।</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="pro-tip">
+                <strong>💡 গুরুত্বপূর্ণ কৌশল:</strong> নিয়মাধীন পুরুষবাচক বহুবচনের নূনের ওপর সবসময় জবর থাকে (<span class="arabic-text">مُسْلِمُونَ</span>), কিন্তু দ্বিবচনের নূনের নিচে সবসময় জের থাকে (<span class="arabic-text">مُسْلِمَانِ</span>)। এই জের ও জবরের সূক্ষ্ম পার্থক্য দেখেই দ্বিবচন ও বহুবচন চেনা যায়।
+            </div>
+
+            <div class="exercise-box">
+                <strong>✍️ অনুশীলন</strong><br>
+                <strong>ক. নিচের শব্দগুলোর দ্বিবচন রূপ (মারফু অবস্থায়) তৈরি করো:</strong><br>
+                ১. <span class="arabic-text">مَسْجِدٌ</span> &rarr; দ্বিবচন: <span class="arabic-text">مَسْجِدَانِ</span> (দুটি মসজিদ) | ২. <span class="arabic-text">سَيَّارَةٌ</span> &rarr; দ্বিবচন: <span class="arabic-text">سَيَّارَتَانِ</span> (দুটি গাড়ি)<br><br>
+                <strong>খ. নিচের একবচন শব্দগুলোর সঠিক বহুবচন রূপটি লেখো:</strong><br>
+                ১. <span class="arabic-text">طَبِيبٌ</span> (ডাক্তার) &rarr; <span class="arabic-text">طَبِيبُونَ</span> | ২. <span class="arabic-text">طَالِبَةٌ</span> (ছাত্রী) &rarr; <span class="arabic-text">طَالِبَاتٌ</span><br>
+                ৩. <span class="arabic-text">مِفْتَاحٌ</span> (চাবি) &rarr; <span class="arabic-text">مَفَاتِيحُ</span> | ৪. <span class="arabic-text">رَجُلٌ</span> (পুরুষ) &rarr; <span class="arabic-text">رِجَالٌ</span>
+            </div>
+
+            <div class="homework-box">
+                <strong>🏠 হোমওয়ার্ক</strong><br>
+                ১. নিচের শব্দগুলোর ভগ্ন বহুবচন (জমা তাকসীর) রূপ মুখস্থ করে খাতায় লেখো:<br>
+                <span class="arabic-text">قَلْبٌ</span> (হৃদয়), <span class="arabic-text">عَيْنٌ</span> (চোখ), <span class="arabic-text">مَدْرَسَةٌ</span> (স্কুল), <span class="arabic-text">وَلَدٌ</span> (ছেলে), <span class="arabic-text">جَبَلٌ</span> (পাহাড়)।<br>
+                ২. 'দুইজন প্রকৌশলী এবং অনেকজন শিক্ষক ক্লাসে আছেন'— বাক্যটির দ্বিবচন ও বহুবচনের রূপ খেয়াল করে সঠিক শব্দ নির্বাচন করো।
+            </div>
+        </section>
+
+        <!-- CLASS 12 -->
+        <section id="class12" class="class-card">
+            <div class="class-header">
+                <span class="class-badge">ক্রম: ক্লাস-১২</span>
+                <h2 class="class-title">বিশেষ মুদাফ (সময় ও স্থানবাচক শব্দ/জারফ)</h2>
+            </div>
+            <div class="section-title">২। ক্লাসের বিষয়</div>
+            <p>সময় ও স্থান সম্পর্কিত কিছু বিশেষ ইসম যা বাক্যে মুদাফ হিসেবে ব্যবহৃত হয়ে পরবর্তী ইসমকে জের প্রদান করে।</p>
+            
+            <div class="section-title">৩। মূলকথা ও উদাহরণসহ নিয়মকানুন</div>
+            <p><strong>বিশেষ মুদাফ (যরূফ):</strong> এগুলো মূলত সময়, স্থান বা অন্য কোনো বিশেষ অবস্থা নির্দেশকারী ইসম। এগুলো যখন অন্য ইসমের পূর্বে বসে, তখন ইদাফাতের নিয়ম অনুযায়ী পরবর্তী শব্দকে (মুদাফ ইলাইহিকে) জের দেয় এবং বাংলায় 'র' বা 'এর' এর সম্পর্ক তৈরি করে।</p>
+            
+            <p><strong>প্রধান প্রকারভেদ ও তালিকা:</strong></p>
+            <ul>
+                <li><strong>স্থান সম্পর্কিত:</strong> <span class="arabic-text">فَوْقَ</span> (উপরে), <span class="arabic-text">تَحْتَ</span> (নিচে), <span class="arabic-text">أَمَامَ / قُدَّامَ</span> (সামنه), <span class="arabic-text">خَلْفَ / وَرَاءَ</span> (পিছনে), <span class="arabic-text">بَيْنَ</span> (মাঝে), <span class="arabic-text">حَوْلَ</span> (চারপাশে), <span class="arabic-text">بِجَانِبِ</span> (পাশে)।</li>
+                <li><strong>সময় সম্পর্কিত:</strong> <span class="arabic-text">قَبْلَ</span> (পূর্বে), <span class="arabic-text">بَعْدَ</span> (পরে)।</li>
+                <li><strong>বিবিধ শব্দাবলী:</strong> <span class="arabic-text">مَعَ</span> (সাথে), <span class="arabic-text">عِنْدَ</span> (কাছে/নিকটে), <span class="arabic-text">كُلُّ</span> (সব/প্রত্যেক), <span class="arabic-text">بَعْضُ</span> (কিছু), <span class="arabic-text">دُونَ</span> (ছাড়া), <span class="arabic-text">غَيْرُ</span> (ব্যতীত), <span class="arabic-text">أَيُّ</span> (কোন/কোনটি)।</li>
+            </ul>
+            
+            <p><strong>কুরআনিক ও ব্যবহারিক উদাহরণ:</strong><br>
+            - <span class="arabic-text">تَحْتَ الشَّجَرَةِ</span> = বৃক্ষের নিচে। | - <span class="arabic-text">بَعْدَ الرُّسُلِ</span> = রাসূলগণের পর।<br>
+            - <span class="arabic-text">كُلُّ شَيْءٍ</span> = সবকিছুর। | - <span class="arabic-text">أَمَامَ الْمَدْرَسَةِ</span> = মাদ্রাসার সামনে।</p>
+
+            <div class="pro-tip">
+                <strong>💡 গুরুত্বপূর্ণ কৌশল:</strong> বিশেষ মুদাফগুলোর শেষ অক্ষরে সাধারণত সর্বদা 'জবর' থাকে (যেমন: <span class="arabic-text">فَوْقَ, تَحْتَ, بَعْدَ</span>), তবে এরা বাক্যে সর্বদাই মুদাফের দায়িত্ব পালন করে। তাই এদের পরবর্তী শব্দের শেষ অক্ষরে বাধ্যতামূলকভাবে জের দিতে হবে। সর্বনাম যুক্ত হলে রূপ হবে: <span class="arabic-text">فَوْقَكُمْ</span> (তোমাদের উপরে)।
+            </div>
+
+            <div class="exercise-box">
+                <strong>✍️ অনুশীলন</strong><br>
+                <strong>ক. নিচের বাক্যাংশগুলোর সঠিক আরবি অনুবাদ করো:</strong><br>
+                ১. মাটির নিচে &rarr; <span class="arabic-text">تَحْتَ الْأَرْضِ</span> | ২. মাগরিবের আগে &rarr; <span class="arabic-text">قَبْلَ الْمَغْرِبِ</span><br>
+                ৩. ইমামের পিছনে &rarr; <span class="arabic-text">خَلْفَ الْإِمَامِ</span> | ৪. আমার সাথে &rarr; <span class="arabic-text">مَعِي</span><br><br>
+                <strong>খ. ভুল হরকত সংশোধন করো:</strong><br>
+                ১. <span class="arabic-text">كُلُّ مَوْلُودٌ</span> &rarr; সঠিক: <span class="arabic-text">كُلُّ مَوْلُودٍ</span> (মুদাফ ইলাইহি সর্বদা মাজরুর বা জের হবে)।
+            </div>
+
+            <div class="homework-box">
+                <strong>🏠 হোমওয়ার্ক</strong><br>
+                ১. নিচের বিশেষ মুদাফগুলো ব্যবহার করে ১টি করে আরবি বাক্যাংশ তৈরি করো এবং অর্থ লেখো:<br>
+                <span class="arabic-text">بَيْنَ</span> (মাঝে), <span class="arabic-text">عِنْدَ</span> (কাছে), <span class="arabic-text">بَعْدَ</span> (পরে), <span class="arabic-text">مِثْلُ</span> (মতো), <span class="arabic-text">فَوْقَ</span> (উপরে)।<br>
+                ২. সংযুক্ত সর্বনামের সাথে মিলিয়ে অনুবাদ করো: তোমার সামনে, আমাদের পিছনে, তার নিচে (পুরুষ), তোমাদের আগে।
+            </div>
+        </section>
+
+        <!-- CLASS 13 -->
+        <section id="class13" class="class-card">
+            <div class="class-header">
+                <span class="class-badge">ক্রম: ক্লাস-১৩</span>
+                <h2 class="class-title"><span class="arabic-text">حُرُوفُ الْجَرِّ</span> (হুরুফুল জার) কাকে বলে ও এর ব্যবহার</h2>
+            </div>
+            <div class="section-title">২। ক্লাসের বিষয়</div>
+            <p>আরবি ভাষার নির্দিষ্ট কিছু অব্যয় যা ইসমের পূর্বে বসে শব্দের শেষ অক্ষরে জের (কাসরা) প্রদান করে এবং বাক্যের অর্থগত সংযোগ ঘটায়।</p>
+            
+            <div class="section-title">৩। মূলকথা ও উদাহরণসহ নিয়মকানুন</div>
+            <p><strong>হুরুফুল জার:</strong> যে সকল অব্যয় কোনো ইসমের আগে বসে তার শেষে জার বা কাসরা (জের) দেয়। এগুলো দুটি শব্দের মধ্যে স্থান, সময়, কারণ বা মাধ্যমের সম্পর্ক স্থাপন করে।</p>
+            
+            <p><strong>বহুল ব্যবহৃত প্রধান ১০টি হুরুফুল জার:</strong></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>হরফ</th>
+                        <th>অর্থ</th>
+                        <th>হরফ</th>
+                        <th>অর্থ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="arabic-text">مِنْ</span> (মিন)</td>
+                        <td>থেকে / হতে (From)</td>
+                        <td><span class="arabic-text">إِلَى</span> (ইলা)</td>
+                        <td>দিকে / পর্যন্ত (To)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="arabic-text">عَنْ</span> (আন)</td>
+                        <td>থেকে দূরে / সম্পর্কে (About)</td>
+                        <td><span class="arabic-text">عَلَى</span> (আলা)</td>
+                        <td>উপরে (On)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="arabic-text">فِي</span> (ফী)</td>
+                        <td>মধ্যে / ভেতরে (In)</td>
+                        <td><span class="arabic-text">بِـ</span> (বি)</td>
+                        <td>সাহায্যে / দ্বারা / সাথে</td>
+                    </tr>
+                    <tr>
+                        <td><span class="arabic-text">كَـ</span> (কা)</td>
+                        <td>মতো (Like)</td>
+                        <td><span class="arabic-text">لِـ</span> (লি)</td>
+                        <td>জন্য (For)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="arabic-text">حَتَّى</span> (হাত্তা)</td>
+                        <td>পর্যন্ত (Until)</td>
+                        <td><span class="arabic-text">وَ / تِ</span></td>
+                        <td>শপথ (By Oath)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>ব্যবহারিক উদাহরণ:</strong><br>
+            - <span class="arabic-text">خَرَجْتُ مِنَ الْبَيْتِ</span> = আমি বাড়ি থেকে বের হয়েছি। (<span class="arabic-text">مِنْ</span> এর কারণে পরবর্তী শব্দ মাজরুর হয়েছে)।<br>
+            - <span class="arabic-text">الْكِتَابُ عَلَى الطَّاوِلَةِ</span> = বইটি টেবিলের উপরে আছে।</p>
+
+            <div class="pro-tip">
+                <strong>💡 উচ্চারণগত নিয়ম:</strong> হুরুফুল জার যখন কোনো নির্দিষ্ট আলিফ-লাম যুক্ত শব্দের পূর্বে আসে, তখন উচ্চারণের সুবিধার জন্য কখনো কখনো সুকুন যুক্ত হরফে জবর বা জের দিতে হয়। যেমন: <span class="arabic-text">مِنْ + اَلْبَيْتِ &rarr; مِنَ الْبَيْتِ</span> (মিনাল বাইতি)।
+            </div>
+
+            <div class="exercise-box">
+                <strong>✍️ অনুশীলন</strong><br>
+                <strong>ক. উপযুক্ত হুরুফুল জার বসিয়ে শূন্যস্থান পূরণ করো:</strong><br>
+                ১. <span class="arabic-text">ذَهَبَ الطَّالِبُ ______ الْمَدْرَسَةِ</span> (ছাত্রটি স্কুলের দিকে গিয়েছে)। [উত্তর: <span class="arabic-text">إِلَى</span>]<br>
+                ২. <span class="arabic-text">كَتَبْتُ الدَّرْسَ ______ الْقَلَمِ</span> (আমি কলমের সাহায্যে পাঠ লিখেছি)। [উত্তর: <span class="arabic-text">بِـ</span>]<br>
+                ৩. <span class="arabic-text">هَذَا الْكِتَابُ ______ مَاجِدٍ</span> (এই বইটি মাজিদের জন্য)। [উত্তর: <span class="arabic-text">لِـ</span>]<br><br>
+                <strong>খ. সঠিক হরকত দাও:</strong><br>
+                ১. <span class="arabic-text">فِي الْمَسْجِدُ</span> &rarr; সঠিক: <span class="arabic-text">فِي الْمَسْجِدِ</span> (ফী এর কারণে শব্দের শেষে জের হবে)।
+            </div>
+
+            <div class="homework-box">
+                <strong>🏠 হোমওয়ার্ক</strong><br>
+                ১. নিচের বাক্যগুলোর আরবি অনুবাদ করো এবং হুরুফুল জারগুলো চিহ্নিত করো:<br>
+                - আমি বাড়ি থেকে মসজিদ পর্যন্ত গিয়েছি। | - চাবিটি টেবিলের উপরে আছে। | - আল্লাহর নাম দ্বারা (শুরু করছি)।<br>
+                ২. কুরআনে ব্যবহৃত ৩টি হুরুফুল জারের উদাহরণ আয়াতসহ (অর্থসহ) খাতায় লিপিবদ্ধ করো।
+            </div>
+        </section>
+
+        <!-- CLASS 14 -->
+        <section id="class14" class="class-card">
+            <div class="class-header">
+                <span class="class-badge">ক্রম: ক্লাস-১৪</span>
+                <h2 class="class-title">নামবাচক বাক্য ও মুবতাদা-খবর (<span class="arabic-text">الجُمْلَةُ الاِسْمِيَّةُ</span>)</h2>
+            </div>
+            <div class="section-title">২। ক্লাসের বিষয়</div>
+            <p>আরবিতে পূর্ণাঙ্গ বাক্যের প্রকারভেদ এবং নামবাচক বাক্যের গঠন কাঠামো, নিয়ম ও উদাহরণ।</p>
+            
+            <div class="section-title">৩। মূলকথা ও উদাহরণসহ নিয়মকানুন</div>
+            <p><strong>জুমলা (বাক্য):</strong> দুই বা ততোধিক শব্দ যখন একত্রে মিলে একটি পূর্ণ ভাব প্রকাশ করে, তাকে জুমলা বা বাক্য বলে। এটি দুই প্রকার:</p>
+            <ul>
+                <li><strong><span class="arabic-text">الجُمْلَةُ الْفِعْلِيَّةُ</span> (ক্রিয়াবাচক বাক্য):</span></strong> যে বাক্য ফে'ল বা ক্রিয়া দ্বারা শুরু হয়। যেমন: <span class="arabic-text">كَتَبَ رَاشِدٌ</span> (রাশেদ লিখেছে)।</li>
+                <li><strong><span class="arabic-text">الجُمْلَةُ الْإِسْمِيَّةُ</span> (নামবাচক বাক্য):</span></strong> যে বাক্য ইসম বা বিশেষ্য দ্বারা শুরু হয়। যেমন: <span class="arabic-text">زَيْدٌ عَالِمٌ</span> (যায়েদ একজন জ্ঞানী)।</li>
+            </ul>
+            
+            <p><strong>জুমলা ইসমিয়্যাহ-এর প্রধান দুটি অংশ:</strong></p>
+            <ol>
+                <li><strong>مُبْتَدَأٌ (মুবতাদা / Subject):</strong> বাক্যে যার সম্পর্কে কোনো কিছু বলা হয় বা সংবাদ দেওয়া হয়।</li>
+                <li><strong>خَبَرٌ (খবর / Predicate):</strong> মুবতাদা সম্পর্কে যে সংবাদ বা তথ্য দেওয়া হয়।</li>
+            </ol>
+            <p><strong>উদাহরণ:</strong> <span class="arabic-text">زَيْدٌ طَبِيبٌ</span> (যায়েদ একজন ডাক্তার)। এখানে <span class="arabic-text">زَيْدٌ</span> হলো মুবতাদা এবং <span class="arabic-text">طَبِيبٌ</span> হলো খবর।</p>
+            
+            <p><strong>মুবতাদা ও খবর সম্পর্কে ৩টি গুরুত্বপূর্ণ নিয়ম:</strong></p>
+            <ul>
+                <li><strong>অবস্থা (ই'রাব):</strong> মুবতাদা ও খবর উভয় অংশই সর্বদা <strong>مَرْفُوعٌ বা রাফা (শেষ অক্ষরে পেশ বিশিষ্ট)</strong> হবে।</li>
+                <li><strong>নির্দিষ্টতা:</strong> মুবতাদা সাধারণত <span class="arabic-text">مَعْرِفَةٌ</span> (নির্দিষ্ট/আলিফ-লামযুক্ত) হয় এবং খবর সাধারণত <span class="arabic-text">نَكِرَةٌ</span> (অনির্দিষ্ট) হয়।</li>
+                <li><strong>সামঞ্জস্য বা মিল:</strong> বচন এবং লিঙ্গ (পুরুষ/স্ত্রী) এর ক্ষেত্রে খবর সবসময় মুবতাদাকে হুবহু অনুসরণ করে। যেমন: <span class="arabic-text">اَلْأُسْتَاذُ حَاضِرٌ</span> (শিক্ষক উপস্থিত) &rarr; <span class="arabic-text">اَلْأُسْتَاذَةُ حَاضِرَةٌ</span> (শিক্ষিকা উপস্থিত)।</li>
+            </ul>
+
+            <div class="pro-tip">
+                <strong>💡 গুরুত্বপূর্ণ কৌশল:</strong> মুবতাদা ও খবরের অনুবাদ করার সময় বাংলায় সাধারণত "হয়" বা "আছে" ক্রিয়াপদটি উজ্জ্ব থাকে। যেমন: <span class="arabic-text">اَلْكِتَابُ جَدِيدٌ</span> &rarr; বইটি (হয়) নতুন। চেনার সাধারণ উপায় হলো প্রথম শব্দে <span class="arabic-text">ال</span> থাকবে (মুবতাদা) এবং দ্বিতীয় শব্দে <span class="arabic-text">ال</span> থাকবে না ও তানভীন থাকবে (খবর)।
+            </div>
+
+            <div class="exercise-box">
+                <strong>✍️ অনুশীলন</strong><br>
+                <strong>ক. নিচের বাক্যগুলো থেকে মুবতাদা ও খবর আলাদা করো:</strong><br>
+                ১. <span class="arabic-text">اَللَّهُ غَفُورٌ</span> (আল্লাহ ক্ষমাশীল) &rarr; মুবতাদা: <span class="arabic-text">اَللَّهُ</span> | খবর: <span class="arabic-text">غَفُورٌ</span><br>
+                ২. <span class="arabic-text">اَلطَّالِبُ ذَكِيٌّ</span> (ছাত্রটি মেধাবী) &rarr; মুবতাদা: <span class="arabic-text">اَلطَّالِبُ</span> | খবর: <span class="arabic-text">ذَكِيٌّ</span><br>
+                ৩. <span class="arabic-text">اَلسَّمَاءُ صَافِيَةٌ</span> &rarr; মুবতাদা: <span class="arabic-text">اَلسَّمَاءُ</span> | খবর: <span class="arabic-text">صَافِيَةٌ</span> (আকাশ মুআন্নাস তাই খবরও মুআন্নাস হয়েছে)<br><br>
+                <strong>খ. সঠিক খবরটি বসিয়ে বাক্য সম্পূর্ণ করো:</strong><br>
+                ১. <span class="arabic-text">اَلْمَاءُ ________</span> (<span class="arabic-text">نَظِيفٌ / نَظِيفَةٌ</span>) [উত্তর: <span class="arabic-text">نَظِيفٌ</span>]
+            </div>
+
+            <div class="homework-box">
+                <strong>🏠 হোমওয়ার্ক</strong><br>
+                ১. নিচের বাক্যগুলোর আরবি অনুবাদ করো এবং মুবতাদা ও খবর চিহ্নিত করো:<br>
+                - পড়াটি সহজ। | - শিক্ষক উপস্থিত আছেন। | - বাড়িটি সুন্দর। | - কলমটি ভাঙা।<br>
+                ২. পবিত্র কুরআনের '<span class="arabic-text">هُوَ اللَّهُ أَحَدٌ</span>' এবং '<span class="arabic-text">مُحَمَّدٌ رَسُولُ اللَّهِ</span>' বাক্য দুটির মুবতাদা ও খবর আলাদা করে খাতায় লেখো।
+            </div>
+        </section>
+
+        <!-- CLASS 15 -->
+        <section id="class15" class="class-card">
+            <div class="class-header">
+                <span class="class-badge">ক্রম: ক্লাস-১৫</span>
+                <h2 class="class-title"><span class="arabic-text">الْمُكَالَمَةُ</span> (আরবি কথোপকথন ও বাস্তব প্রয়োগ)</h2>
+            </div>
+            <div class="section-title">২। ক্লাসের বিষয়</div>
+            <p>পূর্ববর্তী সকল ব্যাকরণগত নিয়মের (ইশারা, ইদাফাত, বিশেষ মুদাফ, হুরুফুল জার, মুবতাদা-খবর) আলোকে দৈনন্দিন জীবনের বাস্তব সংলাপ ও কথোপকথন অনুশীলন।</p>
+            
+            <div class="section-title">৩। মূলকথা ও উদাহরণসহ নিয়মকানুন</div>
+            <p><strong>সংলাপসমূহ ও কাঠামোগত ব্যাকরণ বিশ্লেষণ:</strong></p>
+            <ul>
+                <li><strong>শুভেচ্ছা বিনিময়:</strong> <span class="arabic-text">صَبَاحُ الْخَيْرِ يَا صَدِيقِي</span> (শুভ সকাল হে আমার বন্ধু) &rarr; উত্তর: <span class="arabic-text">صَبَاحُ النُّورِ وَالسُّرُورِ</span>।</li>
+                <li><strong>অবস্থা জিজ্ঞাসা:</strong> <span class="arabic-text">كَيْفَ حَالُكَ الْيَوْمَ؟</span> (আজ তোমার অবস্থা কেমন?) &rarr; উত্তর: <span class="arabic-text">أَنَا بِخَيْرٍ وَعَافِيَةٍ وَالْحَمْدُ لِلَّهِ</span>।</li>
+                <li><strong>স্থানবাচক শব্দের ব্যবহার:</strong> <span class="arabic-text">بَيْتُنَا بِجَانِبِ الْمَسْجِدِ الْكَبِيرِ</span> (আমাদের বাড়ি বড় মসজিদের পাশে)। এখানে '<span class="arabic-text">بِجَانِبِ</span>' বিশেষ মুদাফ হিসেবে ব্যবহৃত।</li>
+                <li><strong>মউসূফ-সিফাতের ব্যবহার:</strong> <span class="arabic-text">هَذِهِ سَاعَتِي الذَّكِيَّةُ</span> (এটি আমার স্মার্ট ঘড়ি)।</li>
+            </ul>
+
+            <div class="pro-tip">
+                <strong>💡 গুরুত্বপূর্ণ কৌশল:</strong> কথোপকথনের সময় লিঙ্গভেদ অত্যন্ত গুরুত্বপূর্ণ। পুরুষকে কোনো কিছু জিজ্ঞেস করতে '<span class="arabic-text">كَ</span>' (যেমন: <span class="arabic-text">حَالُكَ</span>) এবং নারীকে জিজ্ঞেস করতে '<span class="arabic-text">كِ</span>' (যেমন: <span class="arabic-text">حَالُكِ</span>) ব্যবহার করতে হবে।
+            </div>
+
+            <div class="exercise-box">
+                <strong>✍️ অনুশীলন</strong><br>
+                <strong>ক. নিচের সংলাপগুলোর সঠিক বাংলা অনুবাদ করো:</strong><br>
+                ১. <span class="arabic-text">كَيْفَ صِحَّةُ وَالِدِكَ الْكَرِيمِ؟</span> &rarr; উত্তর: তোমার সম্মানিত বাবার স্বাস্থ্য কেমন?<br>
+                ২. <span class="arabic-text">مَكْتَبُهُ فَوْقَ هَذَا الْمَتْجَرِ الصَّغِيرِ</span> &rarr; উত্তর: তাঁর অফিস এই ছোট দোকানের ওপরে।<br><br>
+                <strong>খ. শূন্যস্থানে উপযুক্ত উত্তর বা প্রশ্ন বসাও:</strong><br>
+                ১. প্রশ্ন: <span class="arabic-text">أَيْنَ حَارِسُ الْمَدْرَسَةِ؟</span> &rarr; উত্তর: <span class="arabic-text">هُنَاكَ حَارِسُ الْمَدْرَسَةِ الْأَمِينُ</span> (এখানে আমীন শব্দটি حارس এর সিফাত হিসেবে পেশযুক্ত হয়েছে)।
+            </div>
+
+            <div class="homework-box">
+                <strong>🏠 হোমওয়ার্ক</strong><br>
+                ১. নিচের বাক্যগুলোর সম্পূর্ণ আরবি অনুবাদ করো:<br>
+                - আজকের দুপুরের খাবার রান্নাঘরে তৈরি। | - শহরের রাস্তাগুলো খুব পরিচ্ছন্ন। পরিচ্ছন্নতা ইমানের অঙ্গ।<br>
+                - লোহার আলমারির চাবিটি আমার মায়ের কাছে আছে।<br>
+                ২. আপনার কোনো বন্ধুর সাথে দেখা হলে কীভাবে কুশল বিনিময় করবেন, তা নিয়ে ৫ লাইনের একটি কাল্পনিক আরবি সংলাপ তৈরি করুন।
+            </div>
+        </section>
+
+        <!-- CLASS 16 -->
+        <section id="class16" class="class-card">
+            <div class="class-header">
+                <span class="class-badge">ক্রম: ক্লাস-১৬</span>
+                <h2 class="class-title"><span class="arabic-text">إِنَّ وَأَخَوَاتُهَا</span> (ইন্না ও তার সমগোত্রীয় হরফসমূহ)</h2>
+            </div>
+            <div class="section-title">২। ক্লাসের বিষয়</div>
+            <p>বাক্যের শুরুতে বসে নিশ্চয়তা, উপমা বা আকাঙ্ক্ষা প্রকাশকারী হরফসমূহর আমল (হরকতের পরিবর্তন) এবং পেশা সংক্রান্ত শব্দার্থের ব্যবহার।</p>
+            
+            <div class="section-title">৩। মূলকথা ও উদাহরণসহ নিয়মকানুন</div>
+            <p><strong>পরিচয়:</strong> নিশ্চয়তা ও আকাঙ্ক্ষা প্রকাশক হরফসমূহ মূলত জুমলা ইসমিয়্যাহ (মুবতাদা ও খবর)-এর শুরুতে আসে।</p>
+            
+            <p><strong>হরফসমূহের তালিকা ও অর্থ:</strong></p>
+            <ul>
+                <li><strong><span class="arabic-text">إِنَّ</span> (ইন্না) = নিশ্চয়</strong> (বাক্যের একেবারে শুরুতে বসে)।</li>
+                <li><strong><span class="arabic-text">أَنَّ</span> (আন্না) = যে / নিশ্চয়</strong> (সাধারণত বাক্যের মাঝে বা কোনো ক্রিয়ার পরে বসে)।</li>
+                <li><strong><span class="arabic-text">كَأَنَّ</span> (কাআন্না) = যেন / মতো</strong> (উপমা দিতে ব্যবহৃত হয়)।</li>
+                <li><strong><span class="arabic-text">لَكِنَّ</span> (লাকিন্না) = কিন্তু</strong> (পূর্বের কথার সংশয় দূর করতে ব্যবহৃত হয়)।</li>
+                <li><strong><span class="arabic-text">لَيْتَ</span> (লাইতা) = হায়! যদি...</strong> (অসম্ভব কোনো আকাঙ্ক্ষা প্রকাশে)।</li>
+                <li><strong><span class="arabic-text">لَعَلَّ</span> (লাআল্লা) = হয়তো / আশা করি</strong> (সম্ভব এমন কোনো আশা বা আশঙ্কা প্রকাশে)।</li>
+            </ul>
+            
+            <p><strong>ব্যবহার পদ্ধতি ও ব্যাকরণগত আমল (রুলস):</strong><br>
+            এই হরফগুলো বাক্যের মুবতাদাকে জোর বা <strong>'নাসাব' (জবর)</strong> দেয় (তখন তাকে 'ইসমু ইন্না' বলে) এবং খবর অংশকে <strong>'রাফা' (পেশ)</strong> বহাল রাখে (একে 'খবারু ইন্না' বলে)।<br>
+            <strong>গঠন:</strong> <span class="arabic-text">اَللَّهُ غَفُورٌ &rarr; إِنَّ اللَّهَ غَفُورٌ</span> (নিশ্চয় আল্লাহ ক্ষমাশীল)। [মুবতাদার পেশটি জবরযুক্ত হয়ে <span class="arabic-text">اللَّهَ</span> হয়েছে]।</p>
+
+            <div class="pro-tip">
+                <strong>💡 গুরুত্বপূর্ণ কৌশল:</strong> ইন্না-এর আমল মুবতাদা-খবরের সাধারণ নিয়মকে পুরোপুরি উল্টে দেয়। সাধারণ মুবতাদা পেশযুক্ত হয়, কিন্তু ইন্না আসার পর তা বাধ্যতামূলকভাবে জবরযুক্ত হয়ে যাবে। খবরের কোনো পরিবর্তন হবে না, তা সাধারণ অবস্থার মতোই পেশযুক্ত থাকবে।
+            </div>
+
+            <div class="exercise-box">
+                <strong>✍️ অনুশীলন</strong><br>
+                <strong>ক. নিচের বাক্যগুলোর শুরুতে 'إِنَّ' বা উপযুক্ত হরফ যুক্ত করে সঠিক হরকত দাও:</strong><br>
+                ১. <span class="arabic-text">زَيْدٌ طَبِيبٌ مَاهِرٌ &rarr; إِنَّ زَيْدًا طَبِيبٌ مَاهِرٌ</span> (নিশ্চয় যায়েদ একজন দক্ষ ডাক্তার)<br>
+                ২. <span class="arabic-text">اَلْجُنْدِيُّ أَسَدٌ &rarr; كَأَنَّ الْجُنْدِيَّ أَسَدٌ</span> (সৈনিকটি যেন একটি সিংহ)<br><br>
+                <strong>খ. পেশা সংক্রান্ত শব্দার্থগুলোর সঠিক ম্যাচিং করো:</strong><br>
+                <span class="arabic-text">طَبِيبٌ</span> &rarr; ডাক্তার | <span class="arabic-text">مُهَنْدِسٌ</span> &rarr; প্রকৌশলী | <span class="arabic-text">مُحَامٍ</span> &rarr; আইনজীবী | <span class="arabic-text">فَلَّاحٌ</span> &rarr; কৃষক
+            </div>
+
+            <div class="homework-box">
+                <strong>🏠 হোমওয়ার্ক</strong><br>
+                ১. পেশা সংক্রান্ত নতুন শব্দগুলো (<span class="arabic-text">صحفي</span> - সাংবাদিক, <span class="arabic-text">شرطي</span> - পুলিশ, <span class="arabic-text">تاجر</span> - ব্যবসায়ী) ব্যবহার করে 'إِنَّ' এবং 'لَعَلَّ' যুক্ত ৫টি বাক্য সঠিক হরকতসহ তৈরি করো।<br>
+                ২. নিচের বাক্যগুলোর বাংলা অনুবাদ করো:<br>
+                - <span class="arabic-text">عَلِمْتُ أَنَّ الْعِلْمَ نُورٌ।</span> | - <span class="arabic-text">لَيْتَ الشَّبَابَ عَائِدٌ।</span>
+            </div>
+        </section>
+
+        <!-- CLASS 17 -->
+        <section id="class17" class="class-card">
+            <div class="class-header">
+                <span class="class-badge">ক্রম: ক্লাস-১৭</span>
+                <h2 class="class-title">দূরত্ববাচক অব্যয় ও জটিল ধারাবাহিক বাক্য গঠন</h2>
+            </div>
+            <div class="section-title">২। ক্লাসের বিষয়</div>
+            <p>কোনো স্থান বা ব্যক্তির নৈকট্য ও দূরত্ব প্রকাশের নিয়ম এবং একের অধিক ইদাফাত (ধারাবাহিক সম্বন্ধ পদ) ব্যবহার করে দীর্ঘ জটিল বাক্য গঠনের কৌশল।</p>
+            
+            <div class="section-title">৩। মূলকথা ও উদাহরণসহ নিয়মকানুন</div>
+            <p><strong>নৈকট্য ও দূরত্ব প্রকাশ:</strong></p>
+            <ul>
+                <li><strong><span class="arabic-text">قَرِيبٌ مِنْ</span> (ক্বারীবুন মিন) = নিকটবর্তী / কাছে।</strong></li>
+                <li><strong><span class="arabic-text">بَعِيدٌ عَنْ</span> (বাঈ দুন আন) = দূরবর্তী / দূরে।</strong></li>
+            </ul>
+            <p><strong>নিয়ম:</strong> লিঙ্গ অনুযায়ী 'ক্বারীব' বা 'বাঈদের' রূপ পরিবর্তন হয়। মউসূফ স্ত্রীবাচক হলে হরফ দুটি যথাক্রমে <span class="arabic-text">قَرِيبَةٌ مِنْ</span> এবং <span class="arabic-text">بَعِيدَةٌ عَنْ</span> এ রূপান্তরিত হবে।<br>
+            <strong>উদাহরণ:</strong> <span class="arabic-text">اَلْمَدْرَسَةُ قَرِيبَةٌ مِنَ الْبَيْتِ</span> (মাদ্রাসাটি বাড়ি থেকে কাছে)।</p>
+            
+            <p><strong>একাধিক ইদাফাতের (ধারাবাহিক সম্বন্ধ) নিয়ম:</strong><br>
+            বাংলায় যখন একের পর এক 'র' বা 'এর' যুক্ত হয়ে লম্বা পদ তৈরি হয়, আরবিতে তখন প্রথম শব্দটি মুদাফ হয় এবং পরবর্তী শব্দগুলো ক্রমান্বয়ে মুদাফ ও মুদাফ ইলাইহি হতে থাকে। একদম শেষের শব্দটি শুধু খাঁটি মুদাফ ইলাইহি হিসেবে পূর্ণ জের লাভ করে।</p>
+            
+            <p><strong>ধারাবাহিক বৃদ্ধি ও উদাহরণ বিশ্লেষণ:</strong></p>
+            <ol>
+                <li>রাশেদের কলম &rarr; <span class="arabic-text">قَلَمُ رَاشِدٍ</span></li>
+                <li>রাশেদের মাদরাসার কলম &rarr; <span class="arabic-text">قَلَمُ مَدْرَسَةِ رَاشِدٍ</span></li>
+                <li>রাশেদের মাদরাসার শিক্ষকের কলম &rarr; <span class="arabic-text">قَلَمُ مُعَلِّمِ مَدْرَسَةِ رَاشِدٍ</span></li>
+                <li>রাশেদের মাদরাসার শিক্ষকের কলমের দাম &rarr; <span class="arabic-text">سِعْرُ قَلَمِ مُعَلِّمِ مَدْرَسَةِ رَاشِدٍ</span></li>
+            </ol>
+
+            <div class="pro-tip">
+                <strong>💡 গুরুত্বপূর্ণ কৌশল:</strong> একাধিক ইদাফাত গঠনের সময় মনে রাখবেন, মধ্যবর্তী শব্দগুলো (যেমন: معلم, مدرسة) একই সাথে পূর্বের শব্দের জন্য 'মুদাফ ইলাইহি' এবং পরের শব্দের জন্য 'মুদাফ' হিসেবে কাজ করে। তাই এগুলোর শুরুতে কখনো <span class="arabic-text">ال</span> বসবে না এবং শেষে তানভীন হবে না, শুধু একটি মাত্র জের হবে।
+            </div>
+
+            <div class="exercise-box">
+                <strong>✍️ অনুশীলন</strong><br>
+                <strong>ক. বাক্যগুলোর সঠিক আরবি অনুবাদ করো:</strong><br>
+                ১. রাশেদ খালেদের কাছে। &rarr; উত্তর: <span class="arabic-text">رَاشِدٌ قَرِيبٌ مِنْ خَالِدٍ</span><br>
+                ২. রাশেদের মা আল্লাহর নিকটবর্তী। &rarr; উত্তর: <span class="arabic-text">أُمُّ رَاشِدٍ قَرِيبَةٌ مِنَ اللهِ</span><br><br>
+                <strong>খ. ধারাবাহিক মুদাফ যুক্ত করে বাক্যটি সম্পূর্ণ করো:</strong><br>
+                ১. 'ব্যবসায়ীর বাড়ির দরজার চাবি' &rarr; উত্তর: <span class="arabic-text">مِفْتَاحُ بَابِ بَيْتِ التَّاجِرِ</span>
+            </div>
+
+            <div class="summary-box">
+                <strong>📝 ক্লাস সারাংশ:</strong> কাছের ক্ষেত্রে قَرِيبٌ مِنْ এবং দূরের ক্ষেত্রে بَعِيدٌ عَنْ ব্যবহৃত হয়। জটিল বাক্য গঠনের জন্য ধারাবাহিক ইদাফাত বা একাধারে একাধিক মুদাফ-মুদাফ ইলাইহি যুক্ত করার পদ্ধতি ব্যবহার করা হয়, যেখানে মাঝের শব্দগুলো হালকা (এক জের বিশিষ্ট) থাকে।
+            </div>
+
+            <div class="homework-box">
+                <strong>🏠 হোমওয়ার্ক</strong><br>
+                ১. নিচের বাক্যগুলোর সঠিক ও সম্পূর্ণ আরবি অনুবাদ খাতায় সম্পন্ন করো:<br>
+                - এই নতুন মসজিদটি আমার বাড়ি থেকে দূরে।<br>
+                - শিক্ষকের গাড়ির চাবির রঙ &rarr; ___________________________<br>
+                - সুস্বাদু খাবারের দোকানের মালিকের নাম &rarr; ___________________________<br>
+                ২. নিজে থেকে ৩টি ধারাবাহিক ইদাফাত যুক্ত জটিল বাক্যাংশ তৈরি করে সেগুলোর বাংলা অর্থ পাশে লিখুন।
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
