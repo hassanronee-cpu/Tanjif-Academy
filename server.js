@@ -20,7 +20,10 @@ let resetOtpStore = {};
 
 // ================= NODEMAILER CONFIGURATION =================
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 587,               // 465 এর বদলে 587 দিন
+    secure: false,            // 587 পোর্টের জন্য false হবে
+    family: 4,               // ⚠️ এই লাইনটি সবচেয়ে গুরুত্বপূর্ণ (IPv4 বাধ্য করার জন্য)
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
@@ -29,6 +32,7 @@ const transporter = nodemailer.createTransport({
         rejectUnauthorized: false
     }
 });
+
 
 // ================= লোকাল ফাইলে ডাটা সংরক্ষণ =================
 async function saveToFile(name, tanzifID, phone, email, date) {
