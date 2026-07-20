@@ -21,19 +21,12 @@ let resetOtpStore = {};
 
 // ================= NODEMAILER CONFIGURATION =================
 const transporter = nodemailer.createTransport({
-    host: 'smtp-mail.outlook.com',
-    port: 587,
-    secure: false, // TLS ব্যবহার করার জন্য false
+    service: 'gmail',
     auth: {
-        user: process.env.EMAIL_USER || 'tanjifacademy@hotmail.com',
-        pass: process.env.EMAIL_PASS || 'bvijdoioeibojqdg'
-    },
-    tls: {
-        ciphers: 'SSLv3',
-        rejectUnauthorized: false
+        user: process.env.EMAIL_USER || 'tanjifacademy@gmail.com', // আপনার জিমেইল ঠিকানা
+        pass: process.env.EMAIL_PASS || 'zqvdxhtkehbrpxsq'     // জিমেইল থেকে পাওয়া ১৬ অক্ষরের অ্যাপ পাসওয়ার্ড (স্পেস ছাড়া)
     }
-});
-// গুগল শিটের বদলে সহজে সার্ভারে ডাটা সেভ করার ফাংশন
+});});// গুগল শিটের বদলে সহজে সার্ভারে ডাটা সেভ করার ফাংশন
 async function saveToGoogleSheet(name, tanzifID, phone, email, date) {
     try {
         // ডাটা যেভাবে ফাইলে জমা হবে (কমা দিয়ে আলাদা করা)
