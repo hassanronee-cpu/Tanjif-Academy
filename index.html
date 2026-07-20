@@ -416,7 +416,7 @@
                         <input id="input-otp" type="text" maxlength="4" class="input-dark" style="text-align:center; letter-spacing:0.4em; font-size:1rem; font-weight:700; padding:0.5rem;" placeholder="0000">
                     </div>
                     <div style="margin-bottom:1rem;">
-                        <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">নতুন পাসওয়ার্ড (ন্যূনতম ৬ অক্ষর)</label>
+                        <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">পাসওয়ার্ড (ন্যূনতম ৬ অক্ষর)</label>
                         <input id="reg-password" type="password" class="input-dark" placeholder="••••••••">
                     </div>
                     <button onclick="verifyOTP()" class="btn-success">✅ নিবন্ধন সম্পন্ন করুন</button>
@@ -619,16 +619,24 @@
 
             if (!name || !phone || !email) { alert("সব তথ্য পূরণ করুন।"); return; }
 
-            const res = await fetch('/api/send-otp', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, phone, email })
-            });
-            const data = await res.json();
-            if (data.success) {
-                document.getElementById('signup-section').classList.add('step-hidden');
-                document.getElementById('otp-section').classList.remove('step-hidden');
-            } else { alert(data.message); }
+            try {
+                const res = await fetch('/api/send-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, phone, email })
+                });
+                const data = await res.json();
+                
+                if (data.success) {
+                    document.getElementById('signup-section').classList.add('step-hidden');
+                    document.getElementById('otp-section').classList.remove('step-hidden');
+                    alert('ওটিপি কোডটি আপনার ইমেইলে পাঠানো হয়েছে।');
+                } else {
+                    alert(data.message || 'ওটিপি পাঠানো সম্ভব হয়নি।');
+                }
+            } catch (err) {
+                alert('সার্ভারের সাথে যোগাযোগ করা যাচ্ছে না।');
+            }
         }
 
         async function verifyOTP() {
@@ -636,20 +644,30 @@
             const otp = document.getElementById('input-otp').value.trim();
             const password = document.getElementById('reg-password').value;
 
-            if (!otp || password.length < 6) { alert('সঠিক ওটিপি এবং ন্যূনতম ৬ সংখ্যার পাসওয়ার্ড দিন।'); return; }
+            if (!otp || password.length < 6) { 
+                alert('সঠিক ওটিপি এবং ন্যূনতম ৬ অক্ষরের পাসওয়ার্ড দিন।'); 
+                return; 
+            }
 
-            const res = await fetch('/api/verify-otp', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, otp, password })
-            });
-            const data = await res.json();
-            if (data.success) {
-                document.getElementById('otp-section').classList.add('step-hidden');
-                document.getElementById('success-section').classList.remove('step-hidden');
-                document.getElementById('memberName').textContent = data.name;
-                document.getElementById('tanzif-id').textContent = data.tanzifID;
-            } else { alert(data.message); }
+            try {
+                const res = await fetch('/api/verify-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, otp, password })
+                });
+                const data = await res.json();
+                
+                if (data.success) {
+                    document.getElementById('otp-section').classList.add('step-hidden');
+                    document.getElementById('success-section').classList.remove('step-hidden');
+                    document.getElementById('memberName').textContent = data.name;
+                    document.getElementById('tanzif-id').textContent = data.tanzifID;
+                } else {
+                    alert(data.message || 'ওটিপি ভেরিফিকেশন ব্যর্থ হয়েছে।');
+                }
+            } catch (err) {
+                alert('সার্ভারের সাথে যোগাযোগ করা যাচ্ছে না।');
+            }
         }
 
         // পাসওয়ার্ড রিসেট ওটিপি পাঠানো
@@ -657,17 +675,24 @@
             const email = document.getElementById('reset-email').value.trim();
             if(!email) { alert('ইমেইল দিন'); return; }
 
-            const res = await fetch('/api/forgot-password', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email })
-            });
-            const data = await res.json();
-            if(data.success) {
-                document.getElementById('forgot-password-section').classList.add('step-hidden');
-                document.getElementById('reset-verify-section').classList.remove('step-hidden');
-                alert('আপনার ইমেইলে রিসেট ওটিপি পাঠানো হয়েছে।');
-            } else { alert(data.message); }
+            try {
+                const res = await fetch('/api/forgot-password', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                const data = await res.json();
+                
+                if(data.success) {
+                    document.getElementById('forgot-password-section').classList.add('step-hidden');
+                    document.getElementById('reset-verify-section').classList.remove('step-hidden');
+                    alert('আপনার ইমেইলে রিসেট ওটিপি পাঠানো হয়েছে।');
+                } else {
+                    alert(data.message || 'ওটিপি পাঠানো সম্ভব হয়নি।');
+                }
+            } catch (err) {
+                alert('সার্ভারের সাথে যোগাযোগ করা যাচ্ছে না।');
+            }
         }
 
         async function handlePasswordReset() {
@@ -675,16 +700,28 @@
             const otp = document.getElementById('reset-otp').value.trim();
             const newPassword = document.getElementById('reset-new-password').value;
 
-            const res = await fetch('/api/reset-password', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, otp, newPassword })
-            });
-            const data = await res.json();
-            if(data.success) {
-                alert('পাসওয়ার্ড সফলভাবে পরিবর্তিত হয়েছে। নতুন পাসওয়ার্ড দিয়ে লগইন করুন।');
-                switchTab('login');
-            } else { alert(data.message); }
+            if (newPassword.length < 6) {
+                alert('পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে।');
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/reset-password', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, otp, newPassword })
+                });
+                const data = await res.json();
+                
+                if(data.success) {
+                    alert('পাসওয়ার্ড সফলভাবে পরিবর্তিত হয়েছে। নতুন পাসওয়ার্ড দিয়ে লগইন করুন।');
+                    switchTab('login');
+                } else {
+                    alert(data.message || 'পাসওয়ার্ড রিসেট ব্যর্থ হয়েছে।');
+                }
+            } catch (err) {
+                alert('সার্ভারের সাথে যোগাযোগ করা যাচ্ছে না।');
+            }
         }
 
         // ফিচার ১৩: মতামত পাঠানো ও অটো-ধন্যবাদ মেইল ট্রিগার
@@ -693,15 +730,22 @@
             const message = document.getElementById('msg-text').value.trim();
             if (!email || !message) { alert('দয়া করে ইমেইল ও বার্তা দুটিই লিখুন।'); return; }
 
-            const res = await fetch('/api/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, message })
-            });
-            const data = await res.json();
-            if (data.success) {
-                alert('আপনার বার্তাটি সফলভাবে পাঠানো হয়েছে এবং একটি ধন্যবাদ মেইল পাঠানো হয়েছে।');
-                document.getElementById('msg-text').value = '';
+            try {
+                const res = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, message })
+                });
+                const data = await res.json();
+                
+                if (data.success) {
+                    alert('আপনার বার্তাটি সফলভাবে পাঠানো হয়েছে এবং একটি ধন্যবাদ মেইল পাঠানো হয়েছে।');
+                    document.getElementById('msg-text').value = '';
+                } else {
+                    alert('বার্তা পাঠানো সম্ভব হয়নি। আবার চেষ্টা করুন।');
+                }
+            } catch (err) {
+                alert('সার্ভারের সাথে যোগাযোগ করা যাচ্ছে না।');
             }
         }
 
