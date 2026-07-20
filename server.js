@@ -45,6 +45,13 @@ async function saveToFile(name, tanzifID, phone, email, date) {
     }
 }
 
+const Brevo = require('@getbrevo/brevo');
+
+// Brevo API Config
+const apiInstance = new Brevo.TransactionalEmailsApi();
+const apiKey = apiInstance.authentications['apiKey'];
+apiKey.apiKey = process.env.BREVO_API_KEY;
+
 // ================= ১. ওটিপি জেনারেশন ও ইমেইল প্রেরণ API =================
 app.post('/api/send-otp', async (req, res) => {
     try {
@@ -53,7 +60,6 @@ app.post('/api/send-otp', async (req, res) => {
             return res.status(400).json({ success: false, message: "সব তথ্য প্রদান করুন।" });
         }
 
-        // চেক করা যে এই ইমেইল দিয়ে আগে কেউ রেজিস্ট্রেশন করেছে কিনা
         if (userStore[email]) {
             return res.status(400).json({ success: false, message: "এই ইমেইল দিয়ে ইতিমধ্যে একটি অ্যাকাউন্ট তৈরি করা হয়েছে।" });
         }
@@ -61,26 +67,23 @@ app.post('/api/send-otp', async (req, res) => {
         const otp = Math.floor(1000 + Math.random() * 9000).toString();
         otpStore[email] = { name, phone, otp };
 
-        const mailOptions = {
-            from: process.env.EMAIL_USER,
-            to: email,
-            subject: 'Tanjif Academy - Registration OTP',
-            text: `প্রিয় ${name},\n\nতানজিফ একাডেমিতে নিবন্ধনের জন্য আপনার ওটিপি কোডটি হলো: ${otp}\n\nওটিপি টি ৫ মিনিটের মধ্যে ব্যবহার করুন।\n\nধন্যবাদ,\nতানজিফ একাডেমি টিম`
-        };
+        // Brevo Email Object
+        const sendSmtpEmail = new Brevo.SendSmtpEmail();
+        sendSmtpEmail.subject = "Tanjif Academy - Registration OTP";
+        sendSmtpEmail.textContent = `প্রিয় ${name},\n\nতানজিফ একাডেমিতে নিবন্ধনের জন্য আপনার ওটিপি কোডটি হলো: ${otp}\n\nধন্যবাদ,\nতানজিফ একাডেমি টিম`;
+        sendSmtpEmail.sender = { "name": "Tanjif Academy", "email": process.env.EMAIL_USER };
+        sendSmtpEmail.to = [{ "email": email, "name": name }];
 
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.log("Mail Send Error: ", error);
-            } else {
-                console.log(`📧 OTP ইমেইল পাঠানো হয়েছে: ${email}`);
-            }
-        });
+        // Send Email via API
+        await apiInstance.sendTransacEmail(sendSmtpEmail);
+        
+        console.log(`📧 OTP Email sent successfully to: ${email}`);
+        console.log(`🔑 OTP Generated: ${otp}`);
 
-        console.log(`🔑 OTP Generated for ${email} -> ${otp}`);
         return res.json({ success: true, message: "ওটিপি মেইলে পাঠানো হয়েছে।" });
     } catch (error) {
-        console.error("OTP Send Error:", error);
-        return res.status(500).json({ success: false, message: "সার্ভারে সমস্যা হয়েছে।" });
+        console.error("❌ Brevo Mail Send Error:", error);
+        return res.status(500).json({ success: false, message: "ইমেইল পাঠাতে ব্যর্থ হয়েছে!" });
     }
 });
 
