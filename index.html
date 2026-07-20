@@ -14,9 +14,18 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
         }
 
-        /* ===== ব্যাকগ্রাউন্ড ইমেজ ===== */
+        /* ফিচার ৮: কপি পেস্ট বন্ধ করা ও টেক্সট সিলেক্ট বন্ধ করা */
+        body.no-copy {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* ===== ব্যাকগ্রাউন্ড ইমেজ (ফিচার ৯: স্বচ্ছ ফুল স্ক্রিন ছবি) ===== */
         .bg-edu {
             position: fixed;
             top: 0;
@@ -25,51 +34,115 @@
             height: 100%;
             z-index: 0;
             background: 
-                linear-gradient(135deg, rgba(15, 23, 42, 0.7), rgba(37, 99, 235, 0.3)),
-                url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" opacity="0.15"%3E%3Crect fill="%234a90e2" width="1200" height="800"/%3E%3Ccircle cx="200" cy="200" r="150" fill="%23ffffff" opacity="0.1"/%3E%3Ccircle cx="900" cy="600" r="200" fill="%23ffffff" opacity="0.08"/%3E%3Ccircle cx="1000" cy="150" r="120" fill="%23ffffff" opacity="0.06"/%3E%3Ccircle cx="300" cy="700" r="100" fill="%23ffffff" opacity="0.07"/%3E%3Cpath d="M0 400 Q300 300 600 400 T1200 400 L1200 800 L0 800 Z" fill="%23ffffff" opacity="0.03"/%3E%3C/svg%3E') center/cover no-repeat;
+                linear-gradient(135deg, #e0e7ff 0%, #dbeafe 40%, #bfdbfe 80%, #e0e7ff 100%);
             pointer-events: none;
         }
 
+        /* ===== অ্যানিমেশন ও ট্রানজিশন সেকশন (ফিচার ৯) ===== */
+        .door-transition {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 64px);
+            width: 100%;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+        .door-title {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: scale(0.5);
+            animation: doorOpen 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            background: linear-gradient(135deg, #1e40af, #3b82f6, #2563eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none;
+            letter-spacing: 0.05em;
+        }
+        @keyframes doorOpen {
+            0% { opacity: 0; transform: scale(0.5) rotateY(90deg); }
+            100% { opacity: 1; transform: scale(1) rotateY(0deg); }
+        }
+        .push-element {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: pushUp 1s ease-out 0.5s forwards;
+        }
+        @keyframes pushUp {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .full-page-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            width: 100%;
+        }
+
+        /* সরাসরি উপরে যাওয়ার বাটন */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37,99,235,0.4);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+        }
+        .scroll-to-top.show { opacity: 1; pointer-events: auto; }
+
+        /* ফিচার ৭: হোয়াটসঅ্যাপ বাটন */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            background: #25D366;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(37,211,102,0.4);
+            z-index: 999;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+        .whatsapp-btn:hover { transform: scale(1.05); }
+
         /* ===== লাইট মোড ===== */
-        body.light-mode {
-            background: #f0f4ff;
-            color: #0f172a;
-        }
-        body.light-mode .navbar {
-            background: rgba(255,255,255,0.92);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(37,99,235,0.15);
-            box-shadow: 0 4px 30px rgba(37,99,235,0.08);
-        }
-        body.light-mode .glass-card {
-            background: rgba(255,255,255,0.92);
-            backdrop-filter: blur(18px);
-            border: 1px solid rgba(37,99,235,0.15);
-            box-shadow: 0 8px 40px rgba(37,99,235,0.12);
-        }
-        body.light-mode .input-dark {
-            background: rgba(37,99,235,0.06);
-            border: 1px solid rgba(37,99,235,0.12);
-            color: #0f172a;
-        }
-        body.light-mode .input-dark:focus {
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
-        }
+        body.light-mode { background: #f0f4ff; color: #0f172a; }
+        body.light-mode .navbar { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(37,99,235,0.1); box-shadow: 0 4px 30px rgba(37,99,235,0.06); }
+        body.light-mode .glass-card { background: rgba(255,255,255,0.95); backdrop-filter: blur(18px); border: 1px solid rgba(37,99,235,0.15); box-shadow: 0 8px 40px rgba(37,99,235,0.12); }
+        body.light-mode .input-dark { background: rgba(37,99,235,0.06); border: 1px solid rgba(37,99,235,0.12); color: #0f172a; }
+        body.light-mode .input-dark:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.15); }
         body.light-mode .tab-active { background: linear-gradient(135deg, #2563eb, #7c3aed); color: white; }
         body.light-mode .tab-inactive { color: #475569; background: rgba(0,0,0,0.04); }
         body.light-mode .tab-inactive:hover { background: rgba(37,99,235,0.08); }
-        body.light-mode .vision-box {
-            background: linear-gradient(135deg, rgba(37,99,235,0.06), rgba(124,58,237,0.06));
-            border-color: rgba(37,99,235,0.12);
-        }
-        body.light-mode .logo-container { 
-            background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(124,58,237,0.08));
-            border: 1px solid rgba(37,99,235,0.1);
-        }
-        body.light-mode .logo-text { background: linear-gradient(135deg, #1e293b, #334155); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        body.light-mode .logo-accent { background: linear-gradient(135deg, #2563eb, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        body.light-mode .slogan-main { color: #0f172a; }
+        body.light-mode .vision-box { background: linear-gradient(135deg, rgba(37,99,235,0.06), rgba(124,58,237,0.06)); border-color: rgba(37,99,235,0.12); }
+        body.light-mode .logo-container { background: transparent; border: none; }
+        body.light-mode .logo-text { color: #1e293b; -webkit-text-fill-color: #1e293b; }
+        body.light-mode .logo-accent { color: #2563eb; -webkit-text-fill-color: #2563eb; }
+        body.light-mode .slogan-main { color: #1e293b; }
         body.light-mode .slogan-sub { color: #475569; }
         body.light-mode .auth-header-bg { background: linear-gradient(135deg, #2563eb, #7c3aed); }
         body.light-mode .nav-link { color: #334155; }
@@ -79,51 +152,26 @@
         body.light-mode .btn-primary:hover { background: linear-gradient(135deg, #3b82f6, #8b5cf6); }
         body.light-mode .vision-text { color: #334155; }
         body.light-mode .vision-highlight { color: #2563eb; }
-        body.light-mode .divider { border-color: rgba(37,99,235,0.1); }
         body.light-mode .page-title { color: #0f172a; }
         body.light-mode .page-subtitle { color: #475569; }
         body.light-mode .btn-google { background: white; border-color: #e2e8f0; color: #0f172a; }
         body.light-mode .btn-google:hover { background: #f8fafc; border-color: #94a3b8; }
+        body.light-mode .theme-toggle, body.light-mode .lang-toggle { color: #334155; }
+        body.light-mode .theme-toggle:hover, body.light-mode .lang-toggle:hover { background: rgba(0,0,0,0.04); }
 
         /* ===== ডার্ক মোড ===== */
-        body.dark-mode {
-            background: #0b1120;
-            color: #f1f5f9;
-        }
-        body.dark-mode .navbar {
-            background: rgba(11, 17, 32, 0.92);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(96, 165, 250, 0.15);
-            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
-        }
-        body.dark-mode .glass-card {
-            background: rgba(15, 23, 42, 0.92);
-            backdrop-filter: blur(18px);
-            border: 1px solid rgba(96, 165, 250, 0.15);
-            box-shadow: 0 8px 40px rgba(0,0,0,0.4);
-        }
-        body.dark-mode .input-dark {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #f1f5f9;
-        }
-        body.dark-mode .input-dark:focus {
-            border-color: #60a5fa;
-            box-shadow: 0 0 0 3px rgba(96,165,250,0.15);
-        }
+        body.dark-mode { background: #0b1120; color: #f1f5f9; }
+        body.dark-mode .navbar { background: rgba(11, 17, 32, 0.95); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(96, 165, 250, 0.1); box-shadow: 0 4px 30px rgba(0,0,0,0.4); }
+        body.dark-mode .glass-card { background: rgba(15, 23, 42, 0.92); backdrop-filter: blur(18px); border: 1px solid rgba(96, 165, 250, 0.15); box-shadow: 0 8px 40px rgba(0,0,0,0.4); }
+        body.dark-mode .input-dark { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #f1f5f9; }
+        body.dark-mode .input-dark:focus { border-color: #60a5fa; box-shadow: 0 0 0 3px rgba(96,165,250,0.15); }
         body.dark-mode .tab-active { background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white; }
         body.dark-mode .tab-inactive { color: #94a3b8; background: rgba(255,255,255,0.04); }
         body.dark-mode .tab-inactive:hover { background: rgba(96,165,250,0.08); }
-        body.dark-mode .vision-box {
-            background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.08));
-            border-color: rgba(96,165,250,0.12);
-        }
-        body.dark-mode .logo-container {
-            background: linear-gradient(135deg, rgba(59,130,246,0.12), rgba(139,92,246,0.12));
-            border: 1px solid rgba(96,165,250,0.1);
-        }
-        body.dark-mode .logo-text { background: linear-gradient(135deg, #f1f5f9, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        body.dark-mode .logo-accent { background: linear-gradient(135deg, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        body.dark-mode .vision-box { background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.08)); border-color: rgba(96,165,250,0.12); }
+        body.dark-mode .logo-container { background: transparent; border: none; }
+        body.dark-mode .logo-text { color: #f1f5f9; -webkit-text-fill-color: #f1f5f9; }
+        body.dark-mode .logo-accent { color: #60a5fa; -webkit-text-fill-color: #60a5fa; }
         body.dark-mode .slogan-main { color: #f1f5f9; }
         body.dark-mode .slogan-sub { color: #94a3b8; }
         body.dark-mode .auth-header-bg { background: linear-gradient(135deg, #1e40af, #5b21b6); }
@@ -138,291 +186,101 @@
         body.dark-mode .page-subtitle { color: #94a3b8; }
         body.dark-mode .btn-google { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); color: #e2e8f0; }
         body.dark-mode .btn-google:hover { background: rgba(255,255,255,0.08); }
+        body.dark-mode .theme-toggle, body.dark-mode .lang-toggle { color: #94a3b8; }
+        body.dark-mode .theme-toggle:hover, body.dark-mode .lang-toggle:hover { background: rgba(255,255,255,0.05); }
+        body.dark-mode .bg-edu { background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #1e3a5f 80%, #0f172a 100%); }
 
-        /* ===== কম্পোনেন্ট ===== */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 0.5rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: all 0.3s;
-            height: 64px;
+        /* ===== ফিক্সড ন্যাভবার ===== */
+        .navbar { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            z-index: 1000; 
+            padding: 0.5rem 1.5rem; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            transition: all 0.3s; 
+            height: 64px; 
         }
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-        .nav-link {
-            padding: 0.3rem 0.7rem;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.2s;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .logo-container {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            padding: 0.2rem 0.8rem 0.2rem 0.4rem;
-            border-radius: 100px;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-        .logo-icon {
-            width: 30px;
-            height: 30px;
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 13px;
-            color: white;
-            position: relative;
-            box-shadow: 0 4px 15px rgba(37,99,235,0.3);
-        }
-        .logo-text {
-            font-weight: 800;
-            font-size: 0.95rem;
-            letter-spacing: -0.3px;
-        }
-        .logo-accent {
-            font-weight: 700;
-            font-size: 0.55rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-left: 1px;
-        }
-        .logo-dot {
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background: #3b82f6;
-            display: inline-block;
-            margin: 0 2px;
-            animation: pulseDot 2s ease-in-out infinite;
-        }
-        @keyframes pulseDot {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.5); }
-        }
+        .nav-links { display: flex; align-items: center; gap: 0.3rem; }
+        .nav-link { padding: 0.3rem 0.7rem; border-radius: 8px; font-size: 1rem; font-weight: 600; transition: all 0.2s; cursor: pointer; text-decoration: none; }
+        .logo-container { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.2rem 0.8rem 0.2rem 0.4rem; border-radius: 100px; transition: all 0.3s; cursor: pointer; }
+        .logo-icon { width: 30px; height: 30px; background: linear-gradient(135deg, #2563eb, #7c3aed); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 13px; color: white; position: relative; box-shadow: 0 4px 15px rgba(37,99,235,0.3); }
+        .logo-text { font-weight: 800; font-size: 0.95rem; letter-spacing: -0.3px; }
+        .logo-accent { font-weight: 700; font-size: 0.55rem; letter-spacing: 0.08em; text-transform: uppercase; margin-left: 1px; }
+        .logo-dot { width: 4px; height: 4px; border-radius: 50%; background: #3b82f6; display: inline-block; margin: 0 2px; animation: pulseDot 2s ease-in-out infinite; }
+        @keyframes pulseDot { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.5); } }
 
-        .slogan-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            line-height: 1.2;
-        }
-        .slogan-main {
-            font-size: 1.1rem;
-            font-weight: 800;
-            letter-spacing: 0.02em;
-        }
-        .slogan-sub {
-            font-size: 0.6rem;
-            font-weight: 400;
-            font-style: italic;
-            margin-left: 2.5rem;
-            opacity: 0.8;
-            letter-spacing: 0.05em;
-        }
+        .slogan-wrapper { display: flex; flex-direction: column; align-items: center; line-height: 1.2; }
+        .slogan-main { font-size: 1.1rem; font-weight: 800; letter-spacing: 0.02em; }
+        .slogan-sub { font-size: 0.6rem; font-weight: 400; font-style: italic; margin-left: 2.5rem; opacity: 0.8; letter-spacing: 0.05em; }
 
-        .main-content {
-            margin-top: 64px;
-            padding: 1rem;
-            min-height: calc(100vh - 64px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            z-index: 1;
-            flex: 1;
-        }
-        .glass-card {
-            border-radius: 1.5rem;
-            padding: 1.5rem;
-            max-width: 460px;
-            width: 100%;
-            transition: all 0.3s;
-        }
-        .input-dark {
-            width: 100%;
-            padding: 0.6rem 1rem;
-            border-radius: 10px;
-            font-size: 0.8rem;
-            transition: all 0.2s;
-            outline: none;
-        }
-        .btn-primary {
-            width: 100%;
-            padding: 0.6rem;
-            border-radius: 10px;
-            font-weight: 700;
-            color: white;
-            border: none;
-            transition: all 0.25s;
-            cursor: pointer;
-            font-size: 0.8rem;
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(37,99,235,0.3);
-        }
-        .btn-google {
-            width: 100%;
-            padding: 0.6rem;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 0.8rem;
-            border: 1px solid;
-            cursor: pointer;
-            transition: 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-        .theme-toggle, .lang-toggle {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.1rem;
-            padding: 0.3rem 0.5rem;
-            border-radius: 8px;
-            transition: all 0.2s;
-            color: inherit;
-        }
-        .theme-toggle:hover, .lang-toggle:hover {
-            background: rgba(255,255,255,0.08);
-        }
+        .main-content { margin-top: 64px; width: 100%; position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; }
+        .glass-card { border-radius: 1.5rem; padding: 1.5rem; max-width: 460px; width: 100%; transition: all 0.3s; }
+        .input-dark { width: 100%; padding: 0.6rem 1rem; border-radius: 10px; font-size: 0.8rem; transition: all 0.2s; outline: none; }
+        .btn-primary { width: 100%; padding: 0.6rem; border-radius: 10px; font-weight: 700; color: white; border: none; transition: all 0.25s; cursor: pointer; font-size: 0.8rem; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,99,235,0.3); }
+        .btn-google { width: 100%; padding: 0.6rem; border-radius: 10px; font-weight: 600; font-size: 0.8rem; border: 1px solid; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+        .theme-toggle, .lang-toggle { background: none; border: none; cursor: pointer; font-size: 1.1rem; padding: 0.3rem 0.5rem; border-radius: 8px; transition: all 0.2s; }
         .step-hidden { display: none !important; }
-        .tab-btn {
-            width: 50%;
-            padding: 0.35rem;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 0.75rem;
-            border: none;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .btn-success {
-            background: #059669;
-            color: white;
-            width: 100%;
-            padding: 0.6rem;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            border: none;
-            cursor: pointer;
-            transition: 0.2s;
-        }
+        .tab-btn { width: 50%; padding: 0.35rem; border-radius: 8px; font-weight: 700; font-size: 0.75rem; border: none; cursor: pointer; transition: 0.2s; }
+        .btn-success { background: #059669; color: white; width: 100%; padding: 0.6rem; border-radius: 10px; font-weight: 700; font-size: 0.8rem; border: none; cursor: pointer; transition: 0.2s; }
         .btn-success:hover { background: #047857; }
-        .auth-header-bg {
-            padding: 0.7rem 1rem;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        .auth-header-bg h1 {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: white;
-        }
-        .auth-header-bg p {
-            color: rgba(255,255,255,0.85);
-            font-size: 0.7rem;
-            margin-top: 0.1rem;
-        }
-        .vision-box {
-            padding: 0.7rem 1rem;
-            border-radius: 10px;
-            border: 1px solid;
-            margin-top: 0.8rem;
-            text-align: center;
-            transition: all 0.3s;
-        }
-        .vision-text {
-            font-size: 0.75rem;
-            line-height: 1.5;
-        }
-        .grid-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-            gap: 0.7rem;
-            margin-top: 1rem;
-        }
-        .link-card {
-            padding: 0.7rem;
-            border-radius: 10px;
-            text-align: center;
-            transition: all 0.2s;
-            cursor: pointer;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.75rem;
-            border: 1px solid transparent;
-        }
-        body.light-mode .link-card {
-            background: rgba(37,99,235,0.04);
-            color: #0f172a;
-            border-color: rgba(37,99,235,0.06);
-        }
-        body.light-mode .link-card:hover {
-            background: rgba(37,99,235,0.08);
-            border-color: #2563eb;
-            transform: translateY(-2px);
-        }
-        body.dark-mode .link-card {
-            background: rgba(255,255,255,0.03);
-            color: #e2e8f0;
-            border-color: rgba(255,255,255,0.05);
-        }
-        body.dark-mode .link-card:hover {
-            background: rgba(96,165,250,0.08);
-            border-color: #60a5fa;
-            transform: translateY(-2px);
-        }
+        .auth-header-bg { padding: 0.7rem 1rem; border-radius: 12px; margin-bottom: 1rem; text-align: center; }
+        .auth-header-bg h1 { font-size: 1.3rem; font-weight: 800; color: white; }
+        .auth-header-bg p { color: rgba(255,255,255,0.85); font-size: 0.7rem; margin-top: 0.1rem; }
+        .vision-box { padding: 0.7rem 1rem; border-radius: 10px; border: 1px solid; margin-top: 0.8rem; text-align: center; transition: all 0.3s; }
+        .vision-text { font-size: 0.75rem; line-height: 1.5; }
+        .grid-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 0.7rem; margin-top: 1rem; }
+        .link-card { padding: 0.7rem; border-radius: 10px; text-align: center; transition: all 0.2s; cursor: pointer; text-decoration: none; font-weight: 600; font-size: 0.75rem; border: 1px solid transparent; }
+        
+        body.light-mode .link-card { background: rgba(37,99,235,0.04); color: #0f172a; border-color: rgba(37,99,235,0.06); }
+        body.light-mode .link-card:hover { background: rgba(37,99,235,0.08); border-color: #2563eb; transform: translateY(-2px); }
+        body.dark-mode .link-card { background: rgba(255,255,255,0.03); color: #e2e8f0; border-color: rgba(255,255,255,0.05); }
+        body.dark-mode .link-card:hover { background: rgba(96,165,250,0.08); border-color: #60a5fa; transform: translateY(-2px); }
         .link-icon { font-size: 1.5rem; display: block; margin-bottom: 0.2rem; }
 
-        .welcome-card {
-            max-width: 600px;
+        .welcome-card { max-width: 600px; }
+        .welcome-card .glass-card { max-width: 600px; padding: 1.5rem; }
+
+        /* ===== কন্টাক্ট ফর্ম মিডল পজিশন ===== */
+        #contact-footer-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1rem;
+            width: 100%;
+            max-width: 100%;
         }
-        .welcome-card .glass-card {
-            max-width: 600px;
-            padding: 1.5rem;
+        #contact-footer-section .glass-card {
+            max-width: 480px;
+            margin: 0 auto;
         }
 
         @media (max-width: 640px) {
             .slogan-main { font-size: 0.85rem; }
             .slogan-sub { font-size: 0.5rem; margin-left: 1.5rem; }
             .navbar { padding: 0.3rem 0.8rem; height: 56px; }
-            .main-content { margin-top: 56px; min-height: calc(100vh - 56px); padding: 0.8rem; }
+            .main-content { margin-top: 56px; padding: 0.8rem; }
             .glass-card { padding: 1.2rem; max-width: 100%; }
             .logo-text { font-size: 0.8rem; }
             .logo-accent { font-size: 0.45rem; }
             .logo-icon { width: 26px; height: 26px; font-size: 11px; }
             .grid-links { grid-template-columns: repeat(3, 1fr); }
+            .door-title { font-size: 2.2rem; }
         }
     </style>
 </head>
-<body class="light-mode">
+<body class="light-mode no-copy">
 
     <!-- ব্যাকগ্রাউন্ড ইমেজ -->
     <div class="bg-edu"></div>
 
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar" id="navbar">
+        <!-- ফিচার ১৪: লোগো ও বাম কোনার ডিজাইন সম্পূর্ণ অক্ষুণ্ণ রাখা হয়েছে -->
         <div class="logo-container" onclick="goHome()">
             <div class="logo-icon">ত</div>
             <div>
@@ -446,567 +304,435 @@
         <div class="nav-links">
             <button class="lang-toggle" onclick="toggleLang()" title="ভাষা পরিবর্তন" id="langBtn">🌐</button>
             <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">☀️</button>
-            <a href="#" class="nav-link" id="nav-login" onclick="showLogin()">লগ ইন</a>
+            <!-- ফিচার ১২: ফিক্সড বারের ডান কোনার লগইন বাটন আইডি লিঙ্কসহ -->
+            <a href="#auth-section-anchor" class="nav-link" id="nav-login" onclick="scrollToLogin()">লগ ইন</a>
             <a href="#" class="nav-link" id="nav-logout" onclick="logout()" style="display:none;">লগ আউট</a>
         </div>
     </nav>
 
     <!-- ===== মেইন কন্টেন্ট ===== -->
     <div class="main-content" id="mainContent">
-        <!-- কন্টেন্ট ডায়নামিকভাবে এখানে লোড হবে -->
+        
+        <!-- ফিচার ৯: এনিমেটিভ ডোর ট্রানজিশন ও ইন্ট্রোডাকশন সেকশন -->
+        <div id="intro-section" class="door-transition">
+            <h1 class="door-title">তানজিফ একাডেমি এ স্বাগতম</h1>
+            <p class="push-element text-xl max-width-2xl px-6 opacity-90 text-gray-700 dark:text-gray-300">
+                অলসতা ও গতানুগতিকতা থেকে মুক্ত হয়ে আধুনিক প্রফেশনাল ও প্রোডাক্টিভ জ্ঞান অর্জনের এক অনন্য ডিজিটাল প্ল্যাটফর্ম। 
+                দক্ষ ও আধুনিক ক্যারিয়ার গঠনে আমরা আপনার বিশ্বস্ত সঙ্গী।
+            </p>
+            <div class="push-element mt-8 text-sm animate-bounce text-gray-500 dark:text-gray-400">
+                👇 নিচে স্ক্রল করে সাইন-ইন বা সাইন-আপ অপশনে যান
+            </div>
+        </div>
+
+        <!-- অথেনটিকেশন সেকশন (লগইন ও সাইনআপ) -->
+        <div id="auth-section-anchor" class="full-page-section">
+            <div class="glass-card" id="authCard">
+                <div class="auth-header-bg">
+                    <h1 id="auth-title">তানজিফ একাডেমি-এ স্বাগতম</h1>
+                    <p id="auth-subtitle">প্ল্যাটফর্মের পূর্ণ এক্সেস পেতে সাইন-ইন বা রেজিস্ট্রেশন করুন</p>
+                </div>
+
+                <div style="display:flex; gap:0.3rem; margin-bottom:1rem;">
+                    <button onclick="switchTab('login')" id="tab-login" class="tab-btn tab-active">সাইন-ইন</button>
+                    <button onclick="switchTab('signup')" id="tab-signup" class="tab-btn tab-inactive">নিবন্ধন</button>
+                </div>
+
+                <!-- লগইন সেকশন -->
+                <div id="login-section">
+                    <div style="margin-bottom:0.6rem;">
+                        <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">ইমেইল বা তানজিফ আইডি</label>
+                        <input type="text" id="login-email" class="input-dark" placeholder="আপনার ইমেইল বা TA ID দিন">
+                    </div>
+                    <div style="margin-bottom:0.6rem;">
+                        <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">পাসওয়ার্ড</label>
+                        <input type="password" id="login-password" class="input-dark" placeholder="••••••••">
+                    </div>
+                    <!-- ফিচার ২: পাসওয়ার্ড রিসেট লিংক -->
+                    <div style="text-align: right; margin-bottom: 1rem;">
+                        <a href="#" onclick="showForgotPassword(event)" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">পাসওয়ার্ড ভুলে গেছেন?</a>
+                    </div>
+                    <button onclick="handleLogin()" class="btn-primary">🚀 সাইন-ইন করুন</button>
+                    
+                    <div style="position:relative; display:flex; align-items:center; margin:0.6rem 0;">
+                        <div style="flex-grow:1; border-top:1px solid #e2e8f0;"></div>
+                        <span style="margin:0 0.8rem; font-size:0.6rem; font-weight:700; color:#94a3b8;">অথবা</span>
+                        <div style="flex-grow:1; border-top:1px solid #e2e8f0;"></div>
+                    </div>
+
+                    <button onclick="simulateGoogleAuth()" class="btn-google">
+                        <svg style="width:1rem; height:1rem;" viewBox="0 0 24 24"><path fill="#EA4335" d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.114-5.137 4.114-3.466 0-6.276-2.81-6.276-6.276s2.81-6.276 6.276-6.276c1.54 0 2.94.556 4.03 1.494l3.12-3.12C19.24 1.846 15.99 1 12.24 1 5.766 1 .5 6.266 .5 12.74s5.266 11.74 11.74 11.74c7.32 0 11.965-5.148 11.965-12.193 0-.796-.074-1.547-.217-2.25H12.24z"/></svg>
+                        Google দিয়ে সরাসরি সাইন-ইন
+                    </button>
+                </div>
+
+                <!-- পাসওয়ার্ড রিসেট সেকশন (ফিচার ২) -->
+                <div id="forgot-password-section" class="step-hidden">
+                    <div style="margin-bottom:1rem;">
+                        <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">আপনার রেজিস্টার্ড ইমেইল</label>
+                        <input id="reset-email" type="email" class="input-dark" placeholder="name@example.com">
+                    </div>
+                    <button onclick="sendResetOTP()" class="btn-primary mb-2">📩 ওটিপি কোড পাঠান</button>
+                    <button onclick="switchTab('login')" class="text-xs text-center block w-full text-gray-500 hover:underline">লগইন পেজে ফিরে যান</button>
+                </div>
+
+                <!-- পাসওয়ার্ড রিসেট ওটিপি ও নতুন পাসওয়ার্ড ভেরিফিকেশন (ফিচার ২) -->
+                <div id="reset-verify-section" class="step-hidden">
+                    <div style="margin-bottom:0.6rem;">
+                        <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">৪ ডিজিটের রিসেট ওটিপি</label>
+                        <input id="reset-otp" type="text" maxlength="4" class="input-dark text-center" style="letter-spacing:0.4em; font-size:1.1rem; font-weight:700;">
+                    </div>
+                    <div style="margin-bottom:1rem;">
+                        <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">নতুন পাসওয়ার্ড (ন্যূনতম ৬ অক্ষর)</label>
+                        <input id="reset-new-password" type="password" class="input-dark" placeholder="••••••••">
+                    </div>
+                    <button onclick="handlePasswordReset()" class="btn-success">✅ পাসওয়ার্ড পরিবর্তন করুন</button>
+                </div>
+
+                <!-- সাইনআপ সেকশন -->
+                <div id="signup-section" class="step-hidden">
+                    <div style="margin-bottom:0.6rem;">
+                        <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">পূর্ণ নাম</label>
+                        <input id="reg-name" type="text" class="input-dark" placeholder="যেমন: কামরুল হাসান">
+                    </div>
+                    <div style="margin-bottom:0.6rem;">
+                        <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">মোবাইল নম্বর</label>
+                        <input id="reg-phone" type="tel" class="input-dark" placeholder="017XXXXXXXX">
+                    </div>
+                    <div style="margin-bottom:1rem;">
+                        <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">ইমেইল ঠিকানা</label>
+                        <input id="reg-email" type="email" class="input-dark" placeholder="name@example.com">
+                    </div>
+                    <button onclick="sendOTP()" class="btn-primary">📩 ওটিপি (OTP) পাঠান</button>
+                </div>
+
+                <!-- ওটিপি ও পাসওয়ার্ড সাবমিশন -->
+                <div id="otp-section" class="step-hidden">
+                    <div style="background:rgba(37,99,235,0.08); border:1px solid rgba(37,99,235,0.15); padding:0.5rem; border-radius:8px; text-align:center; margin-bottom:0.6rem;">
+                        <p style="font-size:0.65rem; font-weight:600; color:#2563eb;">🔑 ওটিপি কোডটি আপনার ইমেইল ইনবক্সে চেক করুন</p>
+                    </div>
+                    <div style="margin-bottom:0.6rem;">
+                        <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">৪ ডিজিটের ওটিপি</label>
+                        <input id="input-otp" type="text" maxlength="4" class="input-dark" style="text-align:center; letter-spacing:0.4em; font-size:1rem; font-weight:700; padding:0.5rem;" placeholder="0000">
+                    </div>
+                    <div style="margin-bottom:1rem;">
+                        <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">নতুন পাসওয়ার্ড (ন্যূনতম ৬ অক্ষর)</label>
+                        <input id="reg-password" type="password" class="input-dark" placeholder="••••••••">
+                    </div>
+                    <button onclick="verifyOTP()" class="btn-success">✅ নিবন্ধন সম্পন্ন করুন</button>
+                </div>
+
+                <!-- সফল নিবন্ধন সেকশন -->
+                <div id="success-section" class="step-hidden" style="text-align:center;">
+                    <div style="font-size:3rem; margin-bottom:0.2rem;">🎉</div>
+                    <h2 style="font-size:1.2rem; font-weight:800; margin-bottom:0.2rem;">নিবন্ধন সফল!</h2>
+                    <p style="font-size:0.75rem; margin-bottom:0.6rem;">অভিনন্দন <span id="memberName" style="font-weight:700; color:#2563eb;"></span>, আপনি এখন তানজিফ একাডেমির সদস্য।</p>
+                    <div style="background:rgba(0,0,0,0.04); padding:0.6rem; border-radius:8px; margin-bottom:0.8rem;">
+                        <span style="font-size:0.55rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#64748b; display:block;">আপনার ইউনিক আইডি</span>
+                        <span id="tanzif-id" style="font-size:1.2rem; font-weight:900; letter-spacing:0.05em; display:block; font-family:monospace;">TA-0000000000</span>
+                    </div>
+                    <button onclick="switchTab('login')" style="width:100%; padding:0.6rem; border-radius:10px; font-weight:700; font-size:0.8rem; border:none; cursor:pointer; transition:0.2s; background:#334155; color:white;">➡️ লগইন পেজে যান</button>
+                </div>
+
+                <div class="vision-box">
+                    <span style="font-size:0.5rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#94a3b8; display:block; margin-bottom:0.15rem;">✦ Our Vision</span>
+                    <p class="vision-text">"অলসতা ও গতানুগতিকতা থেকে মুক্ত হয়ে দক্ষ, প্রফেশনাল ও প্রোডাক্টিভ <span class="vision-highlight font-bold">জ্ঞান অন্বেষণকারী</span> হিসেবে গড়ে তোলাই আমাদের লক্ষ্য।"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ফিচার ১৩: ইনডেক্স পেজের একদম শেষে মতামত ও বার্তা পাঠানোর ফর্ম বক্স (মিডল পজিশন) -->
+        <div id="contact-footer-section">
+            <div class="glass-card w-full">
+                <h3 class="text-sm font-bold mb-3 text-center">✉️ একাডেমিকে বার্তা বা মতামত পাঠান</h3>
+                <div class="space-y-3">
+                    <input type="email" id="msg-email" class="input-dark text-xs" placeholder="আপনার ইমেইল এড্রেস">
+                    <textarea id="msg-text" class="input-dark text-xs h-20" placeholder="আপনার বার্তা বা মতামতটি লিখুন..."></textarea>
+                    <button onclick="sendMessage()" class="btn-primary py-2 text-xs">🚀 বার্তা পাঠান</button>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- ফিচার ৯: সরাসরি পেজের উপরে চলে যাওয়ার বাটন (ডান পাশে) -->
+    <div id="scrollTopBtn" class="scroll-to-top" onclick="scrollToTop()">▲</div>
+
+    <!-- ফিচার ৭: হোয়াটসঅ্যাপ বাটন (বাম পাশে) -->
+    <a href="https://wa.me/YOUR_NUM_HERE" target="_blank" class="whatsapp-btn">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.948 0c3.179.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.239 3.481 8.42 0 6.556-5.337 11.902-11.89 11.902-2.004-.001-3.973-.505-5.722-1.467L0 24zm6.59-4.846c1.6.95 3.488 1.449 5.358 1.451 5.433 0 9.85-4.426 9.852-9.875.001-2.64-1.025-5.122-2.887-6.985C17.06 1.88 14.578.855 11.948.855c-5.442 0-9.863 4.425-9.865 9.874-.001 1.884.492 3.725 1.428 5.328L2.52 20.916l4.127-1.762z"/></svg>
+        <span>WhatsApp</span>
+    </a>
+
     <script>
-        // ===== গ্লোবাল স্টেট =====
         let currentUser = null;
         let currentPage = 'login';
         let currentLang = 'bn';
 
-        // ===== ট্রান্সলেশন =====
-        const translations = {
-            bn: {
-                loginTitle: 'তানজিফ একাডেমি-এ স্বাগতম',
-                loginSub: 'প্ল্যাটফর্মের পূর্ণ এক্সেস পেতে সাইন-ইন বা রেজিস্ট্রেশন করুন',
-                signupTitle: 'নতুন মেম্বারশিপ অ্যাকাউন্ট',
-                signupSub: 'সহজ কিছু তথ্য দিয়ে তানজিফ একাডেমির স্থায়ী সদস্য হোন।',
-                loginTab: 'সাইন-ইন',
-                signupTab: 'নিবন্ধন',
-                emailLabel: 'ইমেইল বা তানজিফ আইডি',
-                emailPlace: 'আপনার ইমেইল বা TA ID দিন',
-                passLabel: 'পাসওয়ার্ড',
-                passPlace: '••••••••',
-                loginBtn: '🚀 সাইন-ইন করুন',
-                orText: 'অথবা',
-                googleBtn: 'Google দিয়ে সরাসরি সাইন-ইন',
-                nameLabel: 'পূর্ণ নাম',
-                namePlace: 'যেমন: কামরুল হাসান',
-                phoneLabel: 'মোবাইল নম্বর',
-                phonePlace: '017XXXXXXXX',
-                emailRegLabel: 'ইমেইল ঠিকানা',
-                emailRegPlace: 'name@example.com',
-                otpBtn: '📩 ওটিপি (OTP) পাঠান',
-                otpLabel: '৪ ডিজিটের ওটিপি',
-                otpPlace: '0000',
-                newPassLabel: 'নতুন পাসওয়ার্ড (ন্যূনতম ৬ অক্ষর)',
-                newPassPlace: '••••••••',
-                verifyBtn: '✅ নিবন্ধন সম্পন্ন করুন',
-                successTitle: '🎉 নিবন্ধন সফল!',
-                successSub: 'অভিনন্দন ',
-                successEnd: ', আপনি এখন তানজিফ একাডেমির সদস্য।',
-                idLabel: 'আপনার ইউনিক আইডি',
-                loginRedirect: '➡️ লগইন পেজে যান',
-                visionTitle: '✦ Our Vision',
-                visionText: '"অলসতা ও গতানুগতিকতা থেকে মুক্ত হয়ে দক্ষ, প্রফেশনাল ও প্রোডাক্টিভ ',
-                visionHighlight: 'জ্ঞান অন্বেষণকারী',
-                visionEnd: ' হিসেবে গড়ে তোলাই আমাদের লক্ষ্য।"',
-                welcomeTitle: '👋 স্বাগতম!',
-                welcomeSub: 'তানজিফ একাডেমির ড্যাশবোর্ডে আপনাকে স্বাগতম',
-                memberLabel: 'সদস্য: ',
-                academyPages: '📚 একাডেমি পেজসমূহ',
-                newLinks: '⚡ নতুন লিঙ্ক যুক্ত করতে পারবেন (ভবিষ্যতে আপডেট)',
-                demoTitle: '📄 পেজ',
-                demoSub: 'এই পেজটি এখনও তৈরি করা হয়নি',
-                homeBtn: '🏠 হোমে ফিরুন',
-                courseLabel: 'কোর্সসমূহ',
-                teacherLabel: 'শিক্ষকবৃন্দ',
-                scheduleLabel: 'ক্লাস রুটিন',
-                assignLabel: 'অ্যাসাইনমেন্ট',
-                resultLabel: 'ফলাফল',
-                libraryLabel: 'লাইব্রেরি',
-                forumLabel: 'ফোরাম',
-                settingsLabel: 'সেটিংস',
-                otpSent: 'ওটিপি যাচাই',
-                otpSentSub: ' — এই ইমেইলে ওটিপি পাঠানো হয়েছে',
-                otpNote: '🔑 ওটিপি কোডটি আপনার টার্মিনাল / CMD-তে দেখুন',
-                regSuccess: 'স্বাগতম!',
-                regSuccessSub: 'আপনার অ্যাকাউন্ট তৈরি হয়েছে।'
-            },
-            en: {
-                loginTitle: 'Welcome to Tanjif Academy',
-                loginSub: 'Sign in or Register to get full access',
-                signupTitle: 'New Membership Account',
-                signupSub: 'Become a permanent member of Tanjif Academy with simple info.',
-                loginTab: 'Sign In',
-                signupTab: 'Sign Up',
-                emailLabel: 'Email or Tanjif ID',
-                emailPlace: 'Your email or TA ID',
-                passLabel: 'Password',
-                passPlace: '••••••••',
-                loginBtn: '🚀 Sign In',
-                orText: 'or',
-                googleBtn: 'Sign in with Google',
-                nameLabel: 'Full Name',
-                namePlace: 'e.g. Kamrul Hasan',
-                phoneLabel: 'Mobile Number',
-                phonePlace: '017XXXXXXXX',
-                emailRegLabel: 'Email Address',
-                emailRegPlace: 'name@example.com',
-                otpBtn: '📩 Send OTP',
-                otpLabel: '4 Digit OTP',
-                otpPlace: '0000',
-                newPassLabel: 'New Password (min 6 chars)',
-                newPassPlace: '••••••••',
-                verifyBtn: '✅ Complete Registration',
-                successTitle: '🎉 Registration Successful!',
-                successSub: 'Congratulations ',
-                successEnd: ', you are now a member of Tanjif Academy.',
-                idLabel: 'Your Unique ID',
-                loginRedirect: '➡️ Go to Login',
-                visionTitle: '✦ Our Vision',
-                visionText: '"To build skilled, professional and productive ',
-                visionHighlight: 'knowledge seekers',
-                visionEnd: ' free from laziness and conventionality."',
-                welcomeTitle: '👋 Welcome!',
-                welcomeSub: 'Welcome to Tanjif Academy Dashboard',
-                memberLabel: 'Member: ',
-                academyPages: '📚 Academy Pages',
-                newLinks: '⚡ New links can be added (future update)',
-                demoTitle: '📄 Page',
-                demoSub: 'This page is not yet created',
-                homeBtn: '🏠 Go Home',
-                courseLabel: 'Courses',
-                teacherLabel: 'Teachers',
-                scheduleLabel: 'Schedule',
-                assignLabel: 'Assignments',
-                resultLabel: 'Results',
-                libraryLabel: 'Library',
-                forumLabel: 'Forum',
-                settingsLabel: 'Settings',
-                otpSent: 'OTP Verification',
-                otpSentSub: ' — OTP sent to this email',
-                otpNote: '🔑 Check your terminal / CMD for OTP code',
-                regSuccess: 'Welcome!',
-                regSuccessSub: 'Your account has been created.'
+        // ফিচার ৮: কিবোর্ডের কপি এবং রাইট ক্লিক বন্ধ করার প্রটেকশন
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('copy', e => e.preventDefault());
+        document.addEventListener('keydown', e => {
+            if (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 'v' || e.key === 'a' || e.key === 's')) {
+                e.preventDefault();
+            }
+        });
+
+        // ফিচার ৯: স্ক্রল মনিটরিং (টপ বাটন শো করার জন্য)
+        window.onscroll = function() {
+            const btn = document.getElementById('scrollTopBtn');
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                btn.classList.add('show');
+            } else {
+                btn.classList.remove('show');
             }
         };
 
-        function t(key) {
-            return translations[currentLang]?.[key] || translations.bn[key] || key;
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // ===== পেজ কন্টেন্ট =====
-        function getPageContent(pageName) {
-            if (pageName === 'login') {
-                return `
-                    <div class="glass-card">
-                        <div class="auth-header-bg">
-                            <h1 id="auth-title">${t('loginTitle')}</h1>
-                            <p id="auth-subtitle">${t('loginSub')}</p>
-                        </div>
-
-                        <div style="display:flex; gap:0.3rem; margin-bottom:1rem;">
-                            <button onclick="switchTab('login')" id="tab-login" class="tab-btn tab-active">${t('loginTab')}</button>
-                            <button onclick="switchTab('signup')" id="tab-signup" class="tab-btn tab-inactive">${t('signupTab')}</button>
-                        </div>
-
-                        <div id="login-section">
-                            <div style="margin-bottom:0.6rem;">
-                                <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">${t('emailLabel')}</label>
-                                <input type="text" id="login-email" class="input-dark" placeholder="${t('emailPlace')}">
-                            </div>
-                            <div style="margin-bottom:1rem;">
-                                <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">${t('passLabel')}</label>
-                                <input type="password" id="login-password" class="input-dark" placeholder="${t('passPlace')}">
-                            </div>
-                            <button onclick="handleLogin()" class="btn-primary">${t('loginBtn')}</button>
-                            
-                            <div style="position:relative; display:flex; align-items:center; margin:0.6rem 0;">
-                                <div style="flex-grow:1; border-top:1px solid var(--divider-color, #e2e8f0);"></div>
-                                <span style="flex-shrink:0; margin:0 0.8rem; font-size:0.6rem; font-weight:700; color:#94a3b8;">${t('orText')}</span>
-                                <div style="flex-grow:1; border-top:1px solid var(--divider-color, #e2e8f0);"></div>
-                            </div>
-
-                            <button onclick="simulateGoogleAuth()" class="btn-google">
-                                <svg style="width:1rem; height:1rem;" viewBox="0 0 24 24"><path fill="#EA4335" d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.114-5.137 4.114-3.466 0-6.276-2.81-6.276-6.276s2.81-6.276 6.276-6.276c1.54 0 2.94.556 4.03 1.494l3.12-3.12C19.24 1.846 15.99 1 12.24 1 5.766 1 .5 6.266 .5 12.74s5.266 11.74 11.74 11.74c7.32 0 11.965-5.148 11.965-12.193 0-.796-.074-1.547-.217-2.25H12.24z"/></svg>
-                                ${t('googleBtn')}
-                            </button>
-                        </div>
-
-                        <div id="signup-section" class="step-hidden">
-                            <div style="margin-bottom:0.6rem;">
-                                <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">${t('nameLabel')}</label>
-                                <input id="reg-name" type="text" class="input-dark" placeholder="${t('namePlace')}">
-                            </div>
-                            <div style="margin-bottom:0.6rem;">
-                                <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">${t('phoneLabel')}</label>
-                                <input id="reg-phone" type="tel" class="input-dark" placeholder="${t('phonePlace')}">
-                            </div>
-                            <div style="margin-bottom:1rem;">
-                                <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">${t('emailRegLabel')}</label>
-                                <input id="reg-email" type="email" class="input-dark" placeholder="${t('emailRegPlace')}">
-                            </div>
-                            <button onclick="sendOTP()" class="btn-primary">${t('otpBtn')}</button>
-                        </div>
-
-                        <div id="otp-section" class="step-hidden">
-                            <div style="background:rgba(37,99,235,0.08); border:1px solid rgba(37,99,235,0.15); padding:0.5rem; border-radius:8px; text-align:center; margin-bottom:0.6rem;">
-                                <p style="font-size:0.65rem; font-weight:600; color:#2563eb;">${t('otpNote')}</p>
-                            </div>
-                            <div style="margin-bottom:0.6rem;">
-                                <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">${t('otpLabel')}</label>
-                                <input id="input-otp" type="text" maxlength="4" class="input-dark" style="text-align:center; letter-spacing:0.4em; font-size:1rem; font-weight:700; padding:0.5rem;" placeholder="${t('otpPlace')}">
-                            </div>
-                            <div style="margin-bottom:1rem;">
-                                <label style="display:block; font-size:0.65rem; font-weight:600; margin-bottom:0.15rem; color:#64748b;">${t('newPassLabel')}</label>
-                                <input id="reg-password" type="password" class="input-dark" placeholder="${t('newPassPlace')}">
-                            </div>
-                            <button onclick="verifyOTP()" class="btn-success">${t('verifyBtn')}</button>
-                        </div>
-
-                        <div id="success-section" class="step-hidden" style="text-align:center;">
-                            <div style="font-size:3rem; margin-bottom:0.2rem;">🎉</div>
-                            <h2 style="font-size:1.2rem; font-weight:800; margin-bottom:0.2rem;">${t('successTitle')}</h2>
-                            <p style="font-size:0.75rem; margin-bottom:0.6rem;">${t('successSub')}<span id="memberName" style="font-weight:700; color:#2563eb;"></span>${t('successEnd')}</p>
-                            <div style="background:rgba(0,0,0,0.04); padding:0.6rem; border-radius:8px; margin-bottom:0.8rem;">
-                                <span style="font-size:0.55rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#64748b; display:block;">${t('idLabel')}</span>
-                                <span id="tanzif-id" style="font-size:1.2rem; font-weight:900; letter-spacing:0.05em; display:block; font-family:monospace;">TA-0000000000</span>
-                            </div>
-                            <button onclick="switchTab('login')" style="width:100%; padding:0.6rem; border-radius:10px; font-weight:700; font-size:0.8rem; border:none; cursor:pointer; transition:0.2s; background:#334155; color:white;">${t('loginRedirect')}</button>
-                        </div>
-
-                        <div class="vision-box">
-                            <span style="font-size:0.5rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#94a3b8; display:block; margin-bottom:0.15rem;">${t('visionTitle')}</span>
-                            <p class="vision-text">${t('visionText')}<span class="vision-highlight font-bold">${t('visionHighlight')}</span>${t('visionEnd')}</p>
-                        </div>
-                    </div>
-                `;
-            } else if (pageName === 'welcome') {
-                return `
-                    <div class="glass-card welcome-card">
-                        <div style="text-align:center; margin-bottom:1rem;">
-                            <h1 class="page-title" style="font-size:1.8rem; font-weight:800;">${t('welcomeTitle')}</h1>
-                            <p class="page-subtitle" style="font-size:0.9rem; margin-top:0.2rem;">${t('welcomeSub')}</p>
-                            <div style="margin-top:0.4rem; padding:0.4rem; background:rgba(37,99,235,0.06); border-radius:6px; display:inline-block;">
-                                <span style="font-size:0.75rem; font-weight:600;">${t('memberLabel')}<span id="welcome-name" style="color:#2563eb;"></span></span>
-                            </div>
-                        </div>
-
-                        <div style="border-top:1px solid var(--divider-color, #e2e8f0); padding-top:1rem;">
-                            <h3 style="font-size:0.8rem; font-weight:700; margin-bottom:0.7rem;">${t('academyPages')}</h3>
-                            <div class="grid-links">
-                                <a href="#" class="link-card" onclick="showPage('courses')">
-                                    <span class="link-icon">📖</span>
-                                    ${t('courseLabel')}
-                                </a>
-                                <a href="#" class="link-card" onclick="showPage('teachers')">
-                                    <span class="link-icon">👨‍🏫</span>
-                                    ${t('teacherLabel')}
-                                </a>
-                                <a href="#" class="link-card" onclick="showPage('schedule')">
-                                    <span class="link-icon">📅</span>
-                                    ${t('scheduleLabel')}
-                                </a>
-                                <a href="#" class="link-card" onclick="showPage('assignments')">
-                                    <span class="link-icon">📝</span>
-                                    ${t('assignLabel')}
-                                </a>
-                                <a href="#" class="link-card" onclick="showPage('results')">
-                                    <span class="link-icon">📊</span>
-                                    ${t('resultLabel')}
-                                </a>
-                                <a href="#" class="link-card" onclick="showPage('library')">
-                                    <span class="link-icon">📚</span>
-                                    ${t('libraryLabel')}
-                                </a>
-                                <a href="#" class="link-card" onclick="showPage('forum')">
-                                    <span class="link-icon">💬</span>
-                                    ${t('forumLabel')}
-                                </a>
-                                <a href="#" class="link-card" onclick="showPage('settings')">
-                                    <span class="link-icon">⚙️</span>
-                                    ${t('settingsLabel')}
-                                </a>
-                            </div>
-                            <p style="text-align:center; margin-top:1rem; font-size:0.6rem; color:#94a3b8;">${t('newLinks')}</p>
-                        </div>
-                    </div>
-                `;
-            } else {
-                return `
-                    <div class="glass-card">
-                        <h1 class="page-title" style="font-size:1.6rem; font-weight:800; text-align:center; margin-bottom:0.3rem;">${t('demoTitle')}</h1>
-                        <p class="page-subtitle" style="text-align:center; margin-bottom:1rem;">${t('demoSub')}</p>
-                        <div style="text-align:center;">
-                            <button onclick="goHome()" class="btn-primary" style="max-width:180px; margin:0 auto;">${t('homeBtn')}</button>
-                        </div>
-                    </div>
-                `;
-            }
+        function scrollToLogin() {
+            document.getElementById('auth-section-anchor').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function renderPage(pageName) {
-            const container = document.getElementById('mainContent');
-            if (pageName === 'login') {
-                container.innerHTML = getPageContent('login');
-                if (currentUser) {
-                    document.getElementById('nav-login').style.display = 'none';
-                    document.getElementById('nav-logout').style.display = 'inline-block';
-                }
-                currentPage = 'login';
-                setTimeout(() => switchTab('login'), 50);
-            } else if (pageName === 'welcome') {
-                container.innerHTML = getPageContent('welcome');
-                document.getElementById('welcome-name').textContent = currentUser?.name || 'সদস্য';
-                currentPage = 'welcome';
-                document.getElementById('nav-login').style.display = 'none';
-                document.getElementById('nav-logout').style.display = 'inline-block';
-            } else {
-                container.innerHTML = getPageContent('demo');
-                currentPage = pageName;
-            }
-            applyThemeClasses();
-            updateLangUI();
-        }
-
-        function applyThemeClasses() {
-            const isDark = document.body.classList.contains('dark-mode');
-            document.querySelectorAll('[style*="--divider-color"]').forEach(el => {
-                el.style.setProperty('--divider-color', isDark ? 'rgba(255,255,255,0.08)' : '#e2e8f0');
-            });
-        }
-
-        function updateLangUI() {
-            // UI language update handled via re-render
-        }
-
-        // ===== লগইন/লগআউট =====
-        function handleLogin() {
+        // ===== অথেনটিকেশন ও রাউটিং =====
+        async function handleLogin() {
             const email = document.getElementById('login-email')?.value.trim();
             const password = document.getElementById('login-password')?.value.trim();
-            if (!email || !password) {
-                alert('ইমেইল এবং পাসওয়ার্ড দিন।');
+            if (!email || !password) { alert('ইমেইল/TA ID এবং পাসওয়ার্ড দিন।'); return; }
+
+            try {
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await res.json();
+
+                if (data.success) {
+                    currentUser = { name: data.name, email: data.email, tanzifID: data.tanzifID };
+                    localStorage.setItem('tanjif_user', JSON.stringify(currentUser));
+                    renderWelcomePage();
+                } else {
+                    alert(data.message || 'ভুল তথ্য! সঠিক তথ্য দিয়ে লগইন করুন।');
+                }
+            } catch (err) {
+                alert('সার্ভারের সাথে যোগাযোগ করা যাচ্ছে না।');
+            }
+        }
+
+        // ফিচার ১১ ও ফিচার ১০: প্রোটেক্টেড স্বাগতম ড্যাশবোর্ড পেজ রেন্ডারিং
+        function renderWelcomePage() {
+            if (!currentUser) { renderLoginPage(); return; }
+            
+            // হাইড করার মডিউলস
+            document.getElementById('intro-section').style.display = 'none';
+            document.getElementById('contact-footer-section').style.display = 'none';
+            document.getElementById('nav-login').style.display = 'none';
+            document.getElementById('nav-logout').style.display = 'inline-block';
+
+            const container = document.getElementById('auth-section-anchor');
+            container.innerHTML = `
+                <div class="glass-card welcome-card">
+                    <div style="text-align:center; margin-bottom:1rem;">
+                        <!-- ফিচার ১১: লগইন করা ইউজারের নাম প্রদর্শন -->
+                        <h1 class="page-title text-2xl font-bold">👋 স্বাগতম, ${currentUser.name}!</h1>
+                        <p class="page-subtitle text-xs text-gray-500 mt-1">তানজিফ একাডেমির ড্যাশবোর্ডে আপনাকে স্বাগতম</p>
+                        <div style="margin-top:0.4rem; padding:0.4rem; background:rgba(37,99,235,0.06); border-radius:6px; display:inline-block;">
+                            <span style="font-size:0.75rem; font-weight:600;">আইডি: <span style="color:#2563eb;">${currentUser.tanzifID}</span></span>
+                        </div>
+                    </div>
+
+                    <div style="border-top:1px solid rgba(0,0,0,0.1); padding-top:1rem;">
+                        <h3 style="font-size:0.8rem; font-weight:700; margin-bottom:0.7rem;">📚 একাডেমি পেজসমূহ</h3>
+                        <div class="grid-links">
+                            <a href="#" class="link-card" onclick="showProtectedPage('courses')"><span class="link-icon">📖</span>কোর্সসমূহ</a>
+                            <a href="#" class="link-card" onclick="showProtectedPage('teachers')"><span class="link-icon">👨‍🏫</span>শিক্ষকবৃন্দ</a>
+                            <a href="#" class="link-card" onclick="showProtectedPage('schedule')"><span class="link-icon">📅</span>ক্লাস রুটিন</a>
+                            <a href="#" class="link-card" onclick="showProtectedPage('assignments')"><span class="link-icon">📝</span>অ্যাসাইনমেন্ট</a>
+                            <a href="#" class="link-card" onclick="showProtectedPage('results')"><span class="link-icon">📊</span>ফলাফল</a>
+                            <a href="#" class="link-card" onclick="showProtectedPage('library')"><span class="link-icon">📚</span>লাইব্রেরি</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ফিচার ৬: লগইন ছাড়া সরাসরি লিঙ্ক কপি করে ব্রাউজ করা প্রতিরোধ ব্যবস্থা
+        function showProtectedPage(pageName) {
+            if (!currentUser) {
+                alert('লগইন ব্যতিত একাডেমীর অভ্যন্তরীণ পেজে প্রবেশ সম্পূর্ণ নিষিদ্ধ!');
+                renderLoginPage();
                 return;
             }
-            currentUser = { name: 'সদস্য', email: email };
-            localStorage.setItem('tanjif_user', JSON.stringify(currentUser));
-            renderPage('welcome');
+            const container = document.getElementById('auth-section-anchor');
+            container.innerHTML = `
+                <div class="glass-card text-center">
+                    <h1 class="text-xl font-bold mb-2">📄 ${pageName.toUpperCase()} পেজ</h1>
+                    <p class="text-sm text-gray-500 mb-4">এই পেজের কার্যক্রম ও মডিউল ডেভেলপমেন্টের কাজ চলছে।</p>
+                    <button onclick="renderWelcomePage()" class="btn-primary max-w-xs mx-auto">🏠 ড্যাশবোর্ডে ফিরুন</button>
+                </div>
+            `;
+        }
+
+        function renderLoginPage() {
+            location.reload();
         }
 
         function logout() {
             currentUser = null;
             localStorage.removeItem('tanjif_user');
-            document.getElementById('nav-login').style.display = 'inline-block';
-            document.getElementById('nav-logout').style.display = 'none';
-            renderPage('login');
+            renderLoginPage();
         }
 
-        function showLogin() {
-            if (currentUser) {
-                renderPage('welcome');
-            } else {
-                renderPage('login');
-            }
-        }
-
-        function goHome() {
-            if (currentUser) {
-                renderPage('welcome');
-            } else {
-                renderPage('login');
-            }
-        }
-
-        function showPage(pageName) {
-            if (!currentUser) {
-                alert('দয়া করে প্রথমে লগইন করুন।');
-                renderPage('login');
-                return;
-            }
-            
-            if (pageName === 'courses') {
-                const container = document.getElementById('mainContent');
-                container.innerHTML = `
-                    <div style="width:100%; max-width:1200px; margin:0 auto; padding:0 10px;">
-                        <iframe src="courses.html" style="width:100%; min-height:70vh; border:none; border-radius:14px; background:transparent;"></iframe>
-                    </div>
-                `;
-                currentPage = 'courses';
-                setTimeout(() => {
-                    const iframe = document.querySelector('iframe');
-                    if (iframe) {
-                        const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
-                        iframe.contentWindow.postMessage({ theme: theme }, '*');
-                    }
-                }, 500);
-                return;
-            }
-            
-            renderPage('demo');
-            const title = document.querySelector('.page-title');
-            if (title) {
-                const names = {
-                    teachers: '👨‍🏫 শিক্ষকবৃন্দ',
-                    schedule: '📅 ক্লাস রুটিন',
-                    assignments: '📝 অ্যাসাইনমেন্ট',
-                    results: '📊 ফলাফল',
-                    library: '📚 লাইব্রেরি',
-                    forum: '💬 ফোরাম',
-                    settings: '⚙️ সেটিংস'
-                };
-                title.textContent = names[pageName] || '📄 পেজ';
-            }
-        }
-
-        // ===== ট্যাব =====
         function switchTab(type) {
-            const login = document.getElementById('login-section');
-            const signup = document.getElementById('signup-section');
-            const otp = document.getElementById('otp-section');
-            const success = document.getElementById('success-section');
-            const tabLogin = document.getElementById('tab-login');
-            const tabSignup = document.getElementById('tab-signup');
-            const authTitle = document.getElementById('auth-title');
-            const authSubtitle = document.getElementById('auth-subtitle');
-
-            if (!login || !signup || !otp || !success) return;
-
-            login.classList.add('step-hidden');
-            signup.classList.add('step-hidden');
-            otp.classList.add('step-hidden');
-            success.classList.add('step-hidden');
+            document.getElementById('login-section').classList.add('step-hidden');
+            document.getElementById('signup-section').classList.add('step-hidden');
+            document.getElementById('forgot-password-section').classList.add('step-hidden');
+            document.getElementById('reset-verify-section').classList.add('step-hidden');
+            document.getElementById('otp-section').classList.add('step-hidden');
+            
+            document.getElementById('tab-login').className = "tab-btn tab-inactive";
+            document.getElementById('tab-signup').className = "tab-btn tab-inactive";
 
             if (type === 'login') {
-                login.classList.remove('step-hidden');
-                tabLogin.className = "tab-btn tab-active";
-                tabSignup.className = "tab-btn tab-inactive";
-                if(authTitle) authTitle.innerText = t('loginTitle');
-                if(authSubtitle) authSubtitle.innerText = t('loginSub');
-            } else {
-                signup.classList.remove('step-hidden');
-                tabSignup.className = "tab-btn tab-active";
-                tabLogin.className = "tab-btn tab-inactive";
-                if(authTitle) authTitle.innerText = t('signupTitle');
-                if(authSubtitle) authSubtitle.innerText = t('signupSub');
+                document.getElementById('login-section').classList.remove('step-hidden');
+                document.getElementById('tab-login').className = "tab-btn tab-active";
+            } else if (type === 'signup') {
+                document.getElementById('signup-section').classList.remove('step-hidden');
+                document.getElementById('tab-signup').className = "tab-btn tab-active";
             }
         }
 
-        // ===== OTP =====
+        // পাসওয়ার্ড রিসেট ভিউ কন্ট্রোল
+        function showForgotPassword(event) {
+            if (event) event.preventDefault();
+            document.getElementById('login-section').classList.add('step-hidden');
+            document.getElementById('forgot-password-section').classList.remove('step-hidden');
+        }
+
+        // ===== ওটিপি ও সাইনআপ API সংযোগ =====
         async function sendOTP() {
-            const name = document.getElementById('reg-name')?.value.trim();
-            const phone = document.getElementById('reg-phone')?.value.trim();
-            const email = document.getElementById('reg-email')?.value.trim();
+            const name = document.getElementById('reg-name').value.trim();
+            const phone = document.getElementById('reg-phone').value.trim();
+            const email = document.getElementById('reg-email').value.trim();
 
-            if (!name || !phone || !email) {
-                alert("দয়া করে নাম, মোবাইল এবং ইমেইল সব ঘর পূরণ করুন।");
-                return;
-            }
+            if (!name || !phone || !email) { alert("সব তথ্য পূরণ করুন।"); return; }
 
-            try {
-                const res = await fetch('/api/send-otp', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, phone, email })
-                });
-                const data = await res.json();
-
-                if (data.success) {
-                    document.getElementById('signup-section').classList.add('step-hidden');
-                    document.getElementById('otp-section').classList.remove('step-hidden');
-                    const title = document.querySelector('.page-title');
-                    if (title) title.textContent = t('otpSent');
-                    const sub = document.querySelector('.page-subtitle');
-                    if (sub) sub.textContent = email + t('otpSentSub');
-                } else {
-                    alert(data.message || "ওটিপি পাঠানো সম্ভব হয়নি।");
-                }
-            } catch (err) {
-                console.error(err);
-                alert("সার্ভারের সাথে যোগাযোগ করা যাচ্ছে না। নিশ্চিত করুন সার্ভার চলছে (node server.js)");
-            }
+            const res = await fetch('/api/send-otp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, phone, email })
+            });
+            const data = await res.json();
+            if (data.success) {
+                document.getElementById('signup-section').classList.add('step-hidden');
+                document.getElementById('otp-section').classList.remove('step-hidden');
+            } else { alert(data.message); }
         }
 
         async function verifyOTP() {
-            const email = document.getElementById('reg-email')?.value.trim();
-            const otp = document.getElementById('input-otp')?.value.trim();
-            const password = document.getElementById('reg-password')?.value;
+            const email = document.getElementById('reg-email').value.trim();
+            const otp = document.getElementById('input-otp').value.trim();
+            const password = document.getElementById('reg-password').value;
 
-            if (!otp) { alert('ওটিপি কোড দিন।'); return; }
-            if (!password || password.length < 6) { alert('পাসওয়ার্ড অবশ্যই ৬ বা তার বেশি অক্ষরের হতে হবে।'); return; }
+            if (!otp || password.length < 6) { alert('সঠিক ওটিপি এবং ন্যূনতম ৬ সংখ্যার পাসওয়ার্ড দিন।'); return; }
 
-            try {
-                const res = await fetch('/api/verify-otp', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, otp, password })
-                });
-                const data = await res.json();
+            const res = await fetch('/api/verify-otp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, otp, password })
+            });
+            const data = await res.json();
+            if (data.success) {
+                document.getElementById('otp-section').classList.add('step-hidden');
+                document.getElementById('success-section').classList.remove('step-hidden');
+                document.getElementById('memberName').textContent = data.name;
+                document.getElementById('tanzif-id').textContent = data.tanzifID;
+            } else { alert(data.message); }
+        }
 
-                if (data.success) {
-                    document.getElementById('otp-section').classList.add('step-hidden');
-                    document.getElementById('success-section').classList.remove('step-hidden');
-                    document.getElementById('memberName').textContent = data.name;
-                    document.getElementById('tanzif-id').textContent = data.tanzifID;
-                    const title = document.querySelector('.page-title');
-                    if (title) title.textContent = t('regSuccess');
-                    const sub = document.querySelector('.page-subtitle');
-                    if (sub) sub.textContent = t('regSuccessSub');
-                } else {
-                    alert(data.message || "ওটিপি মিলছে না, আবার চেষ্টা করুন।");
-                }
-            } catch (err) {
-                console.error(err);
-                alert("ভেরিফিকেশন ব্যর্থ, সার্ভার চেক করুন।");
+        // পাসওয়ার্ড রিসেট ওটিপি পাঠানো
+        async function sendResetOTP() {
+            const email = document.getElementById('reset-email').value.trim();
+            if(!email) { alert('ইমেইল দিন'); return; }
+
+            const res = await fetch('/api/forgot-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            });
+            const data = await res.json();
+            if(data.success) {
+                document.getElementById('forgot-password-section').classList.add('step-hidden');
+                document.getElementById('reset-verify-section').classList.remove('step-hidden');
+                alert('আপনার ইমেইলে রিসেট ওটিপি পাঠানো হয়েছে।');
+            } else { alert(data.message); }
+        }
+
+        async function handlePasswordReset() {
+            const email = document.getElementById('reset-email').value.trim();
+            const otp = document.getElementById('reset-otp').value.trim();
+            const newPassword = document.getElementById('reset-new-password').value;
+
+            const res = await fetch('/api/reset-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, otp, newPassword })
+            });
+            const data = await res.json();
+            if(data.success) {
+                alert('পাসওয়ার্ড সফলভাবে পরিবর্তিত হয়েছে। নতুন পাসওয়ার্ড দিয়ে লগইন করুন।');
+                switchTab('login');
+            } else { alert(data.message); }
+        }
+
+        // ফিচার ১৩: মতামত পাঠানো ও অটো-ধন্যবাদ মেইল ট্রিগার
+        async function sendMessage() {
+            const email = document.getElementById('msg-email').value.trim();
+            const message = document.getElementById('msg-text').value.trim();
+            if (!email || !message) { alert('দয়া করে ইমেইল ও বার্তা দুটিই লিখুন।'); return; }
+
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, message })
+            });
+            const data = await res.json();
+            if (data.success) {
+                alert('আপনার বার্তাটি সফলভাবে পাঠানো হয়েছে এবং একটি ধন্যবাদ মেইল পাঠানো হয়েছে।');
+                document.getElementById('msg-text').value = '';
             }
         }
 
-        function simulateGoogleAuth() {
-            alert("🌐 Google One-Tap সাইন-ইন সিমুলেশন (লাইভ হলে কাজ করবে)");
-        }
-
-        // ===== থিম & ভাষা =====
         function toggleTheme() {
-            const isDark = document.body.classList.contains('dark-mode');
-            if (isDark) {
-                document.body.classList.remove('dark-mode');
-                document.body.classList.add('light-mode');
-                document.getElementById('themeBtn').textContent = '☀️';
-            } else {
-                document.body.classList.remove('light-mode');
-                document.body.classList.add('dark-mode');
-                document.getElementById('themeBtn').textContent = '🌙';
-            }
-            applyThemeClasses();
-            
-            const iframe = document.querySelector('iframe');
-            if (iframe) {
-                const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
-                iframe.contentWindow.postMessage({ theme: theme }, '*');
-            }
+            document.body.classList.toggle('dark-mode');
+            document.body.classList.toggle('light-mode');
+            document.getElementById('themeBtn').textContent = document.body.classList.contains('dark-mode') ? '🌙' : '☀️';
         }
 
         function toggleLang() {
-            currentLang = currentLang === 'bn' ? 'en' : 'bn';
-            document.getElementById('langBtn').textContent = currentLang === 'bn' ? '🌐' : '🌍';
-            // Re-render current page
-            if (currentPage === 'login') renderPage('login');
-            else if (currentPage === 'welcome') renderPage('welcome');
-            else renderPage('demo');
-            // Re-apply tab state
-            if (currentPage === 'login') {
-                setTimeout(() => {
-                    const activeTab = document.querySelector('.tab-active');
-                    if (activeTab) {
-                        const type = activeTab.textContent.includes('Sign') || activeTab.textContent.includes('নিবন্ধন') ? 'signup' : 'login';
-                        switchTab(type);
-                    }
-                }, 50);
+            if (currentLang === 'bn') {
+                currentLang = 'en';
+                document.getElementById('langBtn').textContent = '🇧🇩';
+                alert('Language switched to English (Demo)');
+            } else {
+                currentLang = 'bn';
+                document.getElementById('langBtn').textContent = '🌐';
+                alert('ভাষা বাংলায় পরিবর্তন করা হয়েছে (ডেমো)');
             }
         }
 
-        // ===== ইনিট =====
+        function simulateGoogleAuth() { alert("Google Authenticator Connection Mocked"); }
+        function goHome() { if(currentUser) { renderWelcomePage(); } else { renderLoginPage(); } }
+
         window.onload = function() {
             const savedUser = localStorage.getItem('tanjif_user');
             if (savedUser) {
                 currentUser = JSON.parse(savedUser);
-                renderPage('welcome');
-            } else {
-                renderPage('login');
-                setTimeout(() => switchTab('login'), 100);
+                renderWelcomePage();
             }
-            document.body.classList.add('light-mode');
-            applyThemeClasses();
         };
     </script>
-
 </body>
 </html>
