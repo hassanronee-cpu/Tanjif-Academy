@@ -20,15 +20,19 @@ let userStore = {};
 let resetOtpStore = {};
 
 // ================= NODEMAILER CONFIGURATION =================
-// ফিচার ১: tanjifacademy@hotmail.com থেকে অফিশিয়াল মেইল প্রেরণ কনফিগারেশন
 const transporter = nodemailer.createTransport({
-    service: 'hotmail',
+    host: 'smtp-mail.outlook.com',
+    port: 587,
+    secure: false, // TLS ব্যবহার করার জন্য false
     auth: {
-        user: 'tanjifacademy@hotmail.com',
-        pass: 'bvijdoioeibojqdg' // এখানে আপনার হটমেইল পাসওয়ার্ড বসাবেন
+        user: process.env.EMAIL_USER || 'tanjifacademy@hotmail.com',
+        pass: process.env.EMAIL_PASS || 'bvijdoioeibojqdg'
+    },
+    tls: {
+        ciphers: 'SSLv3',
+        rejectUnauthorized: false
     }
 });
-
 // গুগল শিটের বদলে সহজে সার্ভারে ডাটা সেভ করার ফাংশন
 async function saveToGoogleSheet(name, tanzifID, phone, email, date) {
     try {
